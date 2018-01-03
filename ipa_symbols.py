@@ -1,16 +1,8 @@
 # coding: utf-8
 """
 IPA_SYMBOLS:
+
     Stores classes for categorizing IPA symbols.
-
-Categorizing IPA symbols by number...
-
-    vowel/consonant         0/1
-    voiceless/voiced/NA     0/1/2
-    unrounded/rounded/NA    0/1/2
-    open/mid/close/NA       0/1/2/3
-    front/central/back/NA   0/1/2/3
-
 """
 from ipa_unicode import *
 from enum import Enum
@@ -281,7 +273,9 @@ class IPAConsonant(IPALetter):
             exec("manner = Manner." + name.upper().replace(" ", "_"))
             return manner
 
+
 VOWEL_KEYS = VOWELS.keys()
+
 IPAVOWELS = {
     # FRONT VOWELS
     u"i": IPAVowel(u"i", "close", "front", "unrounded"),
@@ -449,7 +443,6 @@ IPACONSONANTS = {
     u"ɕ": IPAConsonant(u"ɕ", "alveolopalatal", "fricative", voiced=False),   # vl alveolopalatal fricative
     u"ʑ": IPAConsonant(u"ʑ", "alveolopalatal", "fricative", voiced=True),    # vd alveolopalatal fricative
 
-
     # MISC (TBD)
     #u"ɓ": IPAConsonant(u"ɓ", "bilabial", "plosive", voiced=True),    # vd bilabial implosive
     #u"ɗ": IPAConsonant(u"ɗ", "alveolar", "plosive", voiced=True),    # vd alveolar implosive
@@ -470,9 +463,11 @@ IPACONSONANTS = {
 
 
 IPADIACRITICS = {
+    # AFFRICATES
     u"͡": IPADiacritic(u"͡", is_affricate=True),     # combining double inverted breve
     u"͜": IPADiacritic(u"͜", is_affricate=True),     # combining double breve below
 
+    # DIACRITICS
     u"ˈ": IPADiacritic(u"ˈ", is_affricate=False),    # (primary) stress mark
     u"ˌ": IPADiacritic(u"ˌ", is_affricate=False),    # secondary stress
     u"ː": IPADiacritic(u"ː", is_affricate=False),    # length mark (alt: colon)
@@ -521,17 +516,4 @@ IPADIACRITICS = {
 IPALETTERS = dict(IPACONSONANTS.items() + IPAVOWELS.items())
 
 IPASYMBOLS = dict(IPALETTERS.items() + IPADIACRITICS.items())
-
-'''
-for iv in IPAVOWELS:
-    ipav = IPAVOWELS[iv]
-    print ipav.get_symbol(), int(ipav)
-
-print
-print
-
-for ic in IPACONSONANTS:
-    ipac = IPACONSONANTS[ic]
-    print ipac.get_symbol(), int(ipac)
-'''
 

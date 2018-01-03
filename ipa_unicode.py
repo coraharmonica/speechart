@@ -1,17 +1,9 @@
 # coding: utf-8
 """
 IPA_LETTERS:
-    Stores all IPA unicode symbols, including
-    their place/manner and other linguistic information.
 
-Categorizing IPA symbols by number...
-
-    vowel/consonant         0/1
-    voiceless/voiced/NA     0/1/2
-    unrounded/rounded/NA    0/1/2
-    open/mid/close/NA       0/1/2/3
-    front/central/back/NA   0/1/2/3
-
+    Stores all IPA symbols, including diacritics and letters.
+    Letters include place, manner, and other linguistic information.
 """
 
 

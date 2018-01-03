@@ -3,7 +3,7 @@ from ipa_symbols import *
 
 def get_word_num(word):
     nums = [str(ord(char)) for char in word]
-    num = int("".join(nums)) #int("0x" + "".join(nums), base=16)
+    num = int("".join(nums))
     print num
     return num
 
