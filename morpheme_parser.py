@@ -157,24 +157,10 @@ class MorphemeParser(IPAParser):
         :param description: str, description to find etymology from
         :return: str, a word's etymology from given description
         """
-        '''
-        etymologies = description.split("valent to ")
-
-        if len(etymologies) > 1:
-            etymology = etymologies[-1]
-            etymology = etymology.split(".", 1)[0]
-            etymology = etymology.split(",", 1)[0]
-            etymology = etymology.split(";", 1)[0]
-        else:
-        '''
         if description[:5] == "From ":
             description = description[5:]
 
         etymology = self.deriv_pattern.match(description)
-
-        #if etymology is None:
-        #    etymology = self.deriv_pattern.search(description)
-
         etymology = etymology.group()
 
         try:
@@ -483,17 +469,18 @@ class MorphemeParser(IPAParser):
         if lexicon is not None:
             return set(lexicon.keys())
         else:
-            path = PATH + "/resources/wordnet/wn_s.txt"
             entries = set()
+            if self.language == "English":
+                path = PATH + "/resources/wordnet/wn_s.txt"
 
-            with open(path, "r") as synsets:
-                for synset in synsets:
-                    synset = synset[2:-3]
-                    info = synset.split(",")
-                    name = info[2]
-                    name = name[1:-1]
-                    if " " not in name:
-                        entries.add(name)
+                with open(path, "r") as synsets:
+                    for synset in synsets:
+                        synset = synset[2:-3]
+                        info = synset.split(",")
+                        name = info[2]
+                        name = name[1:-1]
+                        if " " not in name:
+                            entries.add(name)
 
             return entries
 
@@ -515,7 +502,8 @@ class MorphemeParser(IPAParser):
                 name = name[1:-1]
                 pos = info[3]
                 if " " not in name:
-                    entries.add((name, pos))
+                    pair = (self.unicodize(name), self.unicodize(pos))
+                    entries.add(pair)
 
         return entries
 
@@ -526,7 +514,7 @@ class MorphemeParser(IPAParser):
         :param lim: int, number of common words to return
         :return: List[tuple(str, str)], Wordnet word and pos
         """
-        common_words = self.common_words(lim)
+        common_words = self.common_morphemes(lim)
 
         if self.language == "English":
             word_pairs = self.get_wordnet_word_pairs()
@@ -538,31 +526,36 @@ class MorphemeParser(IPAParser):
                 word = common_words[i]
                 pos = poses[i]
                 for p in pos:
-                    pair = (word, p)
+                    pair = (self.unicodize(word), self.unicodize(p))
                     word_pairs.append(pair)
+                    print pair
             return word_pairs
 
     def common_morphemes(self, lim=50000):
         """
-        Returns a list of the 50,000 most common words
+        Returns a set of the 50,000 most common words
         in this IPAParser's language, including their
         constituent words.
 
-        :param lim: int, lim <= 50000, number of words to retreive
-        :return: List[str], 50k most common words in IPAParser's language
+        :param lim: int, lim <= 50000, number of words to retrieve
+        :return: Set(str), up to 50k most common words in IPAParser's language
         """
         lexicon = self.lexicon
         common_words = lexicon[:lim]
-        all_words = self.wordnet_words.intersection(lexicon).difference(common_words)
         morphemes = common_words[:]
+        common_words = set(common_words)
+        all_words = self.wordnet_words.intersection(lexicon).difference(common_words)
 
         for word in all_words:
             # catch all derivative words
             if len(word) > 3:
-                if any(word == cw[:len(word)] or cw == word[:len(cw)] for cw in common_words if len(cw) > 3):
+                if any(word == cw[:len(word)] or cw == word[:len(cw)]
+                       for cw in common_words if 3 < len(cw) < 2*len(word)):
+                    word = self.unicodize(word)
+                    print word
                     morphemes.append(word)
 
-        return sorted(morphemes)
+        return morphemes
 
     def common_ipas(self, lim=50000):
         """
@@ -598,6 +591,7 @@ class MorphemeParser(IPAParser):
             ipa = self.word_to_ipa(word)
             if ipa is not None:
                 ipas.add((ipa, pos))
+
         self.refresh_json()
         return ipas
 

@@ -87,6 +87,10 @@ class IPAParser:
         """
         return self.language
 
+    def set_language(self, language):
+        if self.language != language:
+            self.__init__(language)
+
     def get_alphabet(self):
         """
         Returns this IPAParser's native language alphabet.
@@ -125,7 +129,7 @@ class IPAParser:
         :param filename: str, name of .json file to dump to
         :return: None
         """
-        path = PATH + "/" + filename + ".json"
+        path = PATH + "/resources/data/" + filename + ".json"
         json.dump(data, open(path, 'w'), indent=1, sort_keys=True, encoding='utf-8')
 
     def fetch_json(self, filename):
@@ -135,7 +139,7 @@ class IPAParser:
         :param filename: str, name of .json file to fetch
         :return: X, content of given .json file
         """
-        return json.load(open(PATH + "/" + filename + ".json"))
+        return json.load(open(PATH + "/resources/data/" + filename + ".json"))
 
     def refresh_json(self):
         """
@@ -301,56 +305,6 @@ class IPAParser:
         first.update(other)
         return first
 
-    def write_lexicon(self):
-        """
-        Writes all words for Wiktionary entries in this
-        IPAParser's language.
-        ~
-        Saves the file as [IPAParser language in lowercase]_lexicon.txt.
-        ~
-        e.g. parser = IPAParser("Polish")
-             parser.write_lexicon() -> saved to "polish_lexicon.txt"
-
-        :return: None
-        """
-        pronunciations = self.all_page_defns()
-
-        dest = self.language.lower() + "_lexicon.txt"
-        dest_path = LEXICA_PATH + "/" + dest
-
-        with open(dest_path, "w") as out:
-            # replace each url with its IPA transcription
-            for pron in sorted(pronunciations):
-                out.write(unicode(pron).encode('utf-8') + "\n")
-
-    def write_ipa_dict(self):
-        """
-        Writes a word-IPA dictionary for this IPAParser's language
-        using Wiktionary entries.
-        ~
-        Saves the file as [IPAParser language in lowercase].txt.
-        ~
-        e.g. parser = IPAParser("Polish")
-             parser.write_ipa_dict() -> saved to "polish.txt"
-
-        :return: None
-        """
-        pronunciations = self.all_page_defns()
-
-        dest = self.language.lower() + ".txt"
-        dest_path = PATH + "/" + dest
-
-        with open(dest_path, "w") as out:
-            # replace each url with its IPA transcription
-            for pron in sorted(pronunciations):
-                url = self.word_url(pron)
-                parsed_url = self.parse_url(url)
-                ipa = self.find_ipa(parsed_url)
-                if ipa is None:
-                    continue
-                text = pron + u"\t" + ipa
-                out.write(unicode(text).encode('utf-8') + "\n")
-
     def common_words(self, lim=50000):
         """
         Returns a list of the 50,000 most common words
@@ -377,6 +331,80 @@ class IPAParser:
 
         return words
 
+    def common_ipa_words(self, lim=50000):
+        """
+        Returns a set of IPAWords corresponding to the
+        Wiktionary entries of this IPAParser's language's most
+        common words (up to 50,000).
+
+        :param lim: int, lim <= 50000, number of words to retrieve
+        :return: Set(IPAWord), common IPAWords in this IPAParser's language
+        """
+        pages = self.pages_common_defns(self.all_ipa_pages(), lim)
+        transcriptions = self.words_to_ipawords(pages)
+        return transcriptions
+
+    def common_phonemes(self, lim=50000):
+        """
+        Returns a dictionary representing ipa_phonemes
+        for up to the 50,000 most common words in this language
+        and each of the forms they take.
+
+        :param lim: int, lim <= 50000, number of words to retreive
+        :return: dict, where...
+            key (str) - phoneme (i.e., short sequence of characters)
+            val (List[str]) - IPA translations of this language's phoneme
+        """
+        transcriptions = self.common_ipa_words(lim=lim)
+        phoneme_dict = self.ipa_words_phonemes(transcriptions)
+        return phoneme_dict
+
+    def all_phonemes(self):
+        """
+        Returns a dictionary representing all ipa_phonemes
+        in this language and each of the forms they take.
+
+        :return: dict, where...
+            key (str) - phoneme (i.e., short sequence of characters)
+            val (Set(str)) - IPA translations of this language's phoneme
+        """
+        transcriptions = self.all_ipa_words()
+        phoneme_dict = self.ipa_words_phonemes(transcriptions)
+        return phoneme_dict
+
+    def all_ipa_words(self):
+        """
+        Returns a set of IPAWords corresponding to all
+        Wiktionary entries in this IPAParser's language.
+
+        :return: Set(IPAWord), all IPAWords in this IPAParser's language
+        """
+        pages = self.all_page_defns()
+        transcriptions = self.words_to_ipawords(pages)
+        return transcriptions
+
+    def ipa_words_phonemes(self, ipa_words):
+        """
+        Returns a dictionary representing all phonemes in ipa_words.
+        ~
+        N.B. Phonemes are in a language's native lettering system,
+        while their forms are in IPA.
+
+        :param ipa_words: Set(IPAWord), IPAWords to return phonemes of
+        :return: dict, where...
+            key (str) - phoneme (i.e., short sequence of >=1 characters)
+            val (List[str]) - IPA translations of this language's phoneme
+        """
+        ipa_words = sorted(ipa_words, key=lambda iw: iw.get_difficulty())
+
+        for ipa_word in ipa_words:
+            print ipa_word.get_word()
+            print "-"*8
+            phoneme_dict = ipa_word.find_phoneme_dict()
+            self.merge_phoneme_dicts(phoneme_dict)
+
+        return self.phoneme_dict
+
     def get_lexicon(self, lim=None):
         """
         Returns a set of all words in this IPAParser's language, up to lim.
@@ -396,7 +424,7 @@ class IPAParser:
             line_no = 0
             for line in lexicon:
                 word = line.split(" ", 1)[0]
-                words.append(word)
+                words.append(self.unicodize(word))
                 if lim:
                     if line_no > lim:
                         break
@@ -742,14 +770,17 @@ class IPAParser:
             pg = page
         spans = pg.findAllNext('span', attrs={'class': "mw-headline"})
 
-        pos = list()
+        poses = list()
 
         for span in spans:
             span_id = span['id']
             if span_id in LEMMA_TYPES:
-                pos.append(span_id)
+                poses.append(span_id)
 
-        return pos
+        if len(poses) == 0:
+            poses.append(None)
+
+        return poses
 
     def get_pos_num(self, pos):
         """
@@ -849,8 +880,9 @@ class IPAParser:
             url = self.word_url(word)
             parsed_url = self.parse_url(url)
             poses = self.findall_pos(parsed_url)
-            poses = filter(None, poses)
+            #poses = filter(None, poses)
             self.lang_pos[word] = poses
+            print word, poses
             return poses
 
     def words_to_pos(self, words):
@@ -905,80 +937,6 @@ class IPAParser:
         :return: (unicode) str, word with parentheses removed
         """
         return word.split("(", 1)[0]
-
-    def common_ipa_words(self, lim=50000):
-        """
-        Returns a set of IPAWords corresponding to the
-        Wiktionary entries of this IPAParser's language's most
-        common words (up to 50,000).
-
-        :param lim: int, lim <= 50000, number of words to retrieve
-        :return: Set(IPAWord), common IPAWords in this IPAParser's language
-        """
-        pages = self.pages_common_defns(self.all_ipa_pages(), lim)
-        transcriptions = self.words_to_ipawords(pages)
-        return transcriptions
-
-    def all_ipa_words(self):
-        """
-        Returns a set of IPAWords corresponding to all
-        Wiktionary entries in this IPAParser's language.
-
-        :return: Set(IPAWord), all IPAWords in this IPAParser's language
-        """
-        pages = self.all_page_defns()
-        transcriptions = self.words_to_ipawords(pages)
-        return transcriptions
-
-    def ipa_words_phonemes(self, ipa_words):
-        """
-        Returns a dictionary representing all phonemes in ipa_words.
-        ~
-        N.B. Phonemes are in a language's native lettering system,
-        while their forms are in IPA.
-
-        :param ipa_words: Set(IPAWord), IPAWords to return phonemes of
-        :return: dict, where...
-            key (str) - phoneme (i.e., short sequence of >=1 characters)
-            val (List[str]) - IPA translations of this language's phoneme
-        """
-        ipa_words = sorted(ipa_words, key=lambda iw: iw.get_difficulty())
-
-        for ipa_word in ipa_words:
-            print ipa_word.get_word()
-            print "-"*8
-            phoneme_dict = ipa_word.find_phoneme_dict()
-            self.merge_phoneme_dicts(phoneme_dict)
-
-        return self.phoneme_dict
-
-    def common_phonemes(self, lim=50000):
-        """
-        Returns a dictionary representing ipa_phonemes
-        for up to the 50,000 most common words in this language
-        and each of the forms they take.
-
-        :param lim: int, lim <= 50000, number of words to retreive
-        :return: dict, where...
-            key (str) - phoneme (i.e., short sequence of characters)
-            val (List[str]) - IPA translations of this language's phoneme
-        """
-        transcriptions = self.common_ipa_words(lim=lim)
-        phoneme_dict = self.ipa_words_phonemes(transcriptions)
-        return phoneme_dict
-
-    def all_phonemes(self):
-        """
-        Returns a dictionary representing all ipa_phonemes
-        in this language and each of the forms they take.
-
-        :return: dict, where...
-            key (str) - phoneme (i.e., short sequence of characters)
-            val (Set(str)) - IPA translations of this language's phoneme
-        """
-        transcriptions = self.all_ipa_words()
-        phoneme_dict = self.ipa_words_phonemes(transcriptions)
-        return phoneme_dict
 
     def ipa_words_to_features(self, ipa_words):
         questions = []

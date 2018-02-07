@@ -50,7 +50,7 @@ class MorphemeDFA(MorphemeParser):
         self.language = language
         self.states = {self.start_state}
         self.current_state = self.start_state
-        self.start_states = {self.start_state}
+        self.start_states = self.states.copy()
         self.success_states = dict()
         self.success_colours = dict()
         self.transitions = dict()  # holds transition_all functions
@@ -91,16 +91,13 @@ class MorphemeDFA(MorphemeParser):
         :param pos: str, part-of-speech to retrieve additive RGBA value for
         :return: 4-tuple(int,int,int,int), additive RBGA value for given pos
         """
-        if pos is None:
-            return (0, 0, 0, 0)
-        else:
+        try:
+            return self.POS_ADDS[pos]
+        except KeyError:
             try:
-                return self.POS_ADDS[pos]
+                return self.POS_ADDS[self.POS_KEY[pos]]
             except KeyError:
-                try:
-                    return self.POS_ADDS[self.POS_KEY[pos]]
-                except KeyError:
-                    return self.POS_ADDS['o']
+                return self.POS_ADDS['o']
 
     def new_state(self):
         """
@@ -124,9 +121,8 @@ class MorphemeDFA(MorphemeParser):
         :return: None
         """
         self.success_states.setdefault(state, set())
-        if pos is not None:
-            self.success_states[state].add(pos)
-            self.add_success_colour(state, pos)
+        self.success_states[state].add(pos)
+        self.add_success_colour(state, pos)
         return
 
     def add_success_colour(self, state, pos):
@@ -199,6 +195,18 @@ class MorphemeDFA(MorphemeParser):
         """
         for word_pair in sorted(word_pairs):
             self.add_word_pair(word_pair)
+
+    def clear(self):
+        """
+        Clears this DFA's transitions and all states.
+
+        :return: None
+        """
+        self.states = {self.start_state}
+        self.start_states = self.states.copy()
+        self.success_states = dict()
+        self.success_colours = dict()
+        self.transitions = dict()
 
     def transition(self, state, char):
         """
