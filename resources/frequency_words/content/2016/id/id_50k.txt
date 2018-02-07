@@ -6847,7 +6847,7 @@ kennedy 245
 lesbian 245
 penjuru 245
 hacker 245
-square 245
+rectangle 245
 batiatus 245
 menggantinya 245
 carson 244
@@ -12015,7 +12015,7 @@ hantar 102
 tampar 102
 perjaka 102
 rabies 102
-trim 102
+strip 102
 chet 102
 penyerahan 102
 budapest 102

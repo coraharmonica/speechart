@@ -7979,7 +7979,7 @@ eezol 19
 semblaven 19
 claireece 19
 scotland 19
-square 18
+rectangle 18
 certificat 18
 anya 18
 murphy 18

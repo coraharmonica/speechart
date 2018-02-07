@@ -20338,7 +20338,7 @@ putevima 465
 hladnoće 465
 chow 465
 posjetnicu 465
-square 465
+rectangle 465
 doživljaj 465
 ikakav 465
 slabije 465

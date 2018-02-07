@@ -10807,7 +10807,7 @@ chorzy 1106
 skrzyni 1105
 praktyki 1105
 rzućcie 1105
-square 1105
+rectangle 1105
 patrzymy 1105
 pościg 1105
 kiepskie 1105

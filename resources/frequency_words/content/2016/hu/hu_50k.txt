@@ -20240,7 +20240,7 @@ darabok 550
 tapasztalatból 550
 megállítja 550
 karaoke 549
-square 549
+rectangle 549
 bukkantak 549
 tettétek 549
 félelemtől 549

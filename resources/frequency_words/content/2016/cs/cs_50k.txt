@@ -11108,7 +11108,7 @@ vyzvedne 1201
 utíkáš 1201
 spolku 1201
 vymyslím 1201
-square 1200
+rectangle 1200
 podivný 1200
 sluncem 1200
 slavnostní 1200

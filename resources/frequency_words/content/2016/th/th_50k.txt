@@ -2818,7 +2818,7 @@ learn 32
 เฮด 32
 บายๆ 32
 yan 32
-square 32
+rectangle 32
 port 32
 clay 32
 นายทำ 32
@@ -16949,7 +16949,7 @@ veronica 4
 tumbling 4
 kaitoon 4
 springfield 4
-transition 4
+transition_all 4
 cracked 4
 shaboom 4
 ota 4

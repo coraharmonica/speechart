@@ -7476,7 +7476,7 @@ arrr 32
 uyển 32
 lestrade 32
 pumbaa 32
-square 32
+rectangle 32
 pran 32
 tĩu 32
 bowl 32
@@ -10907,7 +10907,7 @@ sandman 16
 doãn 16
 roque 16
 nightshade 16
-trim 16
+strip 16
 serik 16
 gavroche 16
 gunner 16

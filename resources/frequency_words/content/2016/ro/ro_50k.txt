@@ -10749,7 +10749,7 @@ invat 1319
 trecea 1319
 manuel 1319
 furtuni 1319
-square 1318
+rectangle 1318
 fecioară 1318
 bănuială 1318
 operat 1318

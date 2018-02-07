@@ -7914,7 +7914,7 @@ chemie 600
 grippe 600
 nackte 600
 angestellte 600
-square 600
+rectangle 600
 rauchst 600
 pink 600
 rob 600

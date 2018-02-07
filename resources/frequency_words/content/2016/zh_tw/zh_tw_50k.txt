@@ -31144,7 +31144,7 @@ chakal 21
 布宜諾斯艾利斯 21
 rare 21
 拉羅 21
-square 21
+rectangle 21
 討價 21
 對馬 21
 水溝 21

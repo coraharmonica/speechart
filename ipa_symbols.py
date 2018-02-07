@@ -327,6 +327,11 @@ IPAVOWELS = {
     u"ɒ": IPAVowel(u"ɒ", "open", "back", "rounded"),
 }
 
+SEMIVOWELS = {
+    u"j": IPAVowel(u"j", "close", "front", "unrounded"),   # semivowel approximating "i:"
+    u"w": IPAVowel(u"w", "close", "back", "rounded"),      # semivowel approximating "u:"
+}
+
 IPACONSONANTS = {
     # PLOSIVES
     u"p": IPAConsonant(u"p", "bilabial", "plosive", voiced=False),  # vl bilabial plosive
@@ -444,21 +449,21 @@ IPACONSONANTS = {
     u"ʑ": IPAConsonant(u"ʑ", "alveolopalatal", "fricative", voiced=True),    # vd alveolopalatal fricative
 
     # MISC (TBD)
-    #u"ɓ": IPAConsonant(u"ɓ", "bilabial", "plosive", voiced=True),    # vd bilabial implosive
-    #u"ɗ": IPAConsonant(u"ɗ", "alveolar", "plosive", voiced=True),    # vd alveolar implosive
-    #u"ħ": IPAConsonant(u"ɧ", "", voiced=False),    # vl multiple-place fricative
-    #u"ʜ": IPAConsonant(u"ʜ", voiced=False),    # vl epiglottal fricative
-    #u"ʤ": IPAConsonant(u"ʤ", "post-alveolar", "affricate", voiced=True),    # vd postalveolar affricate
-    #u"ʄ": IPAConsonant(u"ʄ", "palatal", "plosive", voiced=True),    # vd palatal implosive
-    #u"ɠ": IPAConsonant(u"ɠ", "velar", "plosive", voiced=True),    # vd velar implosive
-    #u"ʛ": IPAConsonant(u"ʛ", "uvular", "plosive", voiced=True),    # vd uvular implosive
-    #u"ɥ": IPAConsonant(u"ɥ", ""),    # labial-palatal approximant
-    #u"ʘ": IPAConsonant(u"ʘ", "bilabial", "click"),    # bilabial click
-    #u"ʧ": IPAConsonant(u"ʧ", voiced=False),    # vl postalveolar affricate
-    #u"ʍ": IPAConsonant(u"ʍ", voiced=False),    # vl labial-velar fricative
-    #u"ʎ": IPAConsonant(u"ʎ", "palatal", voiced=True),    # vd palatal lateral
-    #u"ʡ": IPAConsonant(u"ʡ", voiced=True),    # vd epiglottal plosive
-    #u"ʢ": IPAConsonant(u"ʢ", voiced=True)     # vd epiglottal fricative
+    #u"ɓ": IPAConsonant(u"ɓ", "bilabial", "plosive", voiced=True),          # vd bilabial implosive
+    #u"ɗ": IPAConsonant(u"ɗ", "alveolar", "plosive", voiced=True),          # vd alveolar implosive
+    #u"ħ": IPAConsonant(u"ɧ", "multi-place", "fricative", voiced=False),    # vl multiple-place fricative
+    #u"ʜ": IPAConsonant(u"ʜ", "epiglottal", "fricative", voiced=False),     # vl epiglottal fricative
+    #u"ʤ": IPAConsonant(u"ʤ", "post-alveolar", "affricate", voiced=True),   # vd postalveolar affricate
+    #u"ʄ": IPAConsonant(u"ʄ", "palatal", "plosive", voiced=True),           # vd palatal implosive
+    #u"ɠ": IPAConsonant(u"ɠ", "velar", "plosive", voiced=True),             # vd velar implosive
+    #u"ʛ": IPAConsonant(u"ʛ", "uvular", "plosive", voiced=True),            # vd uvular implosive
+    #u"ɥ": IPAConsonant(u"ɥ", "labial-palatal", "approximant"),             # labial-palatal approximant
+    #u"ʘ": IPAConsonant(u"ʘ", "bilabial", "click"),                         # bilabial click
+    #u"ʧ": IPAConsonant(u"ʧ", "postalveolar", "affricate", voiced=False),   # vl postalveolar affricate
+    #u"ʍ": IPAConsonant(u"ʍ", "labial-velar", "fricative", voiced=False),   # vl labial-velar fricative
+    #u"ʎ": IPAConsonant(u"ʎ", "palatal", "lateral", voiced=True),           # vd palatal lateral
+    #u"ʡ": IPAConsonant(u"ʡ", "epiglottal", "plosive", voiced=True),        # vd epiglottal plosive
+    #u"ʢ": IPAConsonant(u"ʢ", "epiglottal", "fricative", voiced=True)       # vd epiglottal fricative
 }
 
 

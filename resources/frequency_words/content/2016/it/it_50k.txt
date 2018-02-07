@@ -8753,7 +8753,7 @@ starete 1209
 fregati 1209
 regolarmente 1208
 popcorn 1208
-square 1208
+rectangle 1208
 trattata 1208
 immobile 1208
 alito 1207

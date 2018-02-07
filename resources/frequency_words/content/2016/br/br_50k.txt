@@ -6593,7 +6593,7 @@ wayne 1
 dilec 1
 ziverañ 1
 leicester 1
-square 1
+rectangle 1
 yankee 1
 driel 1
 anien 1

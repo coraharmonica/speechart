@@ -7427,7 +7427,7 @@ here 1239
 spinnen 1239
 jam 1238
 verkrachter 1238
-square 1238
+rectangle 1238
 vastbesloten 1238
 crawford 1237
 tafels 1237

@@ -6440,7 +6440,7 @@ opera 39
 genggaman 39
 misai 39
 penginapan 39
-square 39
+rectangle 39
 obat 39
 cawangan 39
 elf 39
@@ -25042,7 +25042,7 @@ rampasnya 4
 menaklukan 4
 yal 4
 sambutnya 4
-trim 4
+strip 4
 megapa 4
 berfrekuensi 4
 diserbu 4

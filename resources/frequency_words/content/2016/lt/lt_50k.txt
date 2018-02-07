@@ -8222,7 +8222,7 @@ busiu 61
 septynios 61
 are 61
 akmenys 61
-trim 61
+strip 61
 šarlote 61
 trunka 61
 dingai 61
@@ -49748,7 +49748,7 @@ ari 7
 spaulding 7
 kabliukus 7
 suverst 7
-square 7
+rectangle 7
 partnerystė 7
 susitaikymą 7
 susitaikys 7

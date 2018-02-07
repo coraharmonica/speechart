@@ -18635,7 +18635,7 @@ afgerandi 19
 patta 19
 áköf 19
 hatađ 19
-square 19
+rectangle 19
 ūjķđan 19
 kvenmađur 19
 snéri 19

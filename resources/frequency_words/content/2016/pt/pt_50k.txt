@@ -8883,7 +8883,7 @@ identidades 951
 estacionado 951
 gémea 951
 morde 951
-square 951
+rectangle 951
 ricardo 951
 malandro 950
 lagosta 950

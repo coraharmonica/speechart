@@ -9152,7 +9152,7 @@ namoradas 1921
 ricas 1921
 redenção 1921
 estuprador 1920
-square 1919
+rectangle 1919
 declarações 1919
 prático 1918
 espertinho 1918
@@ -49934,7 +49934,7 @@ saltzman 115
 dissipa 114
 estudaremos 114
 examinadas 114
-trim 114
+strip 114
 bateristas 114
 galway 114
 aplicável 114

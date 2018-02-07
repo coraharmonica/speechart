@@ -13598,7 +13598,7 @@ reisid 222
 looduslik 222
 kolumbia 222
 volkoff 222
-square 222
+rectangle 222
 mustanahaline 222
 paluksin 222
 philadelphia 222

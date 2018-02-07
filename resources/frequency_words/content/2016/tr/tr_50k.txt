@@ -24996,7 +24996,7 @@ araştırmamı 539
 çarpı 539
 papatya 539
 düşünüyormuş 539
-square 539
+rectangle 539
 sesiyle 539
 muş 539
 kilitleri 539

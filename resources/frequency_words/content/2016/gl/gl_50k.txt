@@ -10169,7 +10169,7 @@ elevada 9
 guapos 9
 míraa 9
 hammett 9
-square 9
+rectangle 9
 lai 9
 posme 9
 túneles 9

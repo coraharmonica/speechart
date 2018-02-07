@@ -9454,7 +9454,7 @@ reno 2090
 sushi 2090
 escapando 2089
 helada 2089
-square 2089
+rectangle 2089
 luchamos 2089
 lastimarte 2089
 pamela 2088

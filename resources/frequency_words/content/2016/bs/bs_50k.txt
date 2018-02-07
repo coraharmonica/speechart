@@ -23705,7 +23705,7 @@ potpunog 173
 točnije 173
 devedeset 173
 nailazi 173
-square 173
+rectangle 173
 komesare 173
 strpao 173
 zatvaraj 173

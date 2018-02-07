@@ -21524,7 +21524,7 @@ huomasitteko 300
 tarkoititko 300
 pumppu 300
 juhlin 300
-square 300
+rectangle 300
 päämme 300
 psykologiaa 300
 tappaisit 300

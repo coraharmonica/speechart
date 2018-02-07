@@ -6879,7 +6879,7 @@ beklage 231
 grov 231
 nett 231
 grense 231
-square 231
+rectangle 231
 ledelse 231
 farfar 231
 lizzie 231
@@ -18832,7 +18832,7 @@ kostnaden 57
 kjorer 57
 sunday 57
 kjøperne 57
-trim 57
+strip 57
 vinterfall 57
 tragedier 57
 oppbrukt 57

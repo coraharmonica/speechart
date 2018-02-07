@@ -1,0 +1,2763 @@
+{
+ "English": {}, 
+ "Polish": {
+  "a": [], 
+  "aby": [
+   "Adverb"
+  ], 
+  "albo": [
+   "Conjunction"
+  ], 
+  "ale": [
+   "Particle"
+  ], 
+  "and": [], 
+  "ani": [
+   "Adjective"
+  ], 
+  "a\u017c": [
+   "Conjunction"
+  ], 
+  "bardziej": [
+   "Adverb"
+  ], 
+  "bardzo": [
+   "Adverb"
+  ], 
+  "bez": [], 
+  "blisko": [
+   "Adjective"
+  ], 
+  "bo": [
+   "Pronoun"
+  ], 
+  "boga": [], 
+  "boj\u0119": [
+   "Noun", 
+   "Verb"
+  ], 
+  "boli": [], 
+  "bo\u017ce": [
+   "Noun", 
+   "Interjection", 
+   "Adjective"
+  ], 
+  "brak": [], 
+  "brat": [], 
+  "brata": [], 
+  "broni": [
+   "Noun", 
+   "Verb"
+  ], 
+  "bro\u0144": [
+   "Verb"
+  ], 
+  "brzmi": [
+   "Verb"
+  ], 
+  "by": [
+   "Conjunction"
+  ], 
+  "byli": [], 
+  "byli\u015bmy": [
+   "Verb"
+  ], 
+  "bym": [
+   "Particle"
+  ], 
+  "by\u0107": [
+   "Verb"
+  ], 
+  "by\u0142": [
+   "Verb"
+  ], 
+  "by\u0142a": [
+   "Noun", 
+   "Verb", 
+   "Adjective"
+  ], 
+  "by\u0142am": [
+   "Verb"
+  ], 
+  "by\u0142a\u015b": [
+   "Verb"
+  ], 
+  "by\u0142em": [
+   "Verb"
+  ], 
+  "by\u0142e\u015b": [
+   "Verb"
+  ], 
+  "by\u0142o": [
+   "Verb"
+  ], 
+  "by\u0142oby": [
+   "Verb"
+  ], 
+  "by\u0142y": [
+   "Adjective", 
+   "Noun", 
+   "Verb"
+  ], 
+  "by\u015b": [
+   "Particle"
+  ], 
+  "b\u00f3g": [], 
+  "b\u0105d\u017a": [
+   "Conjunction", 
+   "Verb"
+  ], 
+  "b\u0119dzie": [
+   "Verb"
+  ], 
+  "b\u0119dziecie": [
+   "Verb"
+  ], 
+  "b\u0119dziemy": [
+   "Verb"
+  ], 
+  "b\u0119dziesz": [
+   "Verb"
+  ], 
+  "b\u0119d\u0105": [
+   "Verb"
+  ], 
+  "b\u0119d\u0119": [
+   "Verb"
+  ], 
+  "b\u0142\u0105d": [
+   "Noun"
+  ], 
+  "c": [], 
+  "ca\u0142a": [
+   "Adjective"
+  ], 
+  "ca\u0142e": [
+   "Adjective", 
+   "Noun"
+  ], 
+  "ca\u0142kiem": [
+   "Adverb"
+  ], 
+  "ca\u0142kowicie": [
+   "Adverb"
+  ], 
+  "ca\u0142y": [
+   "Adjective"
+  ], 
+  "ca\u0142ym": [
+   "Adjective"
+  ], 
+  "ca\u0142\u0105": [
+   "Adjective"
+  ], 
+  "charlie": [], 
+  "chce": [
+   "Verb"
+  ], 
+  "chcecie": [
+   "Verb"
+  ], 
+  "chcemy": [
+   "Verb"
+  ], 
+  "chcesz": [
+   "Verb"
+  ], 
+  "chcia\u0142": [
+   "Verb"
+  ], 
+  "chcia\u0142a": [
+   "Verb"
+  ], 
+  "chcia\u0142abym": [
+   "Verb"
+  ], 
+  "chcia\u0142am": [
+   "Verb"
+  ], 
+  "chcia\u0142bym": [
+   "Verb"
+  ], 
+  "chcia\u0142em": [
+   "Verb"
+  ], 
+  "chcia\u0142e\u015b": [
+   "Verb"
+  ], 
+  "chc\u0105": [
+   "Verb"
+  ], 
+  "chc\u0119": [
+   "Verb"
+  ], 
+  "chocia\u017c": [
+   "Conjunction", 
+   "Particle"
+  ], 
+  "chodzi": [
+   "Verb"
+  ], 
+  "chod\u017a": [
+   "Verb"
+  ], 
+  "chod\u017amy": [
+   "Verb"
+  ], 
+  "cholera": [
+   "Interjection"
+  ], 
+  "cholery": [
+   "Noun"
+  ], 
+  "cho\u0107": [
+   "Conjunction"
+  ], 
+  "chwila": [
+   "Noun"
+  ], 
+  "chwili": [
+   "Noun"
+  ], 
+  "chwil\u0119": [
+   "Noun"
+  ], 
+  "chyba": [
+   "Particle", 
+   "Conjunction"
+  ], 
+  "ch\u0142opak": [
+   "Noun"
+  ], 
+  "ch\u0142opaki": [
+   "Noun"
+  ], 
+  "ch\u0142opcy": [
+   "Noun"
+  ], 
+  "ci": [
+   "Conjunction"
+  ], 
+  "cia\u0142a": [
+   "Noun"
+  ], 
+  "cia\u0142o": [
+   "Noun"
+  ], 
+  "cicho": [
+   "Adverb"
+  ], 
+  "cie": [], 
+  "ciebie": [
+   "Pronoun"
+  ], 
+  "ciesz\u0119": [
+   "Verb"
+  ], 
+  "ci\u0105gle": [
+   "Adverb"
+  ], 
+  "ci\u0105gu": [
+   "Noun"
+  ], 
+  "ci\u0119": [
+   "Pronoun"
+  ], 
+  "ci\u0119\u017cko": [
+   "Adverb"
+  ], 
+  "co": [], 
+  "cokolwiek": [
+   "Pronoun"
+  ], 
+  "co\u015b": [
+   "Pronoun"
+  ], 
+  "czas": [], 
+  "czasami": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "czasem": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "czasie": [
+   "Noun"
+  ], 
+  "czasu": [
+   "Noun"
+  ], 
+  "czego": [
+   "Pronoun"
+  ], 
+  "czego\u015b": [
+   "Pronoun"
+  ], 
+  "czeka": [
+   "Verb"
+  ], 
+  "czekaj": [
+   "Verb"
+  ], 
+  "czeka\u0107": [
+   "Verb"
+  ], 
+  "czemu": [
+   "Pronoun"
+  ], 
+  "cze\u015b\u0107": [
+   "Interjection", 
+   "Noun"
+  ], 
+  "cztery": [
+   "Numeral"
+  ], 
+  "czuje": [
+   "Verb"
+  ], 
+  "czujesz": [
+   "Verb"
+  ], 
+  "czuj\u0119": [
+   "Verb"
+  ], 
+  "czy": [
+   "Particle", 
+   "Conjunction"
+  ], 
+  "czyli": [
+   "Conjunction"
+  ], 
+  "czym": [
+   "Pronoun"
+  ], 
+  "czym\u015b": [
+   "Pronoun"
+  ], 
+  "cz\u0119sto": [
+   "Adverb"
+  ], 
+  "cz\u0119\u015b\u0107": [
+   "Noun"
+  ], 
+  "cz\u0142owiek": [], 
+  "cz\u0142owieka": [
+   "Noun"
+  ], 
+  "cz\u0142owiekiem": [
+   "Noun"
+  ], 
+  "cz\u0142owieku": [
+   "Noun"
+  ], 
+  "c\u00f3rka": [
+   "Noun"
+  ], 
+  "c\u00f3\u017c": [
+   "Pronoun"
+  ], 
+  "d": [], 
+  "da": [
+   "Adjective"
+  ], 
+  "daj": [], 
+  "dalej": [
+   "Interjection"
+  ], 
+  "daleko": [], 
+  "dam": [], 
+  "dasz": [
+   "Verb"
+  ], 
+  "dawaj": [], 
+  "dawno": [], 
+  "da\u0107": [
+   "Verb"
+  ], 
+  "da\u0142": [
+   "Verb"
+  ], 
+  "diab\u0142a": [
+   "Noun"
+  ], 
+  "dla": [
+   "Verb"
+  ], 
+  "dlaczego": [
+   "Pronoun"
+  ], 
+  "dlatego": [
+   "Pronoun"
+  ], 
+  "dni": [], 
+  "dnia": [
+   "Noun"
+  ], 
+  "do": [
+   "Conjunction"
+  ], 
+  "dobra": [
+   "Interjection", 
+   "Verb"
+  ], 
+  "dobranoc": [
+   "Interjection"
+  ], 
+  "dobre": [
+   "Verb", 
+   "Adverb"
+  ], 
+  "dobry": [], 
+  "dobrym": [], 
+  "dobrze": [
+   "Adverb"
+  ], 
+  "doktor": [], 
+  "doktorze": [
+   "Noun"
+  ], 
+  "dok\u0105d": [
+   "Pronoun"
+  ], 
+  "dok\u0142adnie": [
+   "Adverb"
+  ], 
+  "dolar\u00f3w": [
+   "Noun"
+  ], 
+  "dom": [], 
+  "domu": [], 
+  "dopiero": [
+   "Adverb"
+  ], 
+  "dop\u00f3ki": [], 
+  "dosta\u0107": [
+   "Verb"
+  ], 
+  "dowiedzie\u0107": [], 
+  "do\u015b\u0107": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "dr": [], 
+  "drodze": [
+   "Noun"
+  ], 
+  "droga": [
+   "Interjection"
+  ], 
+  "drogi": [], 
+  "drog\u0119": [
+   "Noun"
+  ], 
+  "drugi": [
+   "Noun"
+  ], 
+  "drugiej": [
+   "Adjective"
+  ], 
+  "drzwi": [
+   "Noun"
+  ], 
+  "du\u017co": [], 
+  "dwa": [], 
+  "dwie": [
+   "Numeral"
+  ], 
+  "dw\u00f3ch": [
+   "Numeral"
+  ], 
+  "dzia\u0142a": [
+   "Noun", 
+   "Verb"
+  ], 
+  "dzieci": [
+   "Noun"
+  ], 
+  "dziecka": [
+   "Noun"
+  ], 
+  "dziecko": [
+   "Noun"
+  ], 
+  "dzieje": [
+   "Noun"
+  ], 
+  "dziewczyna": [
+   "Noun"
+  ], 
+  "dziewczyny": [
+   "Noun"
+  ], 
+  "dziewczyn\u0105": [
+   "Noun"
+  ], 
+  "dziewczyn\u0119": [
+   "Noun"
+  ], 
+  "dzie\u0144": [
+   "Noun"
+  ], 
+  "dzisiaj": [
+   "Adverb"
+  ], 
+  "dziwne": [
+   "Adjective"
+  ], 
+  "dzi\u0119ki": [
+   "Noun", 
+   "Preposition", 
+   "Interjection"
+  ], 
+  "dzi\u0119kuj\u0119": [
+   "Interjection"
+  ], 
+  "dzi\u015b": [
+   "Adverb"
+  ], 
+  "d\u00f3\u0142": [
+   "Noun"
+  ], 
+  "d\u0142ugo": [
+   "Adverb"
+  ], 
+  "d\u0142u\u017cej": [
+   "Adverb"
+  ], 
+  "ego": [], 
+  "facet": [], 
+  "faceta": [
+   "Noun", 
+   "Verb"
+  ], 
+  "fbi": [], 
+  "film": [], 
+  "frank": [], 
+  "gdy": [
+   "Conjunction"
+  ], 
+  "gdyby": [
+   "Conjunction"
+  ], 
+  "gdybym": [
+   "Conjunction"
+  ], 
+  "gdyby\u015b": [
+   "Conjunction"
+  ], 
+  "gdzie": [
+   "Pronoun", 
+   "Conjunction"
+  ], 
+  "gdzie\u015b": [
+   "Pronoun"
+  ], 
+  "george": [], 
+  "go": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "godzin": [
+   "Noun"
+  ], 
+  "godziny": [
+   "Noun"
+  ], 
+  "godzin\u0119": [
+   "Noun"
+  ], 
+  "gotowa": [
+   "Adjective"
+  ], 
+  "gotowy": [], 
+  "go\u015b\u0107": [
+   "Noun"
+  ], 
+  "gra": [
+   "Verb"
+  ], 
+  "g\u00f3ry": [], 
+  "g\u00f3r\u0119": [
+   "Noun"
+  ], 
+  "g\u00f3wno": [
+   "Noun"
+  ], 
+  "g\u0142owie": [
+   "Noun"
+  ], 
+  "g\u0142owy": [], 
+  "g\u0142ow\u0119": [
+   "Noun"
+  ], 
+  "g\u0142upi": [
+   "Adjective"
+  ], 
+  "halo": [], 
+  "hej": [
+   "Particle"
+  ], 
+  "hey": [], 
+  "historia": [], 
+  "historii": [], 
+  "i": [], 
+  "ich": [], 
+  "idzie": [
+   "Verb"
+  ], 
+  "idziemy": [
+   "Verb"
+  ], 
+  "idziesz": [
+   "Verb"
+  ], 
+  "id\u0119": [
+   "Verb"
+  ], 
+  "id\u017a": [
+   "Verb"
+  ], 
+  "ile": [
+   "Pronoun", 
+   "Adjective", 
+   "Conjunction"
+  ], 
+  "im": [
+   "Verb"
+  ], 
+  "imi\u0119": [
+   "Noun"
+  ], 
+  "inaczej": [
+   "Pronoun"
+  ], 
+  "inne": [
+   "Pronoun"
+  ], 
+  "innego": [
+   "Pronoun"
+  ], 
+  "inni": [
+   "Pronoun"
+  ], 
+  "inny": [
+   "Pronoun"
+  ], 
+  "innych": [
+   "Pronoun"
+  ], 
+  "innym": [
+   "Pronoun"
+  ], 
+  "istnieje": [
+   "Verb"
+  ], 
+  "i\u015b\u0107": [
+   "Verb"
+  ], 
+  "ja": [
+   "Particle", 
+   "Verb"
+  ], 
+  "jack": [], 
+  "jak": [
+   "Pronoun", 
+   "Adjective"
+  ], 
+  "jaka": [
+   "Pronoun", 
+   "Verb"
+  ], 
+  "jaka\u015b": [
+   "Pronoun"
+  ], 
+  "jakby": [], 
+  "jaki": [
+   "Pronoun"
+  ], 
+  "jakie": [
+   "Pronoun"
+  ], 
+  "jakiego\u015b": [], 
+  "jakie\u015b": [
+   "Pronoun"
+  ], 
+  "jakim": [
+   "Pronoun"
+  ], 
+  "jaki\u015b": [
+   "Pronoun"
+  ], 
+  "jako": [
+   "Preposition", 
+   "Conjunction"
+  ], 
+  "jako\u015b": [
+   "Pronoun"
+  ], 
+  "jak\u0105": [
+   "Pronoun"
+  ], 
+  "jak\u0105\u015b": [
+   "Pronoun"
+  ], 
+  "jasne": [], 
+  "je": [
+   "Particle"
+  ], 
+  "jecha\u0107": [
+   "Verb"
+  ], 
+  "jeden": [], 
+  "jedna": [], 
+  "jednak": [
+   "Particle", 
+   "Adjective"
+  ], 
+  "jednego": [
+   "Numeral"
+  ], 
+  "jednej": [
+   "Numeral"
+  ], 
+  "jedno": [], 
+  "jednym": [
+   "Numeral"
+  ], 
+  "jedn\u0105": [
+   "Numeral"
+  ], 
+  "jedynie": [
+   "Adverb"
+  ], 
+  "jedziemy": [
+   "Verb"
+  ], 
+  "jego": [
+   "Pronoun"
+  ], 
+  "jej": [], 
+  "jest": [], 
+  "jestem": [
+   "Verb"
+  ], 
+  "jeste\u015b": [
+   "Verb"
+  ], 
+  "jeste\u015bcie": [
+   "Verb"
+  ], 
+  "jeste\u015bmy": [
+   "Verb"
+  ], 
+  "jeszcze": [
+   "Particle"
+  ], 
+  "jezu": [], 
+  "je\u015bli": [
+   "Conjunction"
+  ], 
+  "je\u017celi": [
+   "Conjunction"
+  ], 
+  "joe": [], 
+  "john": [], 
+  "jutro": [
+   "Adverb"
+  ], 
+  "ju\u017c": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "j\u0105": [], 
+  "kapitanie": [
+   "Noun"
+  ], 
+  "ka\u017cdego": [
+   "Pronoun"
+  ], 
+  "ka\u017cdy": [
+   "Pronoun"
+  ], 
+  "ka\u017cdym": [
+   "Pronoun"
+  ], 
+  "kiedy": [
+   "Pronoun", 
+   "Conjunction"
+  ], 
+  "kiedykolwiek": [
+   "Pronoun"
+  ], 
+  "kiedy\u015b": [
+   "Pronoun"
+  ], 
+  "kilka": [
+   "Adjective", 
+   "Noun"
+  ], 
+  "kilku": [], 
+  "kim": [], 
+  "kim\u015b": [
+   "Pronoun"
+  ], 
+  "kobieta": [
+   "Noun"
+  ], 
+  "kobiety": [
+   "Noun"
+  ], 
+  "kocha": [
+   "Verb"
+  ], 
+  "kocham": [
+   "Verb"
+  ], 
+  "kochanie": [
+   "Noun"
+  ], 
+  "kogo": [
+   "Noun"
+  ], 
+  "kogo\u015b": [
+   "Pronoun"
+  ], 
+  "kole\u015b": [], 
+  "koniec": [
+   "Noun"
+  ], 
+  "ko\u0144ca": [
+   "Noun"
+  ], 
+  "ko\u0144cu": [
+   "Noun"
+  ], 
+  "kraju": [
+   "Noun"
+  ], 
+  "krew": [], 
+  "krwi": [
+   "Noun"
+  ], 
+  "kto": [
+   "Pronoun"
+  ], 
+  "kto\u015b": [
+   "Pronoun"
+  ], 
+  "kt\u00f3ra": [
+   "Pronoun"
+  ], 
+  "kt\u00f3re": [
+   "Pronoun"
+  ], 
+  "kt\u00f3rego": [
+   "Pronoun"
+  ], 
+  "kt\u00f3rej": [
+   "Pronoun"
+  ], 
+  "kt\u00f3ry": [
+   "Pronoun"
+  ], 
+  "kt\u00f3rych": [
+   "Pronoun"
+  ], 
+  "kt\u00f3rym": [
+   "Pronoun"
+  ], 
+  "kt\u00f3rzy": [
+   "Pronoun"
+  ], 
+  "kt\u00f3r\u0105": [
+   "Pronoun"
+  ], 
+  "kupi\u0107": [
+   "Verb"
+  ], 
+  "kurwa": [
+   "Interjection"
+  ], 
+  "k\u0142opoty": [
+   "Noun"
+  ], 
+  "lat": [], 
+  "lata": [], 
+  "leci": [
+   "Verb"
+  ], 
+  "lecz": [
+   "Conjunction", 
+   "Verb"
+  ], 
+  "lepiej": [
+   "Adverb"
+  ], 
+  "lub": [
+   "Conjunction"
+  ], 
+  "lubi": [], 
+  "lubisz": [
+   "Verb"
+  ], 
+  "lubi\u0119": [
+   "Verb"
+  ], 
+  "ludzi": [
+   "Noun"
+  ], 
+  "ludzie": [
+   "Noun"
+  ], 
+  "ma": [], 
+  "macie": [
+   "Verb"
+  ], 
+  "maj\u0105": [
+   "Verb"
+  ], 
+  "mam": [
+   "Adverb", 
+   "Adjective"
+  ], 
+  "mama": [], 
+  "mamo": [], 
+  "mamy": [], 
+  "martw": [
+   "Verb"
+  ], 
+  "masz": [
+   "Verb"
+  ], 
+  "matka": [], 
+  "matki": [], 
+  "ma\u0142a": [], 
+  "ma\u0142e": [], 
+  "ma\u0142o": [
+   "Numeral"
+  ], 
+  "ma\u0142y": [], 
+  "mi": [
+   "Conjunction"
+  ], 
+  "miasta": [
+   "Noun"
+  ], 
+  "miasto": [
+   "Noun"
+  ], 
+  "mia\u0142": [
+   "Noun", 
+   "Verb"
+  ], 
+  "mia\u0142a": [
+   "Verb"
+  ], 
+  "mia\u0142am": [
+   "Verb"
+  ], 
+  "mia\u0142em": [
+   "Verb"
+  ], 
+  "mia\u0142e\u015b": [
+   "Verb"
+  ], 
+  "mia\u0142o": [
+   "Verb"
+  ], 
+  "michael": [], 
+  "miejsca": [
+   "Noun"
+  ], 
+  "miejsce": [
+   "Noun"
+  ], 
+  "miejscu": [
+   "Noun"
+  ], 
+  "mieli": [], 
+  "mieli\u015bmy": [
+   "Verb"
+  ], 
+  "miesi\u0119cy": [
+   "Noun"
+  ], 
+  "mie\u0107": [
+   "Verb"
+  ], 
+  "mie\u015bcie": [
+   "Noun"
+  ], 
+  "mike": [], 
+  "mimo": [], 
+  "minut": [], 
+  "mi\u0119dzy": [
+   "Preposition"
+  ], 
+  "mi\u0142o": [
+   "Adverb"
+  ], 
+  "mi\u0142o\u015bci": [
+   "Noun"
+  ], 
+  "mi\u0142o\u015b\u0107": [
+   "Noun"
+  ], 
+  "mnie": [
+   "Pronoun", 
+   "Verb"
+  ], 
+  "mniej": [
+   "Adverb"
+  ], 
+  "mn\u0105": [
+   "Pronoun", 
+   "Verb"
+  ], 
+  "mogli": [
+   "Verb"
+  ], 
+  "mog\u0105": [
+   "Verb"
+  ], 
+  "mog\u0119": [
+   "Verb"
+  ], 
+  "mog\u0142a": [
+   "Verb"
+  ], 
+  "mog\u0142em": [
+   "Verb"
+  ], 
+  "moi": [
+   "Adjective", 
+   "Verb"
+  ], 
+  "moich": [
+   "Pronoun"
+  ], 
+  "moim": [
+   "Pronoun"
+  ], 
+  "moja": [
+   "Pronoun", 
+   "Verb", 
+   "Numeral", 
+   "Adjective"
+  ], 
+  "moje": [
+   "Verb", 
+   "Adjective"
+  ], 
+  "mojego": [
+   "Pronoun"
+  ], 
+  "mojej": [
+   "Pronoun"
+  ], 
+  "moj\u0105": [
+   "Pronoun"
+  ], 
+  "moment": [], 
+  "mo\u017ce": [
+   "Particle", 
+   "Verb"
+  ], 
+  "mo\u017cecie": [
+   "Verb"
+  ], 
+  "mo\u017cemy": [
+   "Verb"
+  ], 
+  "mo\u017cesz": [
+   "Verb"
+  ], 
+  "mo\u017cliwe": [], 
+  "mo\u017cna": [
+   "Verb"
+  ], 
+  "mu": [
+   "Preposition", 
+   "Particle"
+  ], 
+  "musi": [
+   "Verb"
+  ], 
+  "musia\u0142": [
+   "Verb"
+  ], 
+  "musia\u0142a": [
+   "Verb"
+  ], 
+  "musia\u0142em": [
+   "Verb"
+  ], 
+  "musicie": [
+   "Verb"
+  ], 
+  "musimy": [
+   "Verb"
+  ], 
+  "musisz": [
+   "Verb"
+  ], 
+  "musz\u0105": [
+   "Verb"
+  ], 
+  "musz\u0119": [
+   "Verb"
+  ], 
+  "my": [], 
+  "my\u015bla\u0142am": [
+   "Verb"
+  ], 
+  "my\u015bla\u0142em": [
+   "Verb"
+  ], 
+  "my\u015ble\u0107": [
+   "Verb"
+  ], 
+  "my\u015bli": [
+   "Verb", 
+   "Noun"
+  ], 
+  "my\u015blisz": [
+   "Verb"
+  ], 
+  "my\u015bl\u0119": [
+   "Verb"
+  ], 
+  "m\u00f3g\u0142": [
+   "Verb"
+  ], 
+  "m\u00f3g\u0142by": [
+   "Verb"
+  ], 
+  "m\u00f3g\u0142bym": [
+   "Verb"
+  ], 
+  "m\u00f3g\u0142by\u015b": [
+   "Verb"
+  ], 
+  "m\u00f3j": [
+   "Pronoun"
+  ], 
+  "m\u00f3w": [
+   "Verb"
+  ], 
+  "m\u00f3wi": [
+   "Verb"
+  ], 
+  "m\u00f3wisz": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0105": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0105c": [
+   "Participle"
+  ], 
+  "m\u00f3wi\u0107": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0119": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0142": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0142a": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0142am": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0142em": [
+   "Verb"
+  ], 
+  "m\u00f3wi\u0142e\u015b": [
+   "Verb"
+  ], 
+  "m\u0105\u017c": [
+   "Noun"
+  ], 
+  "m\u0119\u017ca": [
+   "Noun"
+  ], 
+  "m\u0119\u017cczyzna": [
+   "Noun"
+  ], 
+  "na": [], 
+  "nad": [], 
+  "nadal": [
+   "Adverb"
+  ], 
+  "nadziej\u0119": [
+   "Noun"
+  ], 
+  "nagle": [
+   "Adverb"
+  ], 
+  "najbardziej": [
+   "Adverb"
+  ], 
+  "najlepszy": [
+   "Adjective"
+  ], 
+  "najpierw": [
+   "Adverb"
+  ], 
+  "nale\u017cy": [
+   "Verb"
+  ], 
+  "nam": [
+   "Adverb", 
+   "Preposition"
+  ], 
+  "nami": [], 
+  "naprawd\u0119": [
+   "Adverb"
+  ], 
+  "nas": [
+   "Particle"
+  ], 
+  "nasz": [
+   "Pronoun"
+  ], 
+  "nasza": [
+   "Pronoun"
+  ], 
+  "nasze": [
+   "Pronoun"
+  ], 
+  "naszego": [
+   "Pronoun"
+  ], 
+  "naszej": [
+   "Pronoun"
+  ], 
+  "naszych": [
+   "Pronoun"
+  ], 
+  "naszym": [
+   "Pronoun"
+  ], 
+  "nasz\u0105": [
+   "Pronoun"
+  ], 
+  "natychmiast": [
+   "Adverb"
+  ], 
+  "nawet": [
+   "Particle", 
+   "Noun", 
+   "Verb"
+  ], 
+  "nazwisko": [
+   "Noun"
+  ], 
+  "nazywa": [
+   "Verb"
+  ], 
+  "nazywam": [
+   "Verb"
+  ], 
+  "nic": [], 
+  "nich": [], 
+  "niczego": [
+   "Pronoun"
+  ], 
+  "niczym": [
+   "Pronoun"
+  ], 
+  "nie": [
+   "Particle", 
+   "Pronoun"
+  ], 
+  "niech": [
+   "Particle"
+  ], 
+  "niego": [
+   "Pronoun", 
+   "Verb"
+  ], 
+  "niej": [
+   "Pronoun"
+  ], 
+  "niemo\u017cliwe": [], 
+  "niestety": [
+   "Adverb"
+  ], 
+  "niewa\u017cne": [
+   "Interjection", 
+   "Adjective"
+  ], 
+  "nie\u017ale": [
+   "Adverb"
+  ], 
+  "nigdy": [
+   "Adverb"
+  ], 
+  "nikogo": [
+   "Pronoun"
+  ], 
+  "nikomu": [
+   "Pronoun"
+  ], 
+  "nikt": [
+   "Pronoun"
+  ], 
+  "nim": [
+   "Conjunction", 
+   "Adverb"
+  ], 
+  "nimi": [], 
+  "ni\u0105": [
+   "Pronoun"
+  ], 
+  "ni\u017c": [
+   "Conjunction", 
+   "Noun"
+  ], 
+  "no": [
+   "Numeral"
+  ], 
+  "noc": [], 
+  "nocy": [], 
+  "nowe": [], 
+  "nowego": [], 
+  "nowy": [], 
+  "nowym": [], 
+  "numer": [], 
+  "o": [], 
+  "obchodzi": [
+   "Verb"
+  ], 
+  "obiecuj\u0119": [
+   "Verb"
+  ], 
+  "oboje": [
+   "Numeral"
+  ], 
+  "obok": [
+   "Preposition"
+  ], 
+  "och": [], 
+  "oczy": [
+   "Noun"
+  ], 
+  "oczywi\u015bcie": [
+   "Adverb"
+  ], 
+  "od": [
+   "Pronoun"
+  ], 
+  "ode": [
+   "Preposition", 
+   "Pronoun"
+  ], 
+  "odej\u015b\u0107": [
+   "Verb"
+  ], 
+  "odk\u0105d": [
+   "Pronoun"
+  ], 
+  "og\u00f3le": [
+   "Noun"
+  ], 
+  "oh": [], 
+  "ojca": [
+   "Noun"
+  ], 
+  "ojcem": [
+   "Noun"
+  ], 
+  "ojciec": [
+   "Noun"
+  ], 
+  "ok": [], 
+  "okay": [], 
+  "okazji": [
+   "Noun"
+  ], 
+  "okej": [], 
+  "oko\u0142o": [
+   "Preposition"
+  ], 
+  "on": [], 
+  "ona": [
+   "Preposition"
+  ], 
+  "one": [], 
+  "oni": [
+   "Conjunction", 
+   "Particle"
+  ], 
+  "oraz": [
+   "Conjunction"
+  ], 
+  "osob\u0105": [
+   "Noun"
+  ], 
+  "ostatni": [
+   "Adjective"
+  ], 
+  "ostatnie": [
+   "Adjective"
+  ], 
+  "ostatnio": [
+   "Adverb"
+  ], 
+  "os\u00f3b": [
+   "Noun"
+  ], 
+  "oto": [
+   "Particle", 
+   "Numeral", 
+   "Verb"
+  ], 
+  "oznacza": [
+   "Verb"
+  ], 
+  "pa": [
+   "Interjection", 
+   "Particle", 
+   "Pronoun"
+  ], 
+  "pami\u0119tam": [
+   "Verb"
+  ], 
+  "pami\u0119tasz": [
+   "Verb"
+  ], 
+  "pan": [
+   "Pronoun", 
+   "Conjunction"
+  ], 
+  "pana": [
+   "Pronoun", 
+   "Adjective"
+  ], 
+  "panem": [
+   "Verb"
+  ], 
+  "pani": [
+   "Pronoun", 
+   "Adjective"
+  ], 
+  "panie": [
+   "Pronoun"
+  ], 
+  "pani\u0105": [
+   "Noun"
+  ], 
+  "panno": [], 
+  "panowie": [
+   "Noun"
+  ], 
+  "panu": [
+   "Noun", 
+   "Adjective"
+  ], 
+  "par\u0119": [
+   "Numeral", 
+   "Noun"
+  ], 
+  "patrz": [
+   "Verb"
+  ], 
+  "pewien": [
+   "Adjective"
+  ], 
+  "pewna": [
+   "Adjective"
+  ], 
+  "pewnego": [], 
+  "pewnie": [
+   "Adverb"
+  ], 
+  "pewno": [
+   "Adverb"
+  ], 
+  "pieni\u0105dze": [
+   "Noun"
+  ], 
+  "pieni\u0119dzy": [
+   "Noun"
+  ], 
+  "pierwsza": [
+   "Numeral"
+  ], 
+  "pierwsze": [
+   "Numeral"
+  ], 
+  "pierwszy": [
+   "Numeral", 
+   "Adjective"
+  ], 
+  "pi\u0119kna": [
+   "Adjective", 
+   "Noun"
+  ], 
+  "pi\u0119\u0107": [
+   "Numeral"
+  ], 
+  "plan": [], 
+  "po": [
+   "Adverb", 
+   "Interjection", 
+   "Adjective"
+  ], 
+  "poczekaj": [
+   "Verb"
+  ], 
+  "pocz\u0105tku": [
+   "Noun"
+  ], 
+  "pod": [], 
+  "podczas": [
+   "Preposition"
+  ], 
+  "podoba": [], 
+  "pogada\u0107": [
+   "Verb"
+  ], 
+  "poj\u0119cia": [
+   "Noun"
+  ], 
+  "pokaza\u0107": [
+   "Verb"
+  ], 
+  "poka\u017c": [
+   "Verb"
+  ], 
+  "pokoju": [
+   "Noun"
+  ], 
+  "pok\u00f3j": [
+   "Noun"
+  ], 
+  "policja": [
+   "Noun"
+  ], 
+  "policji": [
+   "Noun"
+  ], 
+  "pomoc": [], 
+  "pomocy": [
+   "Interjection"
+  ], 
+  "pomo\u017ce": [
+   "Verb"
+  ], 
+  "pomys\u0142": [
+   "Noun"
+  ], 
+  "pomy\u015bla\u0142em": [
+   "Verb"
+  ], 
+  "pom\u00f3c": [
+   "Verb"
+  ], 
+  "pom\u00f3\u017c": [
+   "Verb"
+  ], 
+  "ponad": [
+   "Preposition"
+  ], 
+  "poniewa\u017c": [
+   "Conjunction"
+  ], 
+  "ponownie": [
+   "Adverb"
+  ], 
+  "popatrz": [
+   "Verb"
+  ], 
+  "porozmawia\u0107": [
+   "Verb"
+  ], 
+  "porz\u0105dku": [
+   "Noun"
+  ], 
+  "pos\u0142uchaj": [
+   "Verb"
+  ], 
+  "potem": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "potrzebuje": [
+   "Verb"
+  ], 
+  "potrzebujemy": [
+   "Verb"
+  ], 
+  "potrzebujesz": [
+   "Verb"
+  ], 
+  "potrzebuj\u0119": [
+   "Verb"
+  ], 
+  "powa\u017cnie": [
+   "Adverb"
+  ], 
+  "powie": [
+   "Verb"
+  ], 
+  "powiedz": [
+   "Verb"
+  ], 
+  "powiedzia\u0142": [
+   "Verb"
+  ], 
+  "powiedzia\u0142a": [
+   "Verb"
+  ], 
+  "powiedzia\u0142am": [
+   "Verb"
+  ], 
+  "powiedzia\u0142a\u015b": [
+   "Verb"
+  ], 
+  "powiedzia\u0142em": [
+   "Verb"
+  ], 
+  "powiedzia\u0142e\u015b": [
+   "Verb"
+  ], 
+  "powiedzie\u0107": [
+   "Verb"
+  ], 
+  "powiem": [
+   "Verb"
+  ], 
+  "powiesz": [
+   "Verb"
+  ], 
+  "powinien": [
+   "Verb"
+  ], 
+  "powinienem": [
+   "Verb"
+  ], 
+  "powiniene\u015b": [], 
+  "powinna": [], 
+  "powinnam": [], 
+  "powinna\u015b": [], 
+  "powinni\u015bmy": [], 
+  "powinno": [], 
+  "powodu": [
+   "Noun"
+  ], 
+  "powodzenia": [
+   "Noun", 
+   "Interjection"
+  ], 
+  "powrotem": [
+   "Noun"
+  ], 
+  "poza": [
+   "Preposition", 
+   "Noun"
+  ], 
+  "pozna\u0107": [
+   "Verb"
+  ], 
+  "pozwoli\u0107": [
+   "Verb"
+  ], 
+  "pozw\u00f3l": [
+   "Verb"
+  ], 
+  "praca": [
+   "Noun"
+  ], 
+  "pracowa\u0107": [
+   "Verb"
+  ], 
+  "pracuje": [], 
+  "pracuj\u0119": [
+   "Verb"
+  ], 
+  "pracy": [
+   "Noun"
+  ], 
+  "prac\u0119": [
+   "Noun"
+  ], 
+  "prawa": [
+   "Adjective", 
+   "Noun"
+  ], 
+  "prawda": [
+   "Noun"
+  ], 
+  "prawdopodobnie": [
+   "Adverb"
+  ], 
+  "prawdziwe": [], 
+  "prawd\u0119": [
+   "Noun"
+  ], 
+  "prawie": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "prawo": [
+   "Noun"
+  ], 
+  "problem": [], 
+  "problemy": [
+   "Noun"
+  ], 
+  "prosto": [
+   "Adverb"
+  ], 
+  "prostu": [
+   "Noun"
+  ], 
+  "prosz\u0119": [
+   "Interjection", 
+   "Verb"
+  ], 
+  "przecie\u017c": [
+   "Particle"
+  ], 
+  "przeciwko": [
+   "Preposition"
+  ], 
+  "przed": [
+   "Preposition"
+  ], 
+  "przepraszam": [
+   "Interjection"
+  ], 
+  "przesta\u0144": [
+   "Verb"
+  ], 
+  "przez": [
+   "Preposition"
+  ], 
+  "przy": [
+   "Preposition"
+  ], 
+  "przyjaciel": [
+   "Noun"
+  ], 
+  "przyjaci\u00f3\u0142": [
+   "Noun"
+  ], 
+  "przykro": [
+   "Adverb"
+  ], 
+  "przyk\u0142ad": [
+   "Noun"
+  ], 
+  "przynajmniej": [
+   "Particle"
+  ], 
+  "przyszed\u0142": [
+   "Verb"
+  ], 
+  "pytanie": [
+   "Noun"
+  ], 
+  "p\u00f3jd\u0119": [
+   "Verb"
+  ], 
+  "p\u00f3j\u015b\u0107": [
+   "Verb"
+  ], 
+  "p\u00f3\u0142": [
+   "Numeral"
+  ], 
+  "p\u00f3\u017aniej": [
+   "Adverb"
+  ], 
+  "p\u00f3\u017ano": [
+   "Adverb"
+  ], 
+  "racja": [], 
+  "racj\u0119": [
+   "Noun"
+  ], 
+  "raczej": [
+   "Conjunction"
+  ], 
+  "rady": [], 
+  "rad\u0119": [
+   "Noun"
+  ], 
+  "rano": [
+   "Adverb"
+  ], 
+  "rany": [
+   "Noun", 
+   "Interjection"
+  ], 
+  "raz": [
+   "Adverb", 
+   "Numeral"
+  ], 
+  "razem": [
+   "Adverb"
+  ], 
+  "razie": [], 
+  "razu": [
+   "Noun"
+  ], 
+  "razy": [
+   "Noun"
+  ], 
+  "robi": [], 
+  "robimy": [
+   "Verb"
+  ], 
+  "robisz": [
+   "Verb"
+  ], 
+  "robi\u0105": [
+   "Verb"
+  ], 
+  "robi\u0107": [
+   "Verb"
+  ], 
+  "robi\u0119": [
+   "Verb"
+  ], 
+  "robota": [], 
+  "roboty": [
+   "Noun"
+  ], 
+  "rodzice": [
+   "Noun"
+  ], 
+  "rodzina": [
+   "Noun"
+  ], 
+  "rodziny": [
+   "Noun"
+  ], 
+  "rodzin\u0119": [
+   "Noun"
+  ], 
+  "rok": [], 
+  "roku": [], 
+  "rozmawia\u0107": [
+   "Verb"
+  ], 
+  "rozumiem": [
+   "Verb"
+  ], 
+  "rozumiesz": [
+   "Verb"
+  ], 
+  "ruszaj": [
+   "Verb"
+  ], 
+  "rzecz": [
+   "Noun"
+  ], 
+  "rzeczy": [
+   "Noun"
+  ], 
+  "r\u00f3b": [
+   "Verb"
+  ], 
+  "r\u00f3wnie\u017c": [
+   "Particle"
+  ], 
+  "r\u0119ce": [
+   "Noun"
+  ], 
+  "r\u0119k\u0119": [
+   "Noun"
+  ], 
+  "s": [], 
+  "sam": [], 
+  "sama": [], 
+  "samego": [], 
+  "sami": [], 
+  "samo": [], 
+  "samochodu": [
+   "Noun"
+  ], 
+  "samoch\u00f3d": [
+   "Noun"
+  ], 
+  "samym": [], 
+  "serca": [], 
+  "serce": [], 
+  "serio": [
+   "Adverb"
+  ], 
+  "sie": [], 
+  "siebie": [
+   "Pronoun"
+  ], 
+  "siostra": [
+   "Noun"
+  ], 
+  "sir": [], 
+  "si\u0119": [
+   "Pronoun", 
+   "Particle"
+  ], 
+  "skarbie": [
+   "Noun"
+  ], 
+  "skoro": [
+   "Conjunction"
+  ], 
+  "sk\u0105d": [
+   "Pronoun"
+  ], 
+  "sobie": [
+   "Pronoun"
+  ], 
+  "sob\u0105": [
+   "Pronoun"
+  ], 
+  "spa\u0107": [
+   "Verb"
+  ], 
+  "spokojnie": [
+   "Adverb"
+  ], 
+  "spok\u00f3j": [
+   "Noun"
+  ], 
+  "spos\u00f3b": [
+   "Noun"
+  ], 
+  "spotkanie": [
+   "Noun"
+  ], 
+  "spotka\u0107": [
+   "Verb"
+  ], 
+  "sprawa": [
+   "Noun"
+  ], 
+  "sprawdzi\u0107": [
+   "Verb"
+  ], 
+  "sprawie": [
+   "Noun"
+  ], 
+  "sprawy": [
+   "Noun"
+  ], 
+  "spraw\u0119": [
+   "Noun"
+  ], 
+  "spr\u00f3bowa\u0107": [
+   "Verb"
+  ], 
+  "spr\u00f3buj": [
+   "Verb"
+  ], 
+  "sp\u00f3jrz": [
+   "Verb"
+  ], 
+  "stanie": [
+   "Noun", 
+   "Verb"
+  ], 
+  "stary": [
+   "Noun"
+  ], 
+  "statek": [], 
+  "sta\u0107": [
+   "Verb"
+  ], 
+  "sta\u0142o": [
+   "Verb"
+  ], 
+  "strasznie": [
+   "Adverb"
+  ], 
+  "stronie": [
+   "Noun"
+  ], 
+  "strony": [
+   "Noun"
+  ], 
+  "stron\u0119": [
+   "Noun"
+  ], 
+  "st\u0105d": [
+   "Pronoun"
+  ], 
+  "super": [], 
+  "swoich": [
+   "Pronoun"
+  ], 
+  "swoim": [
+   "Pronoun"
+  ], 
+  "swoje": [
+   "Pronoun"
+  ], 
+  "swojego": [
+   "Pronoun"
+  ], 
+  "swojej": [
+   "Pronoun"
+  ], 
+  "swoj\u0105": [
+   "Pronoun"
+  ], 
+  "sw\u00f3j": [
+   "Pronoun"
+  ], 
+  "syn": [], 
+  "syna": [], 
+  "synu": [
+   "Noun"
+  ], 
+  "szans\u0119": [
+   "Noun"
+  ], 
+  "szcz\u0119\u015bcie": [
+   "Noun"
+  ], 
+  "szefie": [
+   "Noun"
+  ], 
+  "sze\u015b\u0107": [
+   "Numeral"
+  ], 
+  "szkoda": [
+   "Noun", 
+   "Verb"
+  ], 
+  "szkole": [
+   "Noun"
+  ], 
+  "szko\u0142y": [
+   "Noun"
+  ], 
+  "szybciej": [
+   "Adverb"
+  ], 
+  "szybko": [
+   "Adverb"
+  ], 
+  "s\u0105": [
+   "Verb"
+  ], 
+  "s\u0105dzisz": [
+   "Verb"
+  ], 
+  "s\u0105dz\u0119": [
+   "Verb"
+  ], 
+  "s\u0142owa": [], 
+  "s\u0142owo": [], 
+  "s\u0142uchaj": [
+   "Verb"
+  ], 
+  "s\u0142ucham": [
+   "Interjection", 
+   "Verb"
+  ], 
+  "s\u0142ysza\u0142em": [
+   "Verb"
+  ], 
+  "s\u0142ysza\u0142e\u015b": [
+   "Verb"
+  ], 
+  "s\u0142yszysz": [
+   "Verb"
+  ], 
+  "ta": [
+   "Numeral", 
+   "Adjective"
+  ], 
+  "taa": [], 
+  "tak": [], 
+  "taka": [
+   "Pronoun", 
+   "Adjective"
+  ], 
+  "taki": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "takich": [], 
+  "takie": [
+   "Pronoun"
+  ], 
+  "takiego": [
+   "Pronoun"
+  ], 
+  "takiej": [
+   "Pronoun"
+  ], 
+  "takim": [
+   "Pronoun"
+  ], 
+  "tak\u0105": [
+   "Pronoun"
+  ], 
+  "tak\u017ce": [
+   "Particle"
+  ], 
+  "tam": [
+   "Numeral"
+  ], 
+  "tata": [], 
+  "tato": [
+   "Adjective"
+  ], 
+  "te": [], 
+  "tego": [
+   "Pronoun", 
+   "Noun"
+  ], 
+  "tej": [
+   "Pronoun"
+  ], 
+  "telefon": [], 
+  "temat": [
+   "Noun"
+  ], 
+  "temu": [
+   "Adverb", 
+   "Pronoun"
+  ], 
+  "ten": [], 
+  "teraz": [
+   "Adverb"
+  ], 
+  "te\u017c": [
+   "Particle"
+  ], 
+  "the": [], 
+  "to": [], 
+  "tobie": [
+   "Pronoun"
+  ], 
+  "tob\u0105": [
+   "Pronoun"
+  ], 
+  "troch\u0119": [
+   "Adverb"
+  ], 
+  "trudno": [
+   "Adverb"
+  ], 
+  "trzeba": [
+   "Verb"
+  ], 
+  "trzech": [
+   "Numeral"
+  ], 
+  "trzy": [
+   "Numeral"
+  ], 
+  "trzymaj": [
+   "Verb"
+  ], 
+  "trzyma\u0107": [
+   "Verb"
+  ], 
+  "tu": [
+   "Interjection", 
+   "Infix"
+  ], 
+  "tutaj": [
+   "Pronoun"
+  ], 
+  "twarz": [
+   "Noun"
+  ], 
+  "twoich": [
+   "Pronoun"
+  ], 
+  "twoim": [
+   "Pronoun"
+  ], 
+  "twoja": [
+   "Pronoun"
+  ], 
+  "twoje": [
+   "Pronoun"
+  ], 
+  "twojego": [
+   "Pronoun"
+  ], 
+  "twojej": [
+   "Pronoun"
+  ], 
+  "twoj\u0105": [
+   "Pronoun"
+  ], 
+  "tw\u00f3j": [
+   "Pronoun"
+  ], 
+  "ty": [
+   "Conjunction", 
+   "Verb", 
+   "Adjective"
+  ], 
+  "tych": [
+   "Adjective"
+  ], 
+  "tydzie\u0144": [
+   "Noun"
+  ], 
+  "tygodniu": [
+   "Noun"
+  ], 
+  "tyle": [
+   "Pronoun", 
+   "Noun"
+  ], 
+  "tylko": [
+   "Particle"
+  ], 
+  "tym": [
+   "Pronoun"
+  ], 
+  "tymi": [
+   "Pronoun"
+  ], 
+  "t\u0105": [
+   "Pronoun"
+  ], 
+  "t\u0119": [
+   "Pronoun"
+  ], 
+  "t\u0119dy": [
+   "Pronoun"
+  ], 
+  "t\u0142umaczenie": [
+   "Noun"
+  ], 
+  "u": [], 
+  "uda": [
+   "Verb"
+  ], 
+  "uda\u0142o": [
+   "Verb"
+  ], 
+  "uh": [], 
+  "uwag\u0119": [
+   "Noun"
+  ], 
+  "uwa\u017caj": [
+   "Verb"
+  ], 
+  "uwa\u017cam": [
+   "Verb"
+  ], 
+  "uwa\u017casz": [
+   "Verb"
+  ], 
+  "uwierzy\u0107": [
+   "Verb"
+  ], 
+  "w": [
+   "Verb"
+  ], 
+  "walczy\u0107": [
+   "Verb"
+  ], 
+  "wam": [], 
+  "wami": [], 
+  "was": [], 
+  "wasza": [
+   "Pronoun"
+  ], 
+  "wasze": [
+   "Pronoun"
+  ], 
+  "wa\u017cne": [], 
+  "wcale": [
+   "Adverb"
+  ], 
+  "wci\u0105\u017c": [
+   "Adverb"
+  ], 
+  "wcze\u015bniej": [
+   "Adverb"
+  ], 
+  "wczoraj": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "we": [
+   "Numeral", 
+   "Adverb"
+  ], 
+  "wed\u0142ug": [
+   "Preposition"
+  ], 
+  "wej\u015b\u0107": [
+   "Verb"
+  ], 
+  "wezm\u0119": [
+   "Verb"
+  ], 
+  "we\u017a": [
+   "Verb"
+  ], 
+  "wiadomo\u015bci": [
+   "Noun"
+  ], 
+  "wiadomo\u015b\u0107": [
+   "Noun"
+  ], 
+  "widzenia": [
+   "Noun"
+  ], 
+  "widzia\u0142": [
+   "Verb"
+  ], 
+  "widzia\u0142am": [
+   "Verb"
+  ], 
+  "widzia\u0142em": [
+   "Verb"
+  ], 
+  "widzia\u0142e\u015b": [
+   "Verb"
+  ], 
+  "widzie\u0107": [
+   "Verb"
+  ], 
+  "widzisz": [
+   "Verb"
+  ], 
+  "widz\u0119": [
+   "Verb"
+  ], 
+  "wie": [
+   "Verb"
+  ], 
+  "wiecie": [
+   "Verb"
+  ], 
+  "wieczorem": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "wiecz\u00f3r": [
+   "Noun", 
+   "Adverb"
+  ], 
+  "wiedzia\u0142": [
+   "Verb"
+  ], 
+  "wiedzia\u0142am": [
+   "Verb"
+  ], 
+  "wiedzia\u0142em": [
+   "Verb"
+  ], 
+  "wiedzie\u0107": [
+   "Verb"
+  ], 
+  "wiedz\u0105": [
+   "Verb", 
+   "Noun"
+  ], 
+  "wieku": [
+   "Noun"
+  ], 
+  "wiele": [
+   "Adjective"
+  ], 
+  "wielki": [
+   "Adjective"
+  ], 
+  "wielkie": [
+   "Adjective"
+  ], 
+  "wielu": [
+   "Numeral"
+  ], 
+  "wiem": [
+   "Verb"
+  ], 
+  "wiemy": [
+   "Verb"
+  ], 
+  "wierz\u0119": [
+   "Verb"
+  ], 
+  "wiesz": [
+   "Verb"
+  ], 
+  "wina": [], 
+  "witaj": [
+   "Interjection"
+  ], 
+  "witam": [
+   "Interjection"
+  ], 
+  "wi\u0119c": [
+   "Conjunction"
+  ], 
+  "wi\u0119cej": [
+   "Adverb"
+  ], 
+  "wi\u0119kszo\u015b\u0107": [
+   "Noun"
+  ], 
+  "wkr\u00f3tce": [
+   "Adverb"
+  ], 
+  "wody": [], 
+  "wracaj": [
+   "Verb"
+  ], 
+  "wr\u00f3ci": [
+   "Verb"
+  ], 
+  "wr\u00f3ci\u0107": [
+   "Verb"
+  ], 
+  "wr\u00f3c\u0119": [
+   "Verb"
+  ], 
+  "wspaniale": [
+   "Adverb"
+  ], 
+  "wsp\u00f3lnego": [], 
+  "wszyscy": [
+   "Pronoun"
+  ], 
+  "wszystkich": [
+   "Pronoun"
+  ], 
+  "wszystkie": [
+   "Pronoun"
+  ], 
+  "wszystkiego": [
+   "Pronoun"
+  ], 
+  "wszystkim": [
+   "Pronoun"
+  ], 
+  "wszystko": [
+   "Pronoun"
+  ], 
+  "wsz\u0119dzie": [
+   "Pronoun"
+  ], 
+  "wtedy": [
+   "Adverb"
+  ], 
+  "wy": [], 
+  "wybacz": [
+   "Verb"
+  ], 
+  "wydaje": [], 
+  "wygl\u0105da": [
+   "Verb"
+  ], 
+  "wygl\u0105dasz": [
+   "Verb"
+  ], 
+  "wyj\u015b\u0107": [
+   "Verb", 
+   "Noun"
+  ], 
+  "wypadek": [
+   "Noun"
+  ], 
+  "wystarczaj\u0105co": [
+   "Adverb"
+  ], 
+  "wystarczy": [
+   "Verb"
+  ], 
+  "wzi\u0105\u0107": [
+   "Verb"
+  ], 
+  "w\u0142a\u015bciwie": [
+   "Adverb"
+  ], 
+  "w\u0142a\u015bnie": [
+   "Particle", 
+   "Interjection"
+  ], 
+  "you": [], 
+  "z": [], 
+  "za": [
+   "Interjection", 
+   "Particle", 
+   "Verb"
+  ], 
+  "zabawne": [], 
+  "zabi\u0107": [
+   "Verb"
+  ], 
+  "zabi\u0142": [
+   "Verb"
+  ], 
+  "zabra\u0107": [
+   "Verb"
+  ], 
+  "zaczekaj": [
+   "Verb"
+  ], 
+  "zaczyna": [
+   "Verb"
+  ], 
+  "zacz\u0105\u0107": [
+   "Verb"
+  ], 
+  "zadzwoni\u0107": [
+   "Verb"
+  ], 
+  "zajm\u0119": [
+   "Verb"
+  ], 
+  "zale\u017cy": [
+   "Verb"
+  ], 
+  "zamiar": [
+   "Noun"
+  ], 
+  "zamiast": [
+   "Conjunction", 
+   "Preposition"
+  ], 
+  "zamierzam": [
+   "Verb"
+  ], 
+  "zamknij": [
+   "Verb"
+  ], 
+  "zanim": [
+   "Conjunction"
+  ], 
+  "zapomnij": [
+   "Verb"
+  ], 
+  "zaraz": [
+   "Adverb"
+  ], 
+  "zatem": [
+   "Conjunction"
+  ], 
+  "zatrzyma\u0107": [
+   "Verb"
+  ], 
+  "zawsze": [
+   "Adverb"
+  ], 
+  "zbyt": [
+   "Adverb", 
+   "Noun"
+  ], 
+  "zdj\u0119cia": [
+   "Noun"
+  ], 
+  "zdj\u0119cie": [
+   "Noun"
+  ], 
+  "ze": [], 
+  "zewn\u0105trz": [
+   "Adverb"
+  ], 
+  "zgadza": [
+   "Verb"
+  ], 
+  "ziemi": [
+   "Noun"
+  ], 
+  "zmieni\u0107": [
+   "Verb"
+  ], 
+  "zna": [
+   "Verb"
+  ], 
+  "znaczy": [
+   "Verb"
+  ], 
+  "znajdziemy": [
+   "Verb"
+  ], 
+  "znalaz\u0142em": [
+   "Verb"
+  ], 
+  "znale\u017ali\u015bmy": [
+   "Verb"
+  ], 
+  "znale\u017a\u0107": [
+   "Verb"
+  ], 
+  "znam": [
+   "Verb"
+  ], 
+  "znasz": [
+   "Verb"
+  ], 
+  "zna\u0107": [
+   "Verb"
+  ], 
+  "znowu": [
+   "Adverb"
+  ], 
+  "zn\u00f3w": [
+   "Adverb"
+  ], 
+  "zobacz": [
+   "Verb"
+  ], 
+  "zobaczenia": [
+   "Noun"
+  ], 
+  "zobaczymy": [
+   "Verb"
+  ], 
+  "zobaczy\u0107": [
+   "Verb"
+  ], 
+  "zostanie": [
+   "Verb"
+  ], 
+  "zostaw": [
+   "Verb"
+  ], 
+  "zostawi\u0107": [
+   "Verb"
+  ], 
+  "zosta\u0107": [
+   "Verb"
+  ], 
+  "zosta\u0142": [
+   "Verb"
+  ], 
+  "zosta\u0142a": [
+   "Verb"
+  ], 
+  "zosta\u0142o": [
+   "Verb"
+  ], 
+  "zosta\u0144": [
+   "Verb"
+  ], 
+  "zrobi": [
+   "Verb"
+  ], 
+  "zrobimy": [
+   "Verb"
+  ], 
+  "zrobisz": [
+   "Verb"
+  ], 
+  "zrobi\u0107": [
+   "Verb"
+  ], 
+  "zrobi\u0119": [
+   "Verb"
+  ], 
+  "zrobi\u0142": [
+   "Verb"
+  ], 
+  "zrobi\u0142a": [
+   "Verb"
+  ], 
+  "zrobi\u0142am": [
+   "Verb"
+  ], 
+  "zrobi\u0142em": [
+   "Verb"
+  ], 
+  "zrobi\u0142e\u015b": [
+   "Verb"
+  ], 
+  "zr\u00f3b": [
+   "Verb"
+  ], 
+  "zupe\u0142nie": [
+   "Adverb"
+  ], 
+  "z\u0142a": [
+   "Noun"
+  ], 
+  "z\u0142e": [], 
+  "z\u0142ego": [], 
+  "z\u0142y": [], 
+  "\u0142atwo": [
+   "Adverb"
+  ], 
+  "\u015bmierci": [
+   "Noun"
+  ], 
+  "\u015bmier\u0107": [
+   "Noun"
+  ], 
+  "\u015brodka": [
+   "Noun"
+  ], 
+  "\u015brodku": [
+   "Noun"
+  ], 
+  "\u015bwiat": [
+   "Noun"
+  ], 
+  "\u015bwiata": [
+   "Noun"
+  ], 
+  "\u015bwiecie": [
+   "Noun"
+  ], 
+  "\u015bwietnie": [
+   "Adverb"
+  ], 
+  "\u017ale": [
+   "Adverb"
+  ], 
+  "\u017caden": [
+   "Pronoun"
+  ], 
+  "\u017cadnego": [
+   "Pronoun"
+  ], 
+  "\u017cadnej": [
+   "Pronoun"
+  ], 
+  "\u017cadnych": [
+   "Adjective"
+  ], 
+  "\u017ce": [
+   "Conjunction", 
+   "Particle"
+  ], 
+  "\u017ceby": [
+   "Conjunction"
+  ], 
+  "\u017cebym": [], 
+  "\u017ceby\u015b": [
+   "Conjunction"
+  ], 
+  "\u017cona": [], 
+  "\u017con\u0119": [
+   "Noun"
+  ], 
+  "\u017cycia": [
+   "Noun"
+  ], 
+  "\u017cycie": [
+   "Noun"
+  ], 
+  "\u017cyciu": [
+   "Noun"
+  ], 
+  "\u017cyje": [
+   "Verb"
+  ], 
+  "\u017cy\u0107": [
+   "Verb"
+  ]
+ }
+}

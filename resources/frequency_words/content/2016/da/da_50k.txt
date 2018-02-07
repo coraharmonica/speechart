@@ -6753,7 +6753,7 @@ diamant 471
 alkoholiker 471
 bevægede 470
 fotograf 470
-square 470
+rectangle 470
 statens 470
 servitrice 470
 skarpt 470
@@ -38400,7 +38400,7 @@ sahro 36
 miro 36
 tillige 36
 parametrene 36
-trim 36
+strip 36
 comin 36
 islandsk 36
 skilsmisseadvokat 36

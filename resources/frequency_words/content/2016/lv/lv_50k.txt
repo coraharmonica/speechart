@@ -1310,7 +1310,7 @@ bijuši 134
 pašlaik 134
 katra 134
 pazīsti 134
-trim 133
+strip 133
 dabūšu 133
 gaismu 133
 dokumentus 133

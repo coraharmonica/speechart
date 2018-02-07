@@ -70,8 +70,7 @@ from 1320557
 his 1292908
 yes 1272870
 when 1184778
-going 1178719
-l 1158454
+going 11787191158454
 an 1117568
 time 1117449
 back 1088055
@@ -600,8 +599,7 @@ top 79575
 win 79112
 glad 78945
 daddy 78864
-control 78803
-o 78589
+control 7880378589
 cold 78266
 ten 78192
 air 78038
@@ -652,8 +650,7 @@ date 69923
 pull 69806
 secret 69712
 calling 69647
-less 69572
-t 69466
+less 6957269466
 looked 69402
 worked 69312
 weeks 68864
@@ -809,8 +806,7 @@ floor 51827
 sun 51825
 handle 51724
 army 51696
-david 51639
-d 51529
+david 5163951529
 joe 51518
 spend 51470
 charlie 51466
@@ -915,8 +911,7 @@ rich 46092
 list 45953
 gold 45948
 afternoon 45843
-whether 45738
-y 45686
+whether 4573845686
 agent 45544
 missed 45539
 proud 45439
@@ -944,8 +939,7 @@ scene 44445
 card 44288
 english 44191
 dare 44014
-broken 43987
-m 43966
+broken 4398743966
 mary 43938
 hungry 43870
 church 43866
@@ -1155,8 +1149,7 @@ nick 33903
 named 33874
 arrived 33817
 allowed 33791
-action 33770
-c 33701
+action 3377033701
 duty 33698
 price 33684
 guard 33659
@@ -1274,8 +1267,7 @@ witness 30628
 starts 30588
 double 30512
 however 30494
-bathroom 30460
-e 30456
+bathroom 3046030456
 build 30439
 bomb 30420
 pressure 30380
@@ -1623,8 +1615,7 @@ mister 22762
 letting 22746
 ours 22680
 charles 22674
-daniel 22671
-n 22645
+daniel 2267122645
 bodies 22640
 believed 22638
 matters 22635
@@ -1690,8 +1681,7 @@ saturday 21576
 screw 21575
 dan 21567
 introduce 21549
-gentleman 21546
-b 21477
+gentleman 2154621477
 medicine 21473
 ancient 21464
 settle 21458
@@ -1908,7 +1898,7 @@ tongue 18593
 toilet 18593
 reasons 18592
 genius 18586
-square 18561
+rectangle 18561
 secretary 18528
 europe 18525
 connection 18517
@@ -2033,8 +2023,7 @@ alice 17064
 mercy 17058
 ll 17053
 whore 17044
-saving 17033
-f 17023
+saving 1703317023
 suffer 17014
 switch 17001
 deliver 16990
@@ -2367,8 +2356,7 @@ chicago 14091
 boom 14071
 served 14060
 california 14059
-row 14043
-r 14033
+row 1404314033
 penny 14032
 ahh 14030
 section 14023
@@ -2462,8 +2450,7 @@ unusual 13462
 rude 13447
 snake 13429
 bravo 13426
-trapped 13417
-g 13414
+trapped 1341713414
 chosen 13409
 effort 13408
 elevator 13407
@@ -2570,8 +2557,7 @@ gordon 12604
 provide 12603
 rope 12590
 salt 12579
-bay 12577
-h 12576
+bay 1257712576
 scoffs 12574
 commit 12571
 joined 12568
@@ -2633,8 +2619,7 @@ disappointed 12211
 slip 12210
 emotional 12209
 pink 12202
-fellas 12194
-j 12179
+fellas 1219412179
 terrific 12179
 setting 12178
 maid 12178
@@ -2655,8 +2640,7 @@ parties 12094
 chatter 12081
 barry 12066
 previously 12060
-wings 12055
-p 12054
+wings 1205512054
 gee 12050
 ª 12044
 minds 12043
@@ -2732,8 +2716,7 @@ hollywood 11591
 hurting 11588
 daily 11583
 swing 11570
-shy 11558
-u 11554
+shy 1155811554
 background 11551
 identity 11544
 urgent 11539
@@ -2904,8 +2887,7 @@ impression 10687
 self 10684
 creatures 10681
 bust 10673
-suspicious 10672
-q 10671
+suspicious 1067210671
 servant 10666
 terribly 10666
 cheat 10664
@@ -3093,8 +3075,7 @@ smiling 9851
 buck 9844
 brand 9840
 inform 9837
-toy 9835
-x 9831
+toy 98359831
 scratch 9831
 jews 9816
 tribe 9814
@@ -3366,8 +3347,7 @@ angels 8864
 bothering 8861
 shelter 8859
 criminals 8844
-existence 8843
-w 8838
+existence 88438838
 figures 8835
 prevent 8821
 atmosphere 8819
@@ -3814,8 +3794,7 @@ novel 7483
 chaos 7482
 stabbed 7481
 burnt 7480
-socks 7478
-k 7475
+socks 74787475
 solved 7475
 canada 7475
 votes 7473
@@ -4111,8 +4090,7 @@ damaged 6811
 tragic 6810
 pierre 6807
 budget 6806
-booked 6804
-v 6803
+booked 68046803
 rocky 6799
 humor 6796
 softly 6795
@@ -5524,8 +5502,7 @@ lola 4565
 screech 4565
 seventh 4564
 pond 4564
-exclusive 4563
-z 4560
+exclusive 45634560
 encounter 4558
 contacted 4558
 jeans 4557
@@ -9002,7 +8979,7 @@ carrots 2200
 karaoke 2199
 mosque 2199
 buckle 2199
-transition 2199
+transition_all 2199
 martinez 2199
 whats 2198
 lime 2197
@@ -9541,7 +9518,7 @@ drilling 2012
 spinal 2012
 sorrows 2011
 analyze 2011
-trim 2011
+strip 2011
 elf 2010
 criticism 2009
 stabbing 2009
@@ -39171,7 +39148,7 @@ sefton 177
 flowered 177
 deary 177
 maître 177
-transitions 177
+transition_all 177
 klinkerhoffen 177
 humanoids 177
 tsubaki 177

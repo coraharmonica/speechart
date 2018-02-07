@@ -11758,7 +11758,7 @@ neprežije 225
 cieľu 225
 neverili 225
 záhadný 225
-square 225
+rectangle 225
 shawn 225
 databázy 225
 piati 225

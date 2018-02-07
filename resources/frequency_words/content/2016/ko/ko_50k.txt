@@ -17705,7 +17705,7 @@ unstable 11
 당연해 11
 빌린 11
 두목님 11
-square 11
+rectangle 11
 humans 11
 케익을 11
 박물관 11
@@ -34602,7 +34602,7 @@ scanned 5
 도합 5
 소장은 5
 마땅치 5
-trim 5
+strip 5
 뺏기고 5
 아들이고 5
 variable 5

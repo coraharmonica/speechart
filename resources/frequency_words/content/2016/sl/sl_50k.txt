@@ -17637,7 +17637,7 @@ umiril 288
 tekli 288
 rojstnodnevno 288
 ljubezniv 288
-square 288
+rectangle 288
 fizični 288
 repom 288
 kremplje 288

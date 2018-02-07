@@ -3687,7 +3687,7 @@ gatshme 205
 hy 205
 bash 205
 haje 205
-trim 205
+strip 205
 inspektor 205
 mbahuni 205
 patëm 205
@@ -25304,7 +25304,7 @@ konflikte 18
 autopilot 18
 mags 18
 marifetin 18
-square 18
+rectangle 18
 grabitja 18
 kontrolluese 18
 spajdermen 18

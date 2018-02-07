@@ -7370,7 +7370,7 @@ internationell 476
 paulie 476
 georgie 476
 tiffany 476
-square 475
+rectangle 475
 förhandlar 475
 brösten 475
 skött 475
@@ -29347,7 +29347,7 @@ boggs 66
 finney 66
 victory 66
 tecknare 66
-trim 66
+strip 66
 frigörelse 66
 revy 66
 psst 66

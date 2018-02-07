@@ -6694,7 +6694,7 @@ gilet 1990
 gratitude 1990
 dépasser 1990
 paiera 1988
-square 1988
+rectangle 1988
 souhait 1987
 dispositif 1987
 pelle 1987
@@ -9241,7 +9241,7 @@ préfèrent 1268
 punis 1268
 approbation 1267
 mondial 1267
-transition 1267
+transition_all 1267
 humiliant 1267
 affiches 1266
 recommencé 1266
@@ -49610,7 +49610,7 @@ encanailler 78
 furtifs 78
 bannion 78
 photographiés 78
-transitions 78
+transition_all 78
 dépeindre 78
 maintenat 78
 reeve 78
