@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import re
-import ipa_unicode
+import ipas
 from ordered_set import OrderedSet
 from ipa_symbols import IPACONSONANTS, IPAVOWELS
 
@@ -21,7 +21,7 @@ class IPAWord:
         ipa_stresses = self.count_ipa_stresses(self.ipa)
         if ipa_syllables != ipa_stresses:
             self.ipa = self.equate_ipa_syllables(ipa)
-        self.lang = self.parser.get_language()
+        self.lang = self.parser.language
         self.phoneme_dict = {}
         self.word_model = self.build_word_model(self.word)
         self.ipa_model = self.build_ipa_model(self.ipa)
@@ -43,14 +43,6 @@ class IPAWord:
         :return: str, this IPAWord's part-of-speech
         """
         return self.pos
-
-    def get_pos_num(self):
-        """
-        Returns an integer representing this IPAWord's pos.
-
-        :return: int, this IPAWord's pos integer
-        """
-        return self.parser.get_pos_num(self.pos)
 
     def get_ipa(self):
         """
@@ -270,8 +262,6 @@ class IPAWord:
         :param ipas: str, IPA translation of this language's phoneme
         :return: None
         """
-        print "adding entry:\t", chars, ipas
-        print
         self.phoneme_dict.setdefault(chars, OrderedSet([]))
         self.phoneme_dict[chars].add(ipas)
         if self.is_ipa_vowel(ipas):
@@ -502,8 +492,8 @@ class IPAWord:
         end = 1     # exclusive
 
         while end <= size:
-            if end != size and cleaned_ipa[end] in ipa_unicode.SYMBOLS:
-                if cleaned_ipa[end] in ipa_unicode.AFFRICATES:
+            if end != size and cleaned_ipa[end] in ipas.SYMBOLS:
+                if cleaned_ipa[end] in ipas.AFFRICATES:
                     end += 1  # skip 2 for affricates
                 end += 1      # skip 1 for diacritics
             else:
@@ -735,7 +725,7 @@ class IPAWord:
         word = self.word if word is None else word
         ipa = self.ipa if ipa is None else ipa
         ipa_phonemes = self.find_ipa_phonemes(ipa)
-        print "$$$\nIPA PHONEMES", ipa_phonemes
+        #print "$$$\nIPA PHONEMES", ipa_phonemes
 
         if self.equal_word_ipa_syllables(word, ipa) == 1:
             # 1 syllable therefore only 1 set of onset/rhyme/coda
@@ -1083,7 +1073,7 @@ class IPAWord:
 
         :return: bool, whether this IPAWord's IPA contains no symbols
         """
-        symbols = set(ipa_unicode.SYMBOLS)
+        symbols = set(ipas.SYMBOLS)
         ipas = set(self.ipa)
         sims = symbols.intersection(ipas)
         return len(sims) == 0
@@ -1095,7 +1085,7 @@ class IPAWord:
 
         :return: bool, whether this IPAWord's IPA contains symbols
         """
-        symbols = set(ipa_unicode.SYMBOLS)
+        symbols = set(ipas.SYMBOLS)
         ipas = set(self.ipa)
         sims = symbols.intersection(ipas)
         return len(sims) != 0
@@ -1147,22 +1137,6 @@ class IPAWord:
         :return: (unicode) str, cleaned word
         """
         return self.parser.clean_word(word)
-
-    def __int__(self):
-        """
-        Returns this IPAWord as an integer sequence.
-
-        :return: int, this IPAWord as an int
-        """
-        alphabet = self.parser.get_alphabet()
-        word = self.get_word()
-        digits = len(str(max(alphabet.values())))
-        nums = []
-        for char in word:
-            num = str(self.get_pos_num()) + str(alphabet[char]).zfill(digits)
-            nums.append(num)
-        num = int("".join(nums))
-        return num
 
     def __len__(self):
         """

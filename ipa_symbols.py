@@ -4,7 +4,7 @@ IPA_SYMBOLS:
 
     Stores classes for categorizing IPA symbols.
 """
-from ipa_unicode import *
+from ipas import *
 from enum import Enum
 
 
@@ -13,8 +13,12 @@ class IPASymbol:
     def __init__(self, symbol):
         self.symbol = symbol
 
-    def get_is_vowel(self):
+    def is_vowel(self):
         return False
+
+    def is_affricate(self):
+        return False
+
 
 class IPACompound(IPASymbol):
 
@@ -56,37 +60,95 @@ class IPADiacritic(IPASymbol):
 
 
 class IPALetter(IPASymbol):
-
-    def __init__(self, symbol, is_vowel=False):
+    def __init__(self, symbol, is_vowel=None):
         IPASymbol.__init__(self, symbol)
         self.is_vowel = is_vowel
+        self.comparisons = dict()
 
     def get_symbol(self):
         return self.symbol
 
-    def get_is_vowel(self):
+    def is_vowel(self):
         return self.is_vowel
 
-    def parse_part(self, part, name):
+    def compare(self, other):
         """
-        Returns the appropriate Openness for the given string.
+        Compares this IPALetter to other IPALetter's features and
+        returns an integer representing the number of similarities.
         ~
-        e.g. parse_openness("near close") -> Openness.NEAR_CLOSE
+        N.B. A higher score denotes greater similarity,
+             while a lower score denotes lower similarity.
 
-        :param part: str, part of vowel (Openness, Backness, or Roundness)
-        :param name: str, name of value in part
-        :return: Openness/Backness/Roundness, corresponding value for
-            given name and part
+        :param other: IPALetter, other IPALetter to compare with
+        :return: int, number of common features between self and other
         """
-        res = None
-        #try:
-        exec("res = self." + part + "." + name.upper().replace(" ", "_"))
-        #except AttributeError:
-        #    pass
-        return res
+        pair = (self.symbol, other.symbol)
+        try:
+            return self.comparisons[pair]
+        except KeyError:
+            score = 0
+
+            if self.is_vowel == other.is_vowel:
+                if self.is_vowel:
+                    score = self.compare_vowels(other)
+                elif self.is_vowel is False:
+                    score = self.compare_consonants(other)
+
+            self.comparisons[pair] = score
+            return score
+
+    def compare_vowels(self, other):
+        return
+
+    def compare_consonants(self, other):
+        return
+
+    def compare_place(self, other):
+        return
+
+    def compare_manner(self, other):
+        return
+
+    def compare_voiced(self, other):
+        return
+
+    def compare_velarized(self, other):
+        return
+
+    def compare_openness(self, other):
+        return
+
+    def compare_backness(self, other):
+        return
+
+    def compare_roundness(self, other):
+        return
+
+    def compare_lax(self, other):
+        return
+
+    def compare_rhotacized(self, other):
+        return
 
 
 class IPAVowel(IPALetter):
+    OPENNESS = {"close": 1,
+                "near close": 2,
+                "close mid": 3,
+                "mid": 4,
+                "open mid": 5,
+                "near open": 6,
+                "open": 7}
+    BACKNESS = {"front": 1,
+                "near front": 2,
+                "central front": 3,
+                "central": 4,
+                "central back": 5,
+                "near back": 6,
+                "back": 7}
+    ROUNDNESS = {"unrounded": 1,
+                 "rounded": 2,
+                 "neither": 3}
 
     def __init__(self, symbol, openness, backness, roundness, lax=False, rhotacized=False):
         """
@@ -107,62 +169,79 @@ class IPAVowel(IPALetter):
         :param rhotacized: bool, whether this vowel is rhotacized
         """
         IPALetter.__init__(self, symbol, True)
-        self.openness = self.parse_part("Openness", openness)
-        self.backness = self.parse_part("Backness", backness)
-        self.roundness = self.parse_part("Roundness", roundness)
+        self.openness = openness
+        self.backness = backness
+        self.roundness = roundness
         self.lax = lax
         self.rhotacized = rhotacized
 
-    def get_dict(self):
-        res = dict()
-        res["symbol"] = self.symbol
-        res["vowel"] = self.is_vowel
-        res["openness"] = self.openness
-        res["backness"] = self.backness
-        res["roundness"] = self.roundness
-        res["lax"] = self.lax
-        res["rhotacized"] = self.rhotacized
-        return res
+    def get_openness(self):
+        return self.OPENNESS[self.openness]
 
-    def __int__(self):
-        first = 1
-        second = self.openness.value
-        third = self.backness.value
-        fourth = self.roundness.value
-        fifth = int(self.lax)
-        sixth = int(self.rhotacized)
-        return int(str(first) +
-                   str(second) +
-                   str(third).zfill(2) +
-                   str(fourth) +
-                   str(fifth) +
-                   str(sixth))
+    def get_backness(self):
+        return self.BACKNESS[self.backness]
 
-    class Openness(Enum):
-        CLOSE = 1
-        NEAR_CLOSE = 2
-        CLOSE_MID = 3
-        MID = 4
-        OPEN_MID = 5
-        NEAR_OPEN = 6
-        OPEN = 7
+    def get_roundness(self):
+        return self.ROUNDNESS[self.roundness]
 
-    class Backness(Enum):
-        FRONT = 1
-        NEAR_FRONT = 2
-        CENTRAL_FRONT = 3
-        CENTRAL = 4
-        CENTRAL_BACK = 5
-        NEAR_BACK = 6
-        BACK = 7
+    def lax(self):
+        return self.lax
 
-    class Roundness(Enum):
-        UNROUNDED = 1
-        ROUNDED = 2
-        NEITHER = 3
+    def rhotacized(self):
+        return self.rhotacized
+
+    def compare_vowels(self, other):
+        o = self.compare_openness(other)
+        b = self.compare_backness(other)
+        r = self.compare_roundness(other)
+        lax = self.compare_lax(other)/2.0
+        rho = self.compare_rhotacized(other)/2.0
+        total = len(self.OPENNESS) + len(self.BACKNESS) + len(self.ROUNDNESS) + 1.0
+        score = (o + b + r + lax + rho)/total
+        score = (score - 0.9) * 10
+        return score
+
+    def compare_openness(self, other):
+        total = float(len(self.OPENNESS))
+        return (total - (abs(self.get_openness() - other.get_openness())/total)) #/total
+
+    def compare_backness(self, other):
+        total = float(len(self.BACKNESS))
+        return (total - (abs(self.get_backness() - other.get_backness())/total)) #/total
+
+    def compare_roundness(self, other):
+        total = float(len(self.ROUNDNESS))
+        return (total - (abs(self.get_roundness() - other.get_roundness())/total)) #/total
+
+    def compare_lax(self, other):
+        return self.lax == other.lax
+
+    def compare_rhotacized(self, other):
+        return self.rhotacized == other.rhotacized
 
 
 class IPAConsonant(IPALetter):
+    PLACE = {"bilabial": 1,
+             "labiodental": 2,
+             "dental": 3,
+             "alveolar": 4,
+             "post alveolar": 5,
+             "alveolopalatal": 6,
+             "retroflex": 7,
+             "palatal": 8,
+             "velar": 9,
+             "uvular": 10,
+             "pharyngeal": 11,
+             "glottal": 12}
+    MANNER = {"plosive": 1,
+              "nasal": 2,
+              "trill": 3,
+              "flap tap": 4,
+              "lateral flap tap": 5,
+              "fricative": 6,
+              "lateral fricative": 7,
+              "approximant": 8,
+              "lateral approximant": 9}
 
     def __init__(self, symbol, place, manner, voiced=False, velarized=False):
         """
@@ -180,98 +259,46 @@ class IPAConsonant(IPALetter):
         """
         IPALetter.__init__(self, symbol, False)
         self.symbol = symbol
-        self.place = self.parse_part("Place", place)
-        self.manner = self.parse_part("Manner", manner)
+        self.place = place #self.parse_part("Place", place)
+        self.manner = manner #self.parse_part("Manner", manner)
         self.voiced = voiced
         self.velarized = velarized
 
-    def get_dict(self):
-        res = dict()
-        res["symbol"] = self.symbol
-        res["vowel"] = self.is_vowel
-        res["place"] = self.place
-        res["manner"] = self.manner
-        res["voiced"] = self.voiced
-        res["velarized"] = self.velarized
-        return res
+    def get_place(self):
+        return self.PLACE[self.place]
 
-    def __int__(self):
-        """
-        Returns an int representing this consonant's properties
-        for a machine learning classifier.
+    def get_manner(self):
+        return self.MANNER[self.manner]
 
-        :return: int, an integer representing this consonant
-        """
-        first = 2
-        second = 0
-        third = self.place.value
-        fourth = self.manner.value
-        fifth = int(self.voiced)
-        sixth = int(self.velarized)
-        return int(str(first) +
-                   str(second) +
-                   str(third).zfill(2) +
-                   str(fourth) +
-                   str(fifth) +
-                   str(sixth))
+    def voiced(self):
+        return self.voiced
 
-    class Place(Enum):
-        LABIAL = 1
-        CORONAL = 2
-        DORSAL = 3
-        LARYNGEAL = 4
-        BILABIAL = 5
-        LABIODENTAL = 6
-        DENTAL = 7
-        ALVEOLAR = 8
-        POST_ALVEOLAR = 9
-        RETROFLEX = 10
-        PALATAL = 11
-        VELAR = 12
-        UVULAR = 13
-        PHARYNGEAL = 14
-        GLOTTAL = 15
-        ALVEOLOPALATAL = 16
+    def velarized(self):
+        return self.velarized
 
-        def parse_place(self, name):
-            """
-            Returns the appropriate Place for the given string.
-            ~
-            e.g. parse_place("post-alveolar") -> Place.POST_ALVEOLAR
+    def compare_consonants(self, other):
+        p = self.compare_place(other)
+        m = self.compare_manner(other) * 1.5
+        voiced = self.compare_voiced(other) / 2.0
+        velar = self.compare_velarized(other) / 2.0
+        total = len(self.PLACE) + (len(self.MANNER) * 1.5) + 1.0
+        score = (p + m + voiced + velar)/total
+        score = (score - 0.9) * 10
+        return score
 
-            :param name: str, the name of the Place value
-            :return: Place, the Place value for the given name
-            """
-            place = None
-            exec("place = Place." + name.upper().replace("-", "_"))
-            return place
+    def compare_place(self, other):
+        total = float(len(self.PLACE))
+        return (total - (abs(self.get_place() - other.get_place())/total)) #/total
 
-    class Manner(Enum):
-        GLIDE = 0
-        PLOSIVE = 1
-        NASAL = 2
-        FRICATIVE = 3
-        #SIBILANT_FRICATIVE = 2
-        #NON_SIBILANT_FRICATIVE = 3
-        APPROXIMANT = 4
-        FLAP_TAP = 5
-        TRILL = 6
-        LATERAL_FRICATIVE = 7
-        LATERAL_APPROXIMANT = 8
-        LATERAL_FLAP_TAP = 9
+    def compare_manner(self, other):
+        total = float(len(self.MANNER))
+        return (total - (abs(self.get_manner() - other.get_manner())/total)) #/total
 
-        def parse_manner(self, name):
-            """
-            Returns the appropriate Manner for the given string.
-            ~
-            e.g. parse_manner("lateral fricative") -> Manner.LATERAL_FRICATIVE
+    def compare_voiced(self, other):
+        return self.voiced == other.voiced
 
-            :param name: str, the name of the Manner value
-            :return: Manner, the Manner value for the given name
-            """
-            manner = None
-            exec("manner = Manner." + name.upper().replace(" ", "_"))
-            return manner
+    def compare_velarized(self, other):
+        return self.velarized == other.velarized
 
 
 VOWEL_KEYS = VOWELS.keys()
@@ -328,7 +355,7 @@ IPAVOWELS = {
 }
 
 SEMIVOWELS = {
-    u"j": IPAVowel(u"j", "close", "front", "unrounded"),   # semivowel approximating "i:"
+    #u"j": IPAVowel(u"j", "close", "front", "unrounded"),   # semivowel approximating "i:"
     u"w": IPAVowel(u"w", "close", "back", "rounded"),      # semivowel approximating "u:"
 }
 
@@ -418,7 +445,7 @@ IPACONSONANTS = {
     u"ɦ": IPAConsonant(u"ɦ", "glottal", "fricative", voiced=True),    # vd glottal fricative
 
     # APPROXIMANT
-    u"w": IPAConsonant(u"w", "bilabial", "approximant", voiced=True),       # vd bilabial approximant
+    #u"w": IPAConsonant(u"w", "bilabial", "approximant", voiced=True),       # vd bilabial approximant
 
     u"ʋ": IPAConsonant(u"ʋ", "labiodental", "approximant", voiced=True),    # vd labiodental approximant
 
@@ -465,7 +492,6 @@ IPACONSONANTS = {
     #u"ʡ": IPAConsonant(u"ʡ", "epiglottal", "plosive", voiced=True),        # vd epiglottal plosive
     #u"ʢ": IPAConsonant(u"ʢ", "epiglottal", "fricative", voiced=True)       # vd epiglottal fricative
 }
-
 
 IPADIACRITICS = {
     # AFFRICATES
@@ -518,7 +544,7 @@ IPADIACRITICS = {
     u"̏": IPADiacritic(u"̏", is_affricate=False)      # extra low tone
 }
 
-IPALETTERS = dict(IPACONSONANTS.items() + IPAVOWELS.items())
+IPALETTERS = dict(IPACONSONANTS.items() + IPAVOWELS.items() + SEMIVOWELS.items())
 
 IPASYMBOLS = dict(IPALETTERS.items() + IPADIACRITICS.items())
 

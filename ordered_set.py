@@ -123,7 +123,10 @@ class OrderedSet(set):
         :param other: OrderedSet(X), set to update with self
         :return: None
         """
-        self.add_items(other.get_all_items())
+        if type(other) == type(self):
+            self.add_items(other.get_all_items())
+        else:
+            self.add_items(other)
 
     def order(self):
         """
@@ -218,6 +221,9 @@ class OrderedSet(set):
     def __str__(self):
         return "\n\nOrderedSet items:\n" \
                " ".join(self.items).encode("utf-8") + "\n"
+
+    def __len__(self):
+        return len(self.items)
 
     #def __repr__(self):
     #    return str(self)

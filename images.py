@@ -7,6 +7,20 @@ IMAGES:
 from PIL import Image, ImageDraw, ImageFont, ImageChops
 
 
+def average_tuples(*args):
+    """
+    Returns an average tuple from all tuples given.
+    ~
+    Used to average between RGBA values.
+
+    :param args: *tuple(int), tuples with to average
+    :return: tuple(int), averaged tuple from all tuples given
+    """
+    lst = list(args)
+    return tuple([int((sum([item[idx] for item in lst]))/float(len(lst)))
+                  for idx in range(len(min(lst, key=len)))])
+
+
 def equate_images(img1, img2):
     """
     Returns a 2-tuple of the given images but
@@ -73,8 +87,12 @@ def overlay(front, back, equate=True):
     else:
         w, h = max(front.size[0], back.size[0]), max(front.size[1], back.size[1])
         img = make_blank_img(w, h, alpha=0)
-        img.paste(back, (w/2 - back.size[0]/2, h/2 - back.size[1]/2))
-        img.paste(front, (w/2 - front.size[0]/2, h/2 - front.size[1]/2))
+        front_x = w/2 - front.size[0]/2
+        front_y = h/2 - front.size[1]/2
+        back_x = w/2 - back.size[0]/2
+        back_y = h/2 - back.size[1]/2
+        img.paste(back, (back_x, back_y))
+        img.paste(front, (front_x, front_y))
     return img
 
 
@@ -204,18 +222,18 @@ def trim_horizontal(img):
         return img
 
 
-def circle(width, fill='white', outline=None, alpha=0):
-    img = make_blank_img(width, width, alpha=alpha)
+def circle(width, height=None, fill='white', outline=None, alpha=0):
+    height = width if height is None else height
+    img = make_blank_img(width, height, alpha=alpha)
     draw = ImageDraw.Draw(img)
     outline = fill if outline is None else outline
-    draw.ellipse((0, 0, width-1, width-1), fill, outline)
+    draw.ellipse((0, 0, width-1, height-1), fill, outline)
     return img
 
 
 def rectangle(width, height, fill='white', outline=None, alpha=0):
     img = make_blank_img(width, height, alpha=alpha)
     draw = ImageDraw.Draw(img)
-    #outline = fill if outline is None else outline
     draw.rectangle((0, 0, width-1, height-1), fill, outline)
     return img
 
@@ -235,20 +253,32 @@ def triangle(width, height, fill='white', vertical=True, outline=None, alpha=0):
     return img
 
 
-def load_default_font(size=12):
-    return ImageFont.truetype(font="/Library/Fonts/Arial Bold.ttf", size=size)
+def load_default_font(font_name="Arial Bold.ttf", size=12):
+    font = "/Library/Fonts/%s" % font_name
+    return ImageFont.truetype(font=font, size=size)
 
 
-def text(message, size=12, colour="black", bg_fill=(255,255,255), alpha=255, bg_alpha=0):
-    font = load_default_font(size)
+def lang_font(lang):
+    if lang == "Chinese":
+        return "NotoSansCJKtc-Bold.otf"
+    elif lang == "Japanese":
+        return "NotoSansCJKjp-Bold.otf"
+    elif lang == "Korean":
+        return "NotoSansCJKkr-Bold.otf"
+    else:
+        return "Arial Bold.ttf"
+
+
+def text(message, lang="English", size=12, colour="black", bg_fill=(255,255,255), alpha=255, bg_alpha=0):
+    font = load_default_font(lang_font(lang), size=size)
     w, h = font.getsize(message)
     img = make_blank_img(w, h, bg_fill, alpha=bg_alpha)
     draw = ImageDraw.Draw(img)
     draw.text((0, 0), message, fill=colour, font=font, alpha=alpha)
-    return img #trim(img)
+    return img
 
 
-def arrow(width, height, fill='black', angle=0, label=None, font_size=0, alpha=0):
+def arrow(width, height, fill='black', angle=0, label=None, font_size=0, alpha=0, lang="English"):
     max_dim = max(width, height)
     up = max_dim == height
     w, h = (3 * (width if up else height),) * 2
@@ -263,9 +293,9 @@ def arrow(width, height, fill='black', angle=0, label=None, font_size=0, alpha=0
         img = beside(left, right, align='center')
 
     if label is not None:
-        img = overlay(text(label, alpha=0, size=font_size), img)
+        img = overlay(text(label, lang, alpha=0, size=font_size), img)
 
-    img = rotate(img, angle)
+    img = trim(rotate(img, angle))
     return img
 
 
@@ -282,5 +312,74 @@ def rotate(img, angle):
         max_dim = max(img.size)
         img = overlay(img,
                       make_blank_img(max_dim*2, max_dim*2, alpha=0)).rotate(angle)
-    return trim(img)
+    return img
+
+
+def venn_diagram(colours, diameter=100):
+    """
+    Returns a Venn diagram of the given colours as circles of
+    the given diameter overlapping each other.
+    ~
+    Used to show colour combinations.
+
+    :param colours: List[tuple], list of RGB values to display
+    :return: Image, input colours in overlapping diagram
+    """
+    circles = []
+    alpha = int(255.0 / len(colours))
+
+    for rgb in colours:
+        colour = rgb[:3] + (alpha,)
+        circ = circle(diameter, height=diameter*2, fill=colour, alpha=0)
+        circles.append(circ)
+
+    fill = (255, 255, 255, 0)
+    diagram = rectangle(1, 1, fill=fill, alpha=255)
+    bg = rectangle(diameter/2, diameter/2, fill=fill, alpha=255)
+    offset = int(360.0 / len(circles))
+    angle = 0
+
+    for i in range(len(circles)):
+        circ = circles[i]
+        circ = beside(circ, bg)
+        circ = rotate(circ, angle)
+        diagram = overlay(circ, diagram)
+        angle += offset
+
+    return trim(diagram)
+
+
+def flower_diagram(colours, diameter=100):
+    """
+    Returns a flower diagram of the given colours overlapping each other.
+    ~
+    Used to show colour combinations.
+
+    :param circles: List[Image], images to turn into Venn diagram
+    :return: Image, input images as Venn diagram
+    """
+    circles = []
+    alpha = int(255.0 / len(colours))
+
+    for rgb in colours:
+        colour = rgb[:3] + (alpha,)
+        circ = circle(diameter, fill=colour, alpha=0)
+        circles.append(circ)
+
+    centre = circles[0]
+    circles = circles[1:]
+    fill = (255, 255, 255, 0)
+    diagram = centre
+    bg = rectangle(int(diameter*1.1), int(diameter*1.1), fill=fill, alpha=255)
+    offset = int(360.0 / len(circles))
+    angle = 0
+
+    for i in range(len(circles)):
+        circ = circles[i]
+        circ = beside(circ, bg)
+        circ = rotate(circ, angle)
+        diagram = overlay(circ, diagram)
+        angle += offset
+
+    return diagram
 

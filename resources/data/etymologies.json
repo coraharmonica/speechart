@@ -1,0 +1,1365 @@
+{
+ "Aba": {}, 
+ "Abenlen Ayta": {}, 
+ "Afar": {}, 
+ "Afrikaans": {}, 
+ "Aghem": {}, 
+ "Agutaynen": {}, 
+ "Aka (Central Africa)": {}, 
+ "Akan": {}, 
+ "Akei": {}, 
+ "Aklanon": {}, 
+ "Alangan": {}, 
+ "Albanian": {}, 
+ "Alemannic German": {}, 
+ "Ama": {}, 
+ "Ambala Ayta": {}, 
+ "Amblong": {}, 
+ "Ambonese Malay": {}, 
+ "Amis": {}, 
+ "Anaang": {}, 
+ "Anuta": {}, 
+ "Apala\u00ed": {}, 
+ "Arabela": {}, 
+ "Aragonese": {}, 
+ "Araki": {}, 
+ "Araona": {}, 
+ "Aribwaung": {}, 
+ "Arigidi": {}, 
+ "Aromanian": {}, 
+ "Arta": {}, 
+ "Asi": {}, 
+ "Asturian": {}, 
+ "Ata Manobo": {}, 
+ "Aukan": {}, 
+ "Avava": {}, 
+ "Aymara": {}, 
+ "Aynu": {}, 
+ "Azerbaijani": {}, 
+ "Baagandji": {}, 
+ "Bagirmi": {}, 
+ "Bahnar": {}, 
+ "Bakulung": {}, 
+ "Balinese": {}, 
+ "Bantik": {}, 
+ "Basque": {}, 
+ "Batad Ifugao": {}, 
+ "Bau Bidayuh": {}, 
+ "Baure": {}, 
+ "Beli": {}, 
+ "Bikol Central": {}, 
+ "Biloxi": {}, 
+ "Binukid": {}, 
+ "Bolinao": {}, 
+ "Bonggo": {}, 
+ "Bor\u00f4ro": {}, 
+ "Botolan Sambal": {}, 
+ "Bouyei": {}, 
+ "Breton": {}, 
+ "Brooke's Point Palawano": {}, 
+ "Buginese": {}, 
+ "Bunak": {}, 
+ "Bunun": {}, 
+ "Butuanon": {}, 
+ "Caac": {}, 
+ "Cahuilla": {}, 
+ "Capiznon": {}, 
+ "Car Nicobarese": {}, 
+ "Catalan": {}, 
+ "Cebuano": {}, 
+ "Central Bontoc": {}, 
+ "Central Dusun": {}, 
+ "Central Franconian": {}, 
+ "Central Mahuatl\u00e1n Zapoteco": {}, 
+ "Central Pomo": {}, 
+ "Chachi": {}, 
+ "Chamalal": {}, 
+ "Chamicuro": {}, 
+ "Chamorro": {}, 
+ "Charrua": {}, 
+ "Chavacano": {}, 
+ "Chewong": {}, 
+ "Chichewa": {}, 
+ "Chickasaw": {}, 
+ "Chinese": {}, 
+ "Chinook Jargon": {}, 
+ "Choctaw": {}, 
+ "Chuukese": {}, 
+ "Cimbrian": {}, 
+ "Classical Nahuatl": {}, 
+ "Copall\u00e9n": {}, 
+ "Cornish": {}, 
+ "Crimean Gothic": {}, 
+ "Crimean Tatar": {}, 
+ "Cuyunon": {}, 
+ "Czech": {}, 
+ "Dadibi": {}, 
+ "Dakota": {}, 
+ "Dalmatian": {}, 
+ "Danish": {}, 
+ "Deg Xinag": {}, 
+ "Denya": {}, 
+ "Dharug": {}, 
+ "Dhimal": {}, 
+ "Dibabawon Manobo": {}, 
+ "Dieri": {}, 
+ "Dilling": {}, 
+ "Dongxiang": {}, 
+ "Dorze": {}, 
+ "Doura": {}, 
+ "Dubu": {}, 
+ "Dupaningan Agta": {}, 
+ "Dutch": {}, 
+ "East Futuna": {}, 
+ "Eastern Bontoc": {}, 
+ "Egyptian": {}, 
+ "Ekpeye": {}, 
+ "Elfdalian": {}, 
+ "Embaloh": {}, 
+ "Emilian": {}, 
+ "English": {
+  "aftercare": [
+   "care", 
+   "after-"
+  ], 
+  "afterdamp": [
+   "damp", 
+   "after-"
+  ], 
+  "afterdeck": [
+   "after-", 
+   "deck"
+  ], 
+  "afterglow": [
+   "after-", 
+   "glow"
+  ], 
+  "asleep": [
+   "a-", 
+   "sleep"
+  ], 
+  "backbeat": [
+   "beat", 
+   "back"
+  ], 
+  "backbench": [
+   "bench", 
+   "back"
+  ], 
+  "backbend": [
+   "bend", 
+   "back"
+  ], 
+  "backbiter": [
+   "biter", 
+   "back"
+  ], 
+  "backblast": [
+   "blast", 
+   "back"
+  ], 
+  "backboard": [
+   "board", 
+   "back"
+  ], 
+  "backbreaking": [
+   "breaking", 
+   "back"
+  ], 
+  "backcloth": [
+   "cloth", 
+   "back"
+  ], 
+  "backdate": [
+   "date", 
+   "back"
+  ], 
+  "backdown": [
+   "down", 
+   "back"
+  ], 
+  "backfield": [
+   "field", 
+   "back"
+  ], 
+  "backflow": [
+   "flow", 
+   "back"
+  ], 
+  "backgrounder": [
+   "-er", 
+   "background"
+  ], 
+  "backhander": [
+   "-er", 
+   "hand", 
+   "back"
+  ], 
+  "backpacker": [
+   "-er", 
+   "backpack"
+  ], 
+  "backplate": [
+   "plate", 
+   "back"
+  ], 
+  "backroom": [
+   "room", 
+   "back"
+  ], 
+  "backscratcher": [
+   "scratcher", 
+   "back"
+  ], 
+  "backslap": [
+   "slap", 
+   "back"
+  ], 
+  "backslapper": [
+   "slapper", 
+   "back"
+  ], 
+  "backslide": [
+   "slide", 
+   "back"
+  ], 
+  "backspin": [
+   "spin", 
+   "back"
+  ], 
+  "backstairs": [
+   "stairs", 
+   "back"
+  ], 
+  "backstay": [
+   "stay", 
+   "back"
+  ], 
+  "backstitch": [
+   "stitch", 
+   "back"
+  ], 
+  "backstop": [
+   "stop", 
+   "back"
+  ], 
+  "backstroker": [
+   "-er", 
+   "backstroke"
+  ], 
+  "backswept": [
+   "swept", 
+   "back"
+  ], 
+  "backsword": [
+   "sword", 
+   "back"
+  ], 
+  "backtalk": [
+   "talk", 
+   "back"
+  ], 
+  "backwardness": [
+   "-ness", 
+   "backward"
+  ], 
+  "backwater": [
+   "water", 
+   "back"
+  ], 
+  "backwoodsman": [
+   "man", 
+   "backwoods"
+  ], 
+  "comedown": [
+   "down", 
+   "come"
+  ], 
+  "comeliness": [
+   "-ness", 
+   "comely"
+  ], 
+  "cometary": [
+   "-ary", 
+   "comet"
+  ], 
+  "donee": [
+   "-ee", 
+   "donor"
+  ], 
+  "downstairs": [
+   "down", 
+   "stair", 
+   "-s"
+  ], 
+  "faster": [
+   "fast", 
+   "-er"
+  ], 
+  "firstborn": [
+   "first", 
+   "born"
+  ], 
+  "firsthand": [
+   "first", 
+   "hand"
+  ], 
+  "getup": [
+   "get", 
+   "up"
+  ], 
+  "goddamn": [
+   "God", 
+   "damn"
+  ], 
+  "goodish": [
+   "-ish", 
+   "good"
+  ], 
+  "gunshot": [
+   "gun", 
+   "shot"
+  ], 
+  "hereabout": [
+   "about", 
+   "here"
+  ], 
+  "hereabouts": [
+   "-s", 
+   "hereabout"
+  ], 
+  "hereinbefore": [
+   "before", 
+   "herein"
+  ], 
+  "hereness": [
+   "-ness", 
+   "here"
+  ], 
+  "hereof": [
+   "of", 
+   "here"
+  ], 
+  "hereunder": [
+   "under", 
+   "here"
+  ], 
+  "hereupon": [
+   "upon", 
+   "here"
+  ], 
+  "herewith": [
+   "with", 
+   "here"
+  ], 
+  "highness": [
+   "high", 
+   "-ness"
+  ], 
+  "honestly": [
+   "honest", 
+   "-ly"
+  ], 
+  "justifiably": [
+   "-ly", 
+   "justifiable"
+  ], 
+  "justness": [
+   "-ness", 
+   "just"
+  ], 
+  "knower": [
+   "-er", 
+   "know"
+  ], 
+  "knowingly": [
+   "-ly", 
+   "knowing"
+  ], 
+  "knowingness": [
+   "-ness", 
+   "knowing"
+  ], 
+  "likeable": [
+   "-able", 
+   "like"
+  ], 
+  "littleneck": [
+   "little", 
+   "neck"
+  ], 
+  "lookdown": [
+   "down", 
+   "look"
+  ], 
+  "looker": [
+   "-er", 
+   "look"
+  ], 
+  "meanie": [
+   "mean", 
+   "-ie"
+  ], 
+  "meany": [
+   "mean", 
+   "-y"
+  ], 
+  "mommy": [
+   "mom", 
+   "-y"
+  ], 
+  "nightcap": [
+   "night", 
+   "cap"
+  ], 
+  "nighted": [
+   "night", 
+   "-ed"
+  ], 
+  "nightfall": [
+   "night", 
+   "fall"
+  ], 
+  "nightgown": [
+   "night", 
+   "gown"
+  ], 
+  "nightie": [
+   "night", 
+   "-ie"
+  ], 
+  "nightspot": [
+   "night", 
+   "spot"
+  ], 
+  "nightwear": [
+   "-wear", 
+   "night"
+  ], 
+  "normally": [
+   "normal", 
+   "-ly"
+  ], 
+  "nothingness": [
+   "nothing", 
+   "-ness"
+  ], 
+  "nowhere": [
+   "no", 
+   "where"
+  ], 
+  "otherness": [
+   "other", 
+   "-ness"
+  ], 
+  "overact": [
+   "over-", 
+   "act"
+  ], 
+  "overarm": [
+   "over-", 
+   "arm"
+  ], 
+  "overfed": [
+   "over-", 
+   "fed"
+  ], 
+  "overfly": [
+   "over-", 
+   "fly"
+  ], 
+  "overjoy": [
+   "over-", 
+   "joy"
+  ], 
+  "overly": [
+   "over", 
+   "-ly"
+  ], 
+  "oversea": [
+   "over-", 
+   "sea"
+  ], 
+  "oversew": [
+   "over-", 
+   "sew"
+  ], 
+  "overtax": [
+   "over-", 
+   "tax"
+  ], 
+  "overtly": [
+   "overt", 
+   "-ly"
+  ], 
+  "overtop": [
+   "over-", 
+   "top"
+  ], 
+  "righteously": [
+   "-ly", 
+   "righteous"
+  ], 
+  "rightful": [
+   "-ful", 
+   "right"
+  ], 
+  "rightly": [
+   "-ly", 
+   "right"
+  ], 
+  "rightmost": [
+   "-most", 
+   "right"
+  ], 
+  "rightness": [
+   "-ness", 
+   "right"
+  ], 
+  "scratcher": [
+   "-er", 
+   "scratch"
+  ], 
+  "seedy": [
+   "seed", 
+   "-y"
+  ], 
+  "someday": [
+   "day", 
+   "some"
+  ], 
+  "stillroom": [
+   "still", 
+   "room"
+  ], 
+  "stopgap": [
+   "stop", 
+   "gap"
+  ], 
+  "takeover": [
+   "over", 
+   "take"
+  ], 
+  "talky": [
+   "talk", 
+   "-y"
+  ], 
+  "tellingly": [
+   "-ly", 
+   "telling"
+  ], 
+  "telltale": [
+   "tale", 
+   "tell"
+  ], 
+  "terribly": [
+   "terrible", 
+   "-ly"
+  ], 
+  "thankful": [
+   "thank", 
+   "-ful"
+  ], 
+  "thankless": [
+   "thank", 
+   "-less"
+  ], 
+  "thematically": [
+   "-ally", 
+   "thematic"
+  ], 
+  "thereabout": [
+   "about", 
+   "there"
+  ], 
+  "thereabouts": [
+   "-s", 
+   "thereabout"
+  ], 
+  "thereon": [
+   "on", 
+   "there"
+  ], 
+  "therewithal": [
+   "withal", 
+   "there"
+  ], 
+  "thinkable": [
+   "-able", 
+   "think"
+  ], 
+  "thistledown": [
+   "down", 
+   "thistle"
+  ], 
+  "timecard": [
+   "card", 
+   "time"
+  ], 
+  "timekeeper": [
+   "keeper", 
+   "time"
+  ], 
+  "timekeeping": [
+   "keeping", 
+   "time"
+  ], 
+  "timeless": [
+   "-less", 
+   "time"
+  ], 
+  "timeliness": [
+   "-ness", 
+   "timely"
+  ], 
+  "timetable": [
+   "table", 
+   "time"
+  ], 
+  "timework": [
+   "work", 
+   "time"
+  ], 
+  "unbelievable": [
+   "un-", 
+   "believable"
+  ], 
+  "unfortunately": [
+   "unfortunate", 
+   "-ly"
+  ], 
+  "wanter": [
+   "-er", 
+   "want"
+  ], 
+  "wantonness": [
+   "-ness", 
+   "wanton"
+  ], 
+  "washy": [
+   "wash", 
+   "-y"
+  ], 
+  "wellborn": [
+   "born", 
+   "well"
+  ], 
+  "whereabout": [
+   "about", 
+   "where"
+  ], 
+  "whereabouts": [
+   "-s", 
+   "whereabout"
+  ], 
+  "willfully": [
+   "-ly", 
+   "willful"
+  ], 
+  "willingly": [
+   "-ly", 
+   "willing"
+  ], 
+  "willowherb": [
+   "herb", 
+   "willow"
+  ], 
+  "withering": [
+   "-ing", 
+   "wither"
+  ], 
+  "withholder": [
+   "-er", 
+   "withhold"
+  ], 
+  "workbag": [
+   "work", 
+   "bag"
+  ], 
+  "workbox": [
+   "work", 
+   "box"
+  ]
+ }, 
+ "Epigraphic Mayan": {}, 
+ "Esperanto": {}, 
+ "Estonian": {}, 
+ "Ewe": {}, 
+ "Extremaduran": {}, 
+ "Fala": {}, 
+ "Faroese": {}, 
+ "Fiji Hindi": {}, 
+ "Fijian": {}, 
+ "Finnish": {
+  "-maton": [
+   "-ton", 
+   "-ma"
+  ], 
+  "aiemmin": [
+   "aiempi", 
+   "-in"
+  ], 
+  "el\u00e4m\u00e4": [
+   "-m\u00e4", 
+   "el\u00e4\u00e4"
+  ], 
+  "eteenp\u00e4in": [
+   "eteen", 
+   "-p\u00e4in"
+  ], 
+  "ett\u00e4": [
+   "jotta", 
+   "joka"
+  ], 
+  "haluta": [
+   "-ta", 
+   "halu-"
+  ], 
+  "hetkinen": [
+   "hetki", 
+   "-nen"
+  ], 
+  "huomenna": [
+   "huomen"
+  ], 
+  "h\u00e4nen": [
+   "h\u00e4n"
+  ], 
+  "iloinen": [
+   "ilo", 
+   "-inen"
+  ], 
+  "koskaan": [
+   "-kaan", 
+   "koska"
+  ], 
+  "kotona": [
+   "koto"
+  ], 
+  "kovasti": [
+   "kova", 
+   "-sti"
+  ], 
+  "kultanen": [
+   "kulta", 
+   "-nen"
+  ], 
+  "kunhan": [
+   "kun", 
+   "-han"
+  ], 
+  "liikaa": [
+   "liika"
+  ], 
+  "luoja": [
+   "-ja", 
+   "luo-"
+  ], 
+  "luona": [
+   "luo", 
+   "-na"
+  ], 
+  "luultavasti": [
+   "luultava", 
+   "-sti"
+  ], 
+  "meill\u00e4": [
+   "me"
+  ], 
+  "milloin": [
+   "mik\u00e4"
+  ], 
+  "mukana": [
+   "muka"
+  ], 
+  "mutta": [
+   "muu", 
+   "muutta"
+  ], 
+  "niinp\u00e4": [
+   "niin", 
+   "-p\u00e4"
+  ], 
+  "nopeasti": [
+   "-sti", 
+   "nopea"
+  ], 
+  "oikeasti": [
+   "oikea", 
+   "-sti"
+  ], 
+  "onnellinen": [
+   "onni", 
+   "-llinen"
+  ], 
+  "paljonko": [
+   "paljon", 
+   "-ko"
+  ], 
+  "paskiainen": [
+   "paska", 
+   "-iainen"
+  ], 
+  "silloin": [
+   "se"
+  ], 
+  "silti": [
+   "-i", 
+   "silt\u00e4"
+  ], 
+  "sis\u00e4\u00e4n": [
+   "sis\u00e4-"
+  ], 
+  "tietenk\u00e4\u00e4n": [
+   "tieten", 
+   "-kaan"
+  ], 
+  "tietysti": [
+   "tietty", 
+   "-sti"
+  ], 
+  "tilanne": [
+   "tila", 
+   "-nne"
+  ], 
+  "toivottavasti": [
+   "-sti", 
+   "toivottava"
+  ], 
+  "tulo": [
+   "tulla", 
+   "-o"
+  ], 
+  "t\u00e4llainen": [
+   "t\u00e4n", 
+   "-lainen"
+  ], 
+  "t\u00e4ydellinen": [
+   "t\u00e4ysi", 
+   "-llinen"
+  ], 
+  "uskomaton": [
+   "-maton", 
+   "uskoa"
+  ], 
+  "varmasti": [
+   "-sti", 
+   "varma"
+  ], 
+  "viimeinen": [
+   "-inen", 
+   "viime"
+  ], 
+  "yhteys": [
+   "yhte-", 
+   "-ys"
+  ], 
+  "yli": [
+   "yl\u00e4-"
+  ]
+ }, 
+ "Franco-Proven\u00e7al": {}, 
+ "French": {
+  "accordeur": [
+   "-eur", 
+   "accorder"
+  ], 
+  "argentier": [
+   "argent", 
+   "-ier"
+  ], 
+  "bonneteau": [
+   "-eau", 
+   "bonneteur"
+  ], 
+  "chanceux": [
+   "-eux", 
+   "chance"
+  ], 
+  "commentatrice": [
+   "commenter", 
+   "-trice"
+  ], 
+  "entrepont": [
+   "entre-", 
+   "pont"
+  ], 
+  "maisonn\u00e9e": [
+   "maison", 
+   "-\u00e9e"
+  ], 
+  "penseur": [
+   "penser", 
+   "-eur"
+  ], 
+  "tonal": [
+   "ton", 
+   "-al"
+  ], 
+  "tuerie": [
+   "tuer", 
+   "-erie"
+  ]
+ }, 
+ "Friulian": {}, 
+ "Fula": {}, 
+ "Futuna-Aniwa": {}, 
+ "Fw\u00e2i": {}, 
+ "Gabadi": {}, 
+ "Gaddang": {}, 
+ "Gagauz": {}, 
+ "Gaikundi": {}, 
+ "Galician": {}, 
+ "Gallo": {}, 
+ "Galoli": {}, 
+ "Gamilaraay": {}, 
+ "Garifuna": {}, 
+ "Gaulish": {}, 
+ "German": {}, 
+ "German Low German": {}, 
+ "Geser-Gorom": {}, 
+ "Gilbertese": {}, 
+ "Gooniyandi": {}, 
+ "Gothic": {}, 
+ "Greek": {}, 
+ "Greenlandic": {}, 
+ "Guanano": {}, 
+ "Guaran\u00ed": {}, 
+ "Guhu-Samane": {}, 
+ "Hadza": {}, 
+ "Haeke": {}, 
+ "Haitian Creole": {}, 
+ "Hanga Hundi": {}, 
+ "Hausa": {}, 
+ "Havasupai-Walapai-Yavapai": {}, 
+ "Haveke": {}, 
+ "Hawaiian": {}, 
+ "Hidatsa": {}, 
+ "Hiligaynon": {}, 
+ "Hiri Motu": {}, 
+ "Hiw": {}, 
+ "Hopi": {}, 
+ "Hoyahoya": {}, 
+ "Hungarian": {}, 
+ "Ibaloi": {}, 
+ "Iban": {}, 
+ "Ibanag": {}, 
+ "Icelandic": {}, 
+ "Ido": {}, 
+ "Ikobi-Mena": {}, 
+ "Ilianen Manobo": {}, 
+ "Ilocano": {}, 
+ "Ilongot": {}, 
+ "Inari Sami": {}, 
+ "Indo-Portuguese": {}, 
+ "Indonesian": {}, 
+ "Ingrian": {}, 
+ "Interlingua": {}, 
+ "Interlingue": {}, 
+ "Iraya": {}, 
+ "Irish": {}, 
+ "Istriot": {}, 
+ "Istro-Romanian": {}, 
+ "Italian": {}, 
+ "Itawit": {}, 
+ "Itene": {}, 
+ "Ivatan": {}, 
+ "Japanese": {}, 
+ "Japhug": {}, 
+ "Jarai": {}, 
+ "Javanese": {}, 
+ "Jawe": {}, 
+ "Juba Arabic": {}, 
+ "Jurchen": {}, 
+ "Kagayanen": {}, 
+ "Kaiep": {}, 
+ "Kaingang": {}, 
+ "Kalasha": {}, 
+ "Kamba": {}, 
+ "Kankanaey": {}, 
+ "Kano\u00e9": {}, 
+ "Kanuri": {}, 
+ "Kapampangan": {}, 
+ "Karawa": {}, 
+ "Karelian": {}, 
+ "Kashubian": {}, 
+ "Kaxuyana": {}, 
+ "Kayapa Kallahan": {}, 
+ "Kazukuru": {}, 
+ "Kein": {}, 
+ "Keoru-Ahia": {}, 
+ "Kikuyu": {}, 
+ "Kinaray-a": {}, 
+ "Kirikiri": {}, 
+ "Kituba": {}, 
+ "Kom (Cameroon)": {}, 
+ "Korean": {}, 
+ "Koro (India)": {}, 
+ "Kott": {}, 
+ "Kriol": {}, 
+ "Krisa": {}, 
+ "Kristang": {}, 
+ "Kuna": {}, 
+ "Kurdish": {}, 
+ "Kurudu": {}, 
+ "Kustenau": {}, 
+ "Ladin": {}, 
+ "Ladino": {}, 
+ "Lala": {}, 
+ "Lamboya": {}, 
+ "Latgalian": {}, 
+ "Latin": {}, 
+ "Latvian": {}, 
+ "Ligurian": {}, 
+ "Limburgish": {}, 
+ "Limos Kalinga": {}, 
+ "Lithuanian": {}, 
+ "Livonian": {}, 
+ "Livvi": {}, 
+ "Lojban": {}, 
+ "Lower Sorbian": {}, 
+ "Lubuagan Kalinga": {}, 
+ "Ludian": {}, 
+ "Lule": {}, 
+ "Lule Sami": {}, 
+ "Luxembourgish": {}, 
+ "Mag-Anchi Ayta": {}, 
+ "Mag-Indi Ayta": {}, 
+ "Maguindanao": {}, 
+ "Makasar": {}, 
+ "Malagasy": {}, 
+ "Malay": {}, 
+ "Malibu": {}, 
+ "Maltese": {}, 
+ "Mamanwa": {}, 
+ "Mamboru": {}, 
+ "Mandan": {}, 
+ "Mandarin": {}, 
+ "Mangarevan": {}, 
+ "Mansaka": {}, 
+ "Manx": {}, 
+ "Maori": {}, 
+ "Mapudungun": {}, 
+ "Mapun": {}, 
+ "Maquiritari": {}, 
+ "Maranao": {}, 
+ "Maricopa": {}, 
+ "Marshallese": {}, 
+ "Martuthunira": {}, 
+ "Masbatenyo": {}, 
+ "Mbabaram": {}, 
+ "Mekeo": {}, 
+ "Meriam": {}, 
+ "Me\u00e4nkieli": {}, 
+ "Michif": {}, 
+ "Middle Dutch": {}, 
+ "Middle English": {}, 
+ "Middle French": {}, 
+ "Middle High German": {}, 
+ "Middle Irish": {}, 
+ "Middle Low German": {}, 
+ "Min Nan": {}, 
+ "Mirandese": {}, 
+ "Miskito": {}, 
+ "Mizo": {}, 
+ "Molise Croatian": {}, 
+ "Molo": {}, 
+ "Mongondow": {}, 
+ "Mopan Maya": {}, 
+ "Movima": {}, 
+ "Mozarabic": {}, 
+ "Murrinh-Patha": {}, 
+ "Muzo": {}, 
+ "Mwani": {}, 
+ "Nahuatl": {}, 
+ "Nalca": {}, 
+ "Nauruan": {}, 
+ "Navajo": {}, 
+ "Neapolitan": {}, 
+ "Nedebang": {}, 
+ "Nek": {}, 
+ "Nemi": {}, 
+ "Ngaju": {}, 
+ "Ngarrindjeri": {}, 
+ "Ngazidja Comorian": {}, 
+ "Ngiyambaa": {}, 
+ "Nigerian Pidgin": {}, 
+ "Niuean": {}, 
+ "Noone": {}, 
+ "Norman": {}, 
+ "North Ambrym": {}, 
+ "North Frisian": {}, 
+ "Northern Catanduanes Bicolano": {}, 
+ "Northern Kurdish": {}, 
+ "Northern Sami": {}, 
+ "Northern Sotho": {}, 
+ "Norwegian": {}, 
+ "Norwegian Bokm\u00e5l": {}, 
+ "Norwegian Nynorsk": {}, 
+ "Novial": {}, 
+ "Nyakyusa": {}, 
+ "Nyishi": {}, 
+ "Nyunga": {}, 
+ "Ny\u00e2layu": {}, 
+ "O'odham": {}, 
+ "Occitan": {}, 
+ "Ogbah": {}, 
+ "Ojibwe": {}, 
+ "Oksapmin": {}, 
+ "Old Dutch": {}, 
+ "Old English": {}, 
+ "Old French": {}, 
+ "Old Frisian": {}, 
+ "Old High German": {}, 
+ "Old Irish": {}, 
+ "Old Javanese": {}, 
+ "Old Norse": {}, 
+ "Old Occitan": {}, 
+ "Old Polish": {}, 
+ "Old Portuguese": {}, 
+ "Old Prussian": {}, 
+ "Old Saxon": {}, 
+ "Old Spanish": {}, 
+ "Old Swedish": {}, 
+ "Opao": {}, 
+ "Orokolo": {}, 
+ "Oscan": {}, 
+ "Ozolotepec Zapotec": {}, 
+ "Palauan": {}, 
+ "Pali": {}, 
+ "Palikur": {}, 
+ "Palu'e": {}, 
+ "Pamplona Atta": {}, 
+ "Pangasinan": {}, 
+ "Pangutaran Sama": {}, 
+ "Panyjima": {}, 
+ "Papiamentu": {}, 
+ "Paumar\u00ed": {}, 
+ "Pennsylvania German": {}, 
+ "Phuthi": {}, 
+ "Picard": {}, 
+ "Piedmontese": {}, 
+ "Pije": {}, 
+ "Pijin": {}, 
+ "Pipil": {}, 
+ "Pitjantjatjara": {}, 
+ "Pohnpeian": {}, 
+ "Polish": {
+  "czytelno\u015b\u0107": [
+   "-o\u015b\u0107", 
+   "czytelny"
+  ], 
+  "goli": [
+   "gol", 
+   "-i"
+  ], 
+  "marami": [
+   "ma-", 
+   "dami"
+  ], 
+  "nasieniow\u00f3d": [
+   "nasienio-", 
+   "-w\u00f3d"
+  ], 
+  "niejawny": [
+   "nie-", 
+   "jawny"
+  ], 
+  "nier\u00f3wno\u015b\u0107": [
+   "-o\u015b\u0107", 
+   "r\u00f3wny", 
+   "nie-"
+  ], 
+  "nocka": [
+   "noc", 
+   "-ka"
+  ], 
+  "nocleg": [
+   "lega\u0107", 
+   "noc"
+  ], 
+  "podgrupa": [
+   "pod-", 
+   "grupa"
+  ], 
+  "podrobi\u0107": [
+   "robi\u0107", 
+   "pod-"
+  ], 
+  "przynosi\u0107": [
+   "przy-", 
+   "nosi\u0107", 
+   "nosi\u0107"
+  ], 
+  "przytuli\u0107": [
+   "przy-", 
+   "tuli\u0107", 
+   "tuli\u0107"
+  ], 
+  "r\u0119czny": [
+   "r\u0119ka", 
+   "-ny"
+  ], 
+  "sportowy": [
+   "sport", 
+   "-owy"
+  ], 
+  "szybko\u015b\u0107": [
+   "-o\u015b\u0107", 
+   "szybki"
+  ], 
+  "tenisowy": [
+   "tenis", 
+   "-owy"
+  ], 
+  "torcik": [
+   "-ik", 
+   "tort"
+  ], 
+  "wojskowy": [
+   "wojsko", 
+   "-owy"
+  ], 
+  "zagi\u0105\u0107": [
+   "gi\u0105\u0107", 
+   "za-"
+  ]
+ }, 
+ "Ponosakan": {}, 
+ "Portuguese": {}, 
+ "Pouye": {}, 
+ "Quechua": {}, 
+ "Rade": {}, 
+ "Ramoaaina": {}, 
+ "Rapa Nui": {}, 
+ "Rarotongan": {}, 
+ "Ratagnon": {}, 
+ "Rohingya": {}, 
+ "Romani": {}, 
+ "Romanian": {}, 
+ "Romansch": {}, 
+ "Romblomanon": {}, 
+ "Saanich": {}, 
+ "Sambali": {}, 
+ "Samoan": {}, 
+ "San Baltazar Loxicha Zapotec": {}, 
+ "Sangir": {}, 
+ "Sarangani Blaan": {}, 
+ "Sardinian": {}, 
+ "Saterland Frisian": {}, 
+ "Sawi": {}, 
+ "Scanian": {}, 
+ "Scots": {}, 
+ "Scottish Gaelic": {}, 
+ "Sechura": {}, 
+ "Serbo-Croatian": {}, 
+ "Seri": {}, 
+ "Serui-Laut": {}, 
+ "Sicilian": {}, 
+ "Silesian": {}, 
+ "Sinacant\u00e1n": {}, 
+ "Situ": {}, 
+ "Skolt Sami": {}, 
+ "Slovak": {}, 
+ "Slovene": {}, 
+ "So'a": {}, 
+ "Somali": {}, 
+ "Somba-Siawari": {}, 
+ "Sotho": {}, 
+ "Southern Kam": {}, 
+ "Southwest Palawano": {}, 
+ "Spanish": {}, 
+ "Sranan Tongo": {}, 
+ "Sumbawa": {}, 
+ "Sundanese": {}, 
+ "Suri": {}, 
+ "Surigaonon": {}, 
+ "Swahili": {}, 
+ "Swazi": {}, 
+ "Swedish": {}, 
+ "Tabasco Zoque": {}, 
+ "Tadyawan": {}, 
+ "Tagakaulu Kalagan": {}, 
+ "Tagal Murut": {}, 
+ "Tagalog": {}, 
+ "Tagbanwa": {}, 
+ "Tahitian": {}, 
+ "Tai Dam": {}, 
+ "Tairuma": {}, 
+ "Takia": {}, 
+ "Tarantino": {}, 
+ "Tarpia": {}, 
+ "Tashelhit": {}, 
+ "Tatar": {}, 
+ "Taushiro": {}, 
+ "Tausug": {}, 
+ "Tboli": {}, 
+ "Ter Sami": {}, 
+ "Terebu": {}, 
+ "Tetum": {}, 
+ "Tikopia": {}, 
+ "Tiruray": {}, 
+ "Toaripi": {}, 
+ "Tocharian A": {}, 
+ "Tocharian B": {}, 
+ "Tok Pisin": {}, 
+ "Tokelauan": {}, 
+ "Tolai": {}, 
+ "Tongan": {}, 
+ "Torres Strait Creole": {}, 
+ "Translingual": {}, 
+ "Tshobdun": {}, 
+ "Tsuvadi": {}, 
+ "Tswana": {}, 
+ "Tuamotuan": {}, 
+ "Turkish": {}, 
+ "Turkmen": {}, 
+ "Tuvaluan": {}, 
+ "Tz'utujil": {}, 
+ "Tzotzil": {}, 
+ "Uma": {}, 
+ "Umbundu": {}, 
+ "Unami": {}, 
+ "Upper Sorbian": {}, 
+ "Uzbek": {}, 
+ "Venetian": {}, 
+ "Veps": {}, 
+ "Vietnamese": {}, 
+ "Vilamovian": {}, 
+ "Vilela": {}, 
+ "Volap\u00fck": {}, 
+ "Votic": {}, 
+ "V\u00f5ro": {}, 
+ "Wakhi": {}, 
+ "Walloon": {}, 
+ "Wanyi": {}, 
+ "Waray-Waray": {}, 
+ "Warlpiri": {}, 
+ "Watiwa": {}, 
+ "Wauja": {}, 
+ "Welsh": {}, 
+ "West Flemish": {}, 
+ "West Frisian": {}, 
+ "Western Apache": {}, 
+ "Western Bukidnon Manobo": {}, 
+ "Westrobothnian": {}, 
+ "White Hmong": {}, 
+ "Wik-Mungkan": {}, 
+ "Wiradhuri": {}, 
+ "Wolof": {}, 
+ "Xhosa": {}, 
+ "Yakan": {}, 
+ "Yankunytjatjara": {}, 
+ "Yapese": {}, 
+ "Yawa": {}, 
+ "Yogad": {}, 
+ "Yola": {}, 
+ "Yosond\u00faa Mixtec": {}, 
+ "Yuaga": {}, 
+ "Zay": {}, 
+ "Zazaki": {}, 
+ "Zhuang": {}, 
+ "Zipser German": {}, 
+ "Zulu": {}, 
+ "Zuni": {}
+}

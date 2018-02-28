@@ -2,15 +2,10 @@
 """
 MORPHEME_PARSER:
 
-    Stores classes for extracting and analyzing morphemes.
-    ~
-    Designed for (ideally) any language.
+    Contains MorphemeParser class for parsing morpheme data
+    in a given language from Wiktionary.
 """
-from ipa_parser import *
-import re
-import os
-
-PATH = os.path.dirname(os.path.realpath(__file__))
+from language_parser import *
 
 
 class Morpheme:
@@ -65,261 +60,98 @@ class Morpheme:
         return hash(self.word + self.language[:3] + str(self.type))
 
 
-class MorphemeParser(IPAParser):
+class MorphemeParser(LanguageParser):
     """
     A class for extracting and analyzing morphemes in a
     given language.
     """
     def __init__(self, language):
-        IPAParser.__init__(self, language)
-        self.wordnet_words = self.get_wordnet_words()
-        self.lexicon = self.get_lexicon()
-        self.words = self.wordnet_words.intersection(self.lexicon[:1000])
+        LanguageParser.__init__(self, language)
         self.affixes = set()
         self.morphemes = set()
-        self.html_pattern = re.compile("(<.+?>|\n|\d)")
-        self.quote_pattern = re.compile("\"[^\+]*?\"")
-        self.paren_pattern = re.compile("\([^\(]*?\)")
-        self.deriv_pattern = re.compile("(\S+ ?(\".+\")? ?\+ ?)+\S+ ?(\".+?\")?")
-        self.space_pattern = re.compile("( )+")
 
-    def clean(self, s):
+    def init_morphemes(self):
+        words = self.words
+        self.morphemes.update(words)
+
+        for word in words: #sorted(words, key=lambda w: len(w)):
+            word_morphemes = self.strip_affixes(word)
+            print word, "has morphemes", word_morphemes
+            print
+            self.morphemes.update(word_morphemes)
+            continue
+
+        print "MorphemeParser's morphemes", len(self.morphemes), self.morphemes
+        return self.morphemes
+
+    def all_morphemes(self):
         """
-        Returns s with \xe2\x80\x8e removed.
-
-        :param s: str, string to clean
-        :return: str, s cleaned
-        """
-        return s.replace("‎", "")
-
-    def clean_etymology(self, etymology):
-        """
-        Returns etymology fully cleaned, i.e., without
-        HTML, parentheticals, duplicate spaces or irregular characters.
-
-        :param etymology: str, etymology to clean
-        :return: str, etymology cleaned
-        """
-        return self.clean_spaces(self.clean_parentheticals(self.clean_quotes(self.clean_html(self.clean(etymology)))))
-
-    def clean_spaces(self, s):
-        """
-        Returns s with no more than 1 consecutive space and with
-        whitespace stripped from ends.
-        ~
-        e.g. clean_spaces("  how  are   you  ") -> "how are you"
-
-        :param s: str, string with spaces to clean
-        :return: str, s cleaned
-        """
-        return self.space_pattern.sub(" ", s).strip()
-
-    def clean_html(self, html):
-        """
-        Removes all HTML gunk from the given etymology string.
-
-        :param html: str, HTML string to remove HTML gunk from
-        :return: str, html without HTML gunk
-        """
-        return self.html_pattern.sub("", html)
-
-    def clean_parentheticals(self, s):
-        """
-        Returns s with all parentheticals removed.
-        ~
-        e.g. clean_parentheticals("cat (noun) - animal") -> "cat - animal"
-
-        :param s: str, string to remove parentheticals frosm
-        :return: str, s without parentheticals
-        """
-        last = s
-        new = self.paren_pattern.sub("", s)
-        while last != new:
-            last = new
-            new = self.paren_pattern.sub("", new)
-        return new
-
-    def clean_quotes(self, s):
-        """
-        Returns s with all quotes removed.
-        ~
-        e.g. clean_parentheticals("cat ("cat")") -> "cat ()"
-
-        :param s: str, string to remove parentheticals from
-        :return: str, s without parentheticals
-        """
-        return self.quote_pattern.sub("", s)
-
-    def description_etymology(self, description):
-        """
-        Returns the etymology of a word from the given description.
-
-        :param description: str, description to find etymology from
-        :return: str, a word's etymology from given description
-        """
-        if description[:5] == "From ":
-            description = description[5:]
-
-        etymology = self.deriv_pattern.match(description)
-        etymology = etymology.group()
-
-        try:
-            etymology = etymology.rstrip(" .")
-        except AttributeError:
-            pass
-
-        return etymology.strip()
-
-    def page_etymologies(self, page, derivations=True):
-        """
-        Returns all etymologies from this Wiktionary page.
-        ~
-        If no etymology exists, returns None.
-        ~
-        If derivations is False, this method returns the given page's
-        etymology no matter what.
-        Otherwise, if derivations is True, this method returns this
-        page's etymology only if it is derivational (i.e., consisting
-        only of additive morphemes).
-
-        :param page: Tag, page to extract etymology from
-        :param derivations: bool, whether to only extract derivational etymologies
-        :return: List[str], etymologies for given page
-        """
-        etymologies = list()
-
-        try:
-            headers = page.findAll('span', attrs={'class': 'mw-headline'})
-            etyms = [h.findNext('p') for h in headers
-                     if h['id'][:4] == "Etym"]
-
-            for etym in etyms:
-                etym = self.clean_parentheticals(self.clean_html(etym.prettify()))
-                if derivations:
-                    if any(char.isupper() or char == "." for char in etym):
-                        continue
-                etymologies.append(etym)
-
-        except AttributeError or TypeError:
-            return
-
-        return etymologies
-
-    def page_etymology(self, page, derivational=True):
-        """
-        Returns the etymology from this Wiktionary page belonging to this
+        Returns a frequency dictionary of morphemes in this
         MorphemeParser's language.
-        ~
-        If no etymology exists, returns None.
-        ~
-        If derivational is False, this method returns the given page's
-        etymology no matter what.
-        Otherwise, if derivational is True, this method returns this
-        page's etymology only if it is derivational (i.e., consisting
-        only of additive morphemes).
 
-        :param page: Tag, page to extract etymology from
-        :param derivational: bool, whether to only extract derivational etymologies
-        :return: str, etymology for given page
-        """
-        etymology = self.find_page_language(page)
-
-        try:
-            while etymology['id'][:4] != 'Etym':
-                etymology = etymology.findNext('span', attrs={'class': "mw-headline"})
-            etymology = etymology.findNext('p')
-            etymology = self.clean_etymology(etymology.prettify())
-            if derivational:
-                etymology = self.description_etymology(etymology)
-
-        except AttributeError:
-            return
-        except TypeError:
-            return
-
-        return etymology
-
-    def word_etymology(self, word, derivational=True):
-        """
-        Returns the etymology of the given word in this
-        MorphemeParser's language (according to Wiktionary).
-
-        :param word: str, word to find etymology of
-        :param derivational: bool, whether to only extract derivational etymologies
-        :return: str, word's etymology
-        """
-        base_url = self.WIKI_URL + "/wiki/%s"
-        url = base_url % word
-        parsed_url = self.parse_url(url)
-        etymology = self.page_etymology(parsed_url, derivational)
-        return etymology
-
-    def word_etymologies(self, word):
-        """
-        Returns all etymologies for the given word
-        (according to Wiktionary).
-
-        :param word: str, word to find etymologies of
-        :return: List[str], word's etymologies
-        """
-        base_url = self.WIKI_URL + "/wiki/%s"
-        url = base_url % word
-        parsed_url = self.parse_url(url)
-        etymologies = self.page_etymologies(parsed_url)
-        return etymologies
-
-    def words_etymologies(self, words, strict=True):
-        """
-        Returns a dictionary of each word in words and its corresponding
-        etymology (according to Wiktionary).
-        ~
-        If strict is set to True, this method only adds words whose etymologies
-        are purely strict, e.g. happiness -> happy + -ness, but not
-        pardon -> per- + donare.
-
-        :param words: Iterable[str], list of words to lookup etymologies for
-        :param strict: bool, whether to only add purely derivational etymologies
         :return: dict, where...
-            key (str) - word with etymology
-            val (str) - given word's etymology
+            key (str) - morpheme in this MP's language
+            val (int) - given morpheme's frequency
         """
-        etymologies = dict()
+        etymologies = self.all_etymologies()
+        etymologies = self.compress_etymologies(etymologies)
+        etymologies = etymologies.values()
+        etymologies = self.flatten(etymologies)
+        keys = set(etymologies)
+        return {key: etymologies.count(key) for key in keys}
+
+    def get_word_morphemes(self, word):
+        subwords = [word]
+
+        for morpheme in sorted(self.morphemes, key=lambda m: len(m), reverse=True):
+            if morpheme in word and morpheme != word:
+                new_subwords = subwords
+                for subword in subwords:
+                    if morpheme in subword:
+                        new_subword = filter(lambda s: s != "", re.split("("+morpheme+")", subword))
+                        idx = new_subwords.index(subword)
+                        new_subwords = new_subwords[:idx] + new_subword + new_subwords[idx+1:]
+                subwords = new_subwords
+
+        print subwords
+        self.morphemes.update(subwords)
+        return subwords
+
+    def get_morphemes(self, words):
+        morphemes = set()
 
         for word in words:
-            etymology = self.word_etymology(word, derivational=strict)
-            if etymology is not None:
-                derivations = [e.strip() for e in etymology.split("+")]
-                if strict and not self.derivative_word(word, derivations):
-                    continue
-                #print word, "has the etymology", etymology,
-                #print "and morphemes", "+".join(derivations)
-                etymologies[word] = derivations
-            #else:
-                #print word, "has no etymology"
-            #print
+            word_morphemes = self.strip_affixes(word)
+            print word, "has morphemes", word_morphemes
+            print
+            morphemes.update(word_morphemes)
+            continue
 
-        return etymologies
+        print "MorphemeParser's morphemes", len(morphemes), morphemes
+        return morphemes
 
-    def derivative_word(self, word, derivations):
-        """
-        Returns True if the given word is derivative
-        (i.e., a composite of its derivations), False otherwise.
-        ~
-        e.g. derivative_word("happiness", ["happy", "-ness"]) -> True
-             derivative_word("pardon", ["per-", "donare"]) -> False
+    def strip_affixes(self, word):
+        words = self.morphemes.union(self.words)
+        morphemes = []
+        new_word = word
+        last_morpheme = str()
 
-        :param word: str, word to determine whether derivative
-        :param derivations: List[str], derivations of word
-        :return: bool, whether given word is derivative
-        """
-        derivations = [d.replace("-", "") for d in derivations]
-        derivation = "".join(derivations)
-        if word == derivation:
-            return True
-        else:
-            return any(d in word for d in derivations) and \
-                   len(set(word).difference(derivation)) < 2 and \
-                   len(word) in range(len(derivation)-1, len(derivation)+2)
+        while len(new_word) != 0:
+            for morpheme in sorted(words, key=lambda m: len(m), reverse=True):
+                if morpheme != word and len(morpheme) > 1:
+                    if morpheme == new_word[:len(morpheme)] and len(last_morpheme) > 1 and last_morpheme in words:
+                        morphemes.append(last_morpheme)
+                        morphemes.append(morpheme)
+                        new_word = new_word[len(morpheme):]
+                        last_morpheme = str()
+                        break
+            else:
+                last_morpheme += new_word[0]
+                new_word = new_word[1:]
+                if len(new_word) == 0:
+                    morphemes.append(last_morpheme)
+
+        return filter(lambda m: m != "", morphemes)
 
     def compress_etymologies(self, etymologies):
         """
@@ -353,17 +185,6 @@ class MorphemeParser(IPAParser):
 
         return compressed
 
-    def all_etymologies(self):
-        """
-        Returns a dictionary of each word in this MorphemeParser's words
-        and its corresponding etymology (according to Wiktionary).
-
-        :return: dict, where...
-            key (str) - word with etymology
-            val (List[str]) - given word's etymology (as a combination of words)
-        """
-        return self.words_etymologies(self.words)
-
     def flatten(self, lst):
         """
         Flattens the given list of lists to a list.
@@ -375,224 +196,278 @@ class MorphemeParser(IPAParser):
         """
         return [item for sublst in lst for item in sublst]
 
-    def all_morphemes(self):
+    # SYLLABLES
+    # ---------
+    def break_word_syllable(self, syllable):
         """
-        Returns a frequency dictionary of morphemes in this
-        MorphemeParser's language.
+        Breaks the given word syllable into its constituent
+        consonants and vowels.
+        ~
+        N.B. In a syllable...
+            1) The first set of consonants is called the ONSET.
+            2) The set of vowels is called the RHYME.
+            3) The second set of consonants is called the CODA.
+        ~
+        e.g. break_syllable("wszech") -> ("wsz", "e", "ch")
 
-        :return: dict, where...
-            key (str) - morpheme in this MP's language
-            val (int) - given morpheme's frequency
+        :param syllable: (unicode) str, syllable to break
+        :return: tuple((all unicode) str, str, str), the given
+            syllable's onset, rhyme, and coda, respectively
         """
-        etymologies = self.all_etymologies()
-        etymologies = self.compress_etymologies(etymologies)
-        etymologies = etymologies.values()
-        etymologies = self.flatten(etymologies)
-        keys = set(etymologies)
-        return {key: etymologies.count(key) for key in keys}
+        onset = ""
+        rhyme = ""
+        coda = ""
 
-    def init_morphemes(self):
-        words = self.words
-        self.morphemes.update(words)
+        pre_rhyme = True
 
-        for word in words: #sorted(words, key=lambda w: len(w)):
-            word_morphemes = self.strip_affixes(word)
-            print word, "has morphemes", word_morphemes
-            print
-            self.morphemes.update(word_morphemes)
-            continue
+        for i in range(len(syllable)):
+            char = syllable[i]
 
-        print "MorphemeParser's morphemes", len(self.morphemes), self.morphemes
-        return self.morphemes
-
-    def get_morphemes(self, words):
-        morphemes = set()
-
-        for word in words:
-            word_morphemes = self.strip_affixes(word)
-            print word, "has morphemes", word_morphemes
-            print
-            morphemes.update(word_morphemes)
-            continue
-
-        print "MorphemeParser's morphemes", len(morphemes), morphemes
-        return morphemes
-
-    def get_word_morphemes(self, word):
-        subwords = [word]
-
-        for morpheme in sorted(self.morphemes, key=lambda m: len(m), reverse=True):
-            if morpheme in word and morpheme != word:
-                new_subwords = subwords
-                for subword in subwords:
-                    if morpheme in subword:
-                        new_subword = filter(lambda s: s != "", re.split("("+morpheme+")", subword))
-                        idx = new_subwords.index(subword)
-                        new_subwords = new_subwords[:idx] + new_subword + new_subwords[idx+1:]
-                subwords = new_subwords
-
-        print subwords
-        self.morphemes.update(subwords)
-        return subwords
-
-    def strip_affixes(self, word):
-        words = self.morphemes.union(self.words)
-        morphemes = []
-        new_word = word
-        last_morpheme = str()
-
-        while len(new_word) != 0:
-            for morpheme in sorted(words, key=lambda m: len(m), reverse=True):
-                if morpheme != word and len(morpheme) > 1:
-                    if morpheme == new_word[:len(morpheme)] and len(last_morpheme) > 1 and last_morpheme in words:
-                        morphemes.append(last_morpheme)
-                        morphemes.append(morpheme)
-                        new_word = new_word[len(morpheme):]
-                        last_morpheme = str()
-                        break
+            if self.is_letter_vowel(char) is None:
+                return ("", "", "")
+            elif self.is_letter_vowel(char):
+                pre_rhyme = False
+                rhyme += char
             else:
-                last_morpheme += new_word[0]
-                new_word = new_word[1:]
-                if len(new_word) == 0:
-                    morphemes.append(last_morpheme)
+                if pre_rhyme:
+                    onset += char
+                else:
+                    coda += char
 
-        return filter(lambda m: m != "", morphemes)
+        return (onset, rhyme, coda)
 
-    def get_wordnet_words(self):
+    def break_word_syllables(self, word):
         """
-        Returns a set of all words in Wordnet.
+        Breaks the given word into its constituent syllables'
+        consonants and vowels.
+        ~
+        N.B. In a syllable...
+            1) The first set of consonants is called the ONSET.
+            2) The set of vowels is called the RHYME.
+            3) The second set of consonants is called the CODA.
+        ~
+        e.g. break_word_syllables("wszechmocny") -> [("wsz", "e", "ch"),
+                                                     ("m", "o", "c"),
+                                                     ("n", "y", "")]
 
-        :return: Set(str), Wordnet word
+        :param syllable: (unicode) str, syllable to break
+        :return: List[tuple((all unicode)] str, str, str), the given
+            word's syllables' onsets, rhymes, and codas, respectively
         """
-        lexicon = self.parse_lexicon(self.language)
+        return [self.break_word_syllable(syllable) for syllable in self.split_word_syllables(word)]
 
-        if lexicon is not None:
-            return set(lexicon.keys())
+    def split_word_syllables(self, word):
+        """
+        Splits the given word into its constituent
+        syllables.
+        ~
+        e.g. split_word_syllables("wszechmocny") -> ["wszech", "moc", "ny"]
+
+        :param word: (unicode) str, word to break into syllables
+        :return: List[(unicode) str], list of given word's syllables
+        """
+        syllables = []
+        onset, rhyme, coda = "", "", ""
+        pre_rhyme = True
+
+        for i in range(len(word)):
+            letter = word[i]
+
+            if self.is_letter_vowel(letter):
+                pre_rhyme = False
+                rhyme += letter
+            else:
+                if pre_rhyme:
+                    onset += letter
+                else:
+                    if not any(self.is_letter_vowel(char) for char in word[i:]):
+                        coda += word[i:]
+                        break
+                    elif i+1 < len(word) and self.is_letter_vowel(word[i+1]):
+                        coda += word[i]
+                    triplet = (onset, rhyme, coda)
+                    syllables.append(triplet)
+                    onset, rhyme, coda = "", "", ""
+                    pre_rhyme = True
+
+        return syllables
+
+    def break_syllable(self, syllable):
+        """
+        Breaks the given IPA syllable into its constituent
+        consonants and vowels.
+        ~
+        N.B. In a syllable...
+            1) The first set of consonants is called the ONSET.
+            2) The set of vowels is called the RHYME.
+            3) The second set of consonants is called the CODA.
+        ~
+        e.g. break_syllable("lat͡ɕ") -> ("l", "a", "t͡ɕ")
+
+        :param syllable: (unicode) str, syllable to break
+        :return: tuple((all unicode) str, str, str), the given
+            syllable's onset, rhyme, and coda, respectively
+        """
+        onset = ""
+        rhyme = ""
+        coda = ""
+        pre_rhyme = True
+        next_syllable = syllable
+
+        while len(next_syllable) != 0:
+            next_phoneme, next_syllable = self.next_phoneme(next_syllable)
+            is_vowel = self.is_ipa_vowel(next_phoneme)
+            if pre_rhyme:
+                if is_vowel:
+                    pre_rhyme = False
+                    rhyme += next_phoneme
+                else:
+                    onset += next_phoneme
+            else:
+                if is_vowel or self.is_ipa_semivowel(next_phoneme):
+                    rhyme += next_phoneme
+                else:
+                    coda += next_phoneme + next_syllable
+                    break
+
+        return (onset, rhyme, coda)
+
+    def break_syllables(self, ipa, use_syllables=True):
+        """
+        Breaks the given IPA word into its syllables' constituent
+        consonants and vowels.
+        ~
+        N.B. In a syllable...
+            1) The first set of consonants is called the ONSET.
+            2) The set of vowels is called the RHYME.
+            3) The second set of consonants is called the CODA.
+        ~
+        e.g. break_syllables("ɔˈba.lat͡ɕ") -> [("", "ɔ", ""),
+                                              ("b", "a", ""),
+                                              ("l", "a", "t͡ɕ")]
+
+        :param ipa: (unicode) str, IPA word to break into constituents
+        :param use_syllables: bool, whether to break syllables with IPA markers
+        :return: List[tuple((all unicode) str, str, str)], the given
+            syllables' onsets, rhymes, and codas, respectively
+        """
+        return [self.break_syllable(syllable)
+                for syllable in self.split_syllables(ipa, use_syllables)]
+
+    def extract_syllable(self, ipa, idx=0, use_syllables=True):
+        """
+        Returns the given ipa's syllable at the given idx.
+        ~
+        If the index is out of bounds, this method returns a
+        3-tuple of all empty strings.
+        ~
+        e.g. extract_syllable("ɔˈba.lat͡ɕ", 2) -> ("l", "a", "t͡ɕ")
+             extract_syllable("ɔbalat͡ɕ", 2, False) -> ("l", "a", "t͡ɕ")
+
+        :param ipa: (unicode) str, IPA word to return syllable at idx
+        :param idx: int, syllable to retrieve from IPA word
+        :param use_syllables: bool, whether to calculate phonemes with ipa's syllables
+        :return: tuple((all unicode) str, str, str), the given
+            syllable's onsets, rhymes, and codas, respectively
+        """
+        syllables = self.split_syllables(ipa, use_syllables)
+        try:
+            syllable = syllables[idx]
+        except IndexError:
+            return "", "", ""
         else:
-            entries = set()
-            if self.language == "English":
-                path = PATH + "/resources/wordnet/wn_s.txt"
+            return self.break_syllable(syllable)
 
-                with open(path, "r") as synsets:
-                    for synset in synsets:
-                        synset = synset[2:-3]
-                        info = synset.split(",")
-                        name = info[2]
-                        name = name[1:-1]
-                        if " " not in name:
-                            entries.add(name)
-
-            return entries
-
-    def get_wordnet_word_pairs(self):
+    def remove_syllable(self, ipa, idx=0):
         """
-        Returns a list of 2-tuples consisting of a Wordnet word and
-        its corresponding parts of speech.
+        Returns given ipa with the syllable at given index idx removed.
+        ~
+        If the index is out of bounds, this method returns the input ipa.
+        ~
+        e.g. remove_syllable("ɔˈba.lat͡ɕ", 2) -> "ɔ.lat͡ɕ"
 
-        :return: Set(tuple(str,str)), Wordnet word and pos
+        :param ipa: (unicode) str, IPA word to remove syllable at idx
+        :param idx: int, syllable to remove from IPA word
+        :return: (unicode) str, given ipa without syllable at idx
         """
-        path = PATH + "/resources/wordnet/wn_s.txt"
-        entries = set()
+        syllables = self.split_syllables(ipa)
+        syllables.pop(idx)
+        return ".".join(syllables)
 
-        with open(path, "r") as synsets:
-            for synset in synsets:
-                synset = synset[2:-3]
-                info = synset.split(",")
-                name = info[2]
-                name = name[1:-1]
-                pos = info[3]
-                if " " not in name:
-                    pair = (self.unicodize(name), self.unicodize(pos))
-                    entries.add(pair)
-
-        return entries
-
-    def common_word_pairs(self, lim=50000):
+    def split_syllables(self, ipa, use_syllables=True):
         """
-        Returns a set of common word-pos pairs, up to lim.
+        Splits the given IPA word into its constituent
+        syllables.
+        ~
+        e.g. split_syllables("ɔˈba.lat͡ɕ") -> ["ɔ", "ba", "lat͡ɕ"]
+             split_syllables("ɔˈba.lat͡ɕ", use_syllables=False) -> ["ɔ", "ba", "lat͡ɕ"]
 
-        :param lim: int, number of common words to return
-        :return: List[tuple(str, str)], Wordnet word and pos
+        :param ipa: (unicode) str, IPA word to break into syllables
+        :param use_syllables: bool, whether to calculate phonemes with ipa's syllables
+        :return: List[(unicode) str], list of given ipa's syllables
         """
-        common_words = self.common_morphemes(lim)
-
-        if self.language == "English":
-            word_pairs = self.get_wordnet_word_pairs()
-            return [word_pair for word_pair in word_pairs if word_pair[0] in common_words]
+        if len(ipa) == 0:
+            return
         else:
-            poses = self.words_to_poses(common_words)
-            word_pairs = list()
-            for i in range(len(common_words)):
-                word = common_words[i]
-                pos = poses[i]
-                for p in pos:
-                    pair = (self.unicodize(word), self.unicodize(p))
-                    word_pairs.append(pair)
-                    print pair
-            return word_pairs
+            if use_syllables:
+                subbed_ipa = re.sub(u"[ˈˌ]", u".", ipa)
+                subbed_ipa = subbed_ipa.strip(u".")
+                syllables = subbed_ipa.split(u".")
+                return syllables
+            else:
+                ipa = self.clean_ipa(ipa)
+                syllables = []
 
-    def common_morphemes(self, lim=50000):
+                while len(ipa) != 0:
+                    syllable, ipa = self.next_syllable(ipa, remove=True)
+                    syllables.append(syllable)
+
+                return syllables
+
+    def next_syllable(self, ipa, remove=True):
         """
-        Returns a set of the 50,000 most common words
-        in this IPAParser's language, including their
-        constituent words.
+        Returns the given ipa's next syllable.
+        ~
+        Assumes given ipa does not contain syllabic markers.
+        ~
+        If remove is set to True, this method finds and
+        removes ipa's first syllable, returning a 2-tuple of
+        1) the syllable and 2) given ipa with syllable removed.
+        ~
+        e.g. next_syllable("ɔˈba.lat͡ɕ") -> ("ɔ", "ba.lat͡ɕ")
+             next_syllable("ɔˈba.lat͡ɕ", remove=False) -> "ɔ"
 
-        :param lim: int, lim <= 50000, number of words to retrieve
-        :return: Set(str), up to 50k most common words in IPAParser's language
+        :param ipa: (unicode) str, IPA word to return next syllable of
+        :param remove: bool, whether to return ipa with syllable removed
+        :return: tuple((both unicode) str, str), ipa's next syllable and rest of IPA
         """
-        lexicon = self.lexicon
-        common_words = lexicon[:lim]
-        morphemes = common_words[:]
-        common_words = set(common_words)
-        all_words = self.wordnet_words.intersection(lexicon).difference(common_words)
+        ipa = self.clean_ipa(ipa)
+        syllable = []
+        pre_vowel = True
 
-        for word in all_words:
-            # catch all derivative words
-            if len(word) > 3:
-                if any(word == cw[:len(word)] or cw == word[:len(cw)]
-                       for cw in common_words if 3 < len(cw) < 2*len(word)):
-                    word = self.unicodize(word)
-                    print word
-                    morphemes.append(word)
+        while len(ipa) != 0:
+            phoneme, ipa = self.next_phoneme(ipa, remove=True, use_syllables=False)
+            is_vowel = self.is_ipa_vowel(phoneme)
 
-        return morphemes
+            if pre_vowel:
+                if is_vowel:
+                    pre_vowel = False
+                syllable.append(phoneme)
+            else:
+                if is_vowel:
+                    syllable.append(phoneme)
+                else:
+                    if len(ipa) == 0:
+                        syllable.append(phoneme)
+                    else:
+                        new_phoneme, new_ipa = self.next_phoneme(ipa, remove=True, use_syllables=False)
+                        if self.is_ipa_vowel(new_phoneme) is False:
+                            syllable.append(phoneme)
+                        else:
+                            ipa = phoneme + ipa
+                        break
 
-    def common_ipas(self, lim=50000):
-        """
-        Returns a list of the 50,000 most common morphemes
-        in this IPAParser's language transcribed to IPA.
-
-        :param lim: int, lim <= 50000, number of IPAs to retreive
-        :return: Set(str), most common IPAs in IPAParser's language
-        """
-        morphemes = self.common_morphemes(lim)
-        ipas = set()
-
-        for morpheme in morphemes:
-            ipa = self.word_to_ipa(morpheme)
-            if ipa is not None:
-                ipas.add(ipa)
-
-        self.refresh_json()
-        return ipas
-
-    def common_ipa_pairs(self, lim=50000):
-        """
-        Returns a set of common word-pos pairs from Wordnet, up to lim,
-        with each word transcribed to IPA.
-
-        :param lim: int, lim <= 50000, number of ipa pairs to retreive
-        :return: List[str], common ipa pairs in MorphemeParser's language
-        """
-        word_pairs = self.common_word_pairs(lim)
-        ipas = set()
-
-        for word, pos in word_pairs:
-            ipa = self.word_to_ipa(word)
-            if ipa is not None:
-                ipas.add((ipa, pos))
-
-        self.refresh_json()
-        return ipas
-
+        syllable = "".join(syllable)
+        syllable = (syllable, ipa) if remove else syllable
+        return syllable
 
