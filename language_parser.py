@@ -353,7 +353,8 @@ class LanguageParser(WiktionaryParser):
         :param filename: str, name of .json file to fetch
         :return: X, content of given .json file
         """
-        return json.load(open(self.PATH + "/resources/data/" + filename + ".json"))
+        path = self.PATH + "/resources/data/" + filename + ".json"
+        return json.load(open(path))
 
     def fetch_langs_ipas(self):
         """
@@ -373,12 +374,7 @@ class LanguageParser(WiktionaryParser):
             val (str) - word's IPA transcription
         """
         language = self.verify_language(language)
-        try:
-            return self.langs_ipas[language]
-        except KeyError:
-            lang_ipas = dict()
-            self.langs_ipas[language] = lang_ipas
-            return lang_ipas
+        return self.langs_ipas.setdefault(language, dict())
 
     def fetch_langs_pos(self):
         """
@@ -398,12 +394,7 @@ class LanguageParser(WiktionaryParser):
             val (str) - word's part of speech
         """
         language = self.verify_language(language)
-        try:
-            return self.langs_pos[language]
-        except KeyError:
-            lang_pos = dict()
-            self.langs_pos[language] = lang_pos
-            return lang_pos
+        return self.langs_pos.setdefault(language, dict())
 
     def fetch_langs_inflections(self):
         """
@@ -426,12 +417,7 @@ class LanguageParser(WiktionaryParser):
             val (List[str]) - lexemes of given lemma
         """
         language = self.verify_language(language)
-        try:
-            return self.langs_inflections[language]
-        except KeyError:
-            inflections = dict()
-            self.langs_inflections[language] = inflections
-            return inflections
+        return self.langs_inflections.setdefault(language, dict())
 
     def fetch_langs_etymologies(self):
         """
@@ -452,12 +438,7 @@ class LanguageParser(WiktionaryParser):
             val (List[str]) - morphemic decomposition of lexeme
         """
         language = self.verify_language(language)
-        try:
-            return self.langs_etymologies[language]
-        except KeyError:
-            etymologies = dict()
-            self.langs_etymologies[language] = etymologies
-            return etymologies
+        return self.langs_etymologies.setdefault(language, dict())
 
     def fetch_langs_declensions(self):
         """
@@ -478,12 +459,7 @@ class LanguageParser(WiktionaryParser):
             val (List[str]) - inflection of lexeme
         """
         language = self.verify_language(language)
-        try:
-            return self.langs_declensions[language]
-        except KeyError:
-            declensions = dict()
-            self.langs_declensions[language] = declensions
-            return declensions
+        return self.langs_declensions.setdefault(language, dict())
 
     def refresh_json(self):
         """
@@ -975,7 +951,7 @@ class LanguageParser(WiktionaryParser):
             else:
                 lemmas = [self.uninflect(cw, self.language) for cw in common_words]
 
-            poses = self.words_to_poses(lemmas)
+            poses = self.words_poses(lemmas)
             word_pairs = list()
 
             for i in range(len(common_words)):
@@ -1017,7 +993,7 @@ class LanguageParser(WiktionaryParser):
 
     # WORD MANIPULATION
     # -----------------
-    def word_to_pos(self, word):
+    def word_pos(self, word):
         """
         Returns the given word's part of speech.
 
@@ -1032,7 +1008,7 @@ class LanguageParser(WiktionaryParser):
             self.lang_pos[word] = pos
             return pos
 
-    def word_to_poses(self, word):
+    def word_poses(self, word):
         """
         Returns the given word's parts of speech.
 
@@ -1047,7 +1023,7 @@ class LanguageParser(WiktionaryParser):
             self.lang_pos[word] = poses
             return poses
 
-    def words_to_pos(self, words):
+    def words_pos(self, words):
         """
         Returns a list of the given words' parts of speech.
 
@@ -1056,10 +1032,10 @@ class LanguageParser(WiktionaryParser):
         """
         pos = list()
         for word in words:
-            pos.append(self.word_to_pos(word))
+            pos.append(self.word_pos(word))
         return pos
 
-    def words_to_poses(self, words):
+    def words_poses(self, words):
         """
         Returns a list of the given words' parts of speech.
 
@@ -1069,6 +1045,6 @@ class LanguageParser(WiktionaryParser):
         poses = list()
         for word in words:
             print word
-            poses.append(self.word_to_poses(word))
+            poses.append(self.word_poses(word))
         return poses
 

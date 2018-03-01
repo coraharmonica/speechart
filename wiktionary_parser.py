@@ -340,7 +340,9 @@ class WiktionaryParser:
         :return: (unicode) str, IPA pronunciation from given URL
         """
         language = self.verify_language(language)
-        return self.page_ipas(page, language)[0]
+        ipas = self.page_ipas(page, language)
+        if len(ipas) > 0:
+            return ipas[0]
 
     def page_ipas(self, page, language=None):
         """
@@ -606,6 +608,7 @@ class WiktionaryParser:
         :param language: str, language of table
         :return: bool, whether given table is declension
         """
+        #language = self.verify_language(language)
         prev_header = table.findPrevious("h4")
 
         if prev_header is None:
@@ -633,8 +636,9 @@ class WiktionaryParser:
         :return: Tag, BeautifulSoup tag for table on page in language
         """
         if language is not None:
-            language = self.verify_language(language)
             page = self.find_page_language(page, language)
+        else:
+            language = self.verify_language(language)
 
         try:
             tables = page.findAll("table")

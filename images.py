@@ -269,8 +269,15 @@ def lang_font(lang):
         return "Arial Bold.ttf"
 
 
-def text(message, lang="English", size=12, colour="black", bg_fill=(255,255,255), alpha=255, bg_alpha=0):
-    font = load_default_font(lang_font(lang), size=size)
+def text_size(text, lang="English", size=12, font=None):
+    if font is None:
+        font = load_default_font(lang_font(lang), size=size)
+    return font.getsize(text)
+
+
+def text(message, lang="English", size=12, colour="black", bg_fill=(255,255,255), alpha=255, bg_alpha=0, font=None):
+    if font is None:
+        font = load_default_font(lang_font(lang), size=size)
     w, h = font.getsize(message)
     img = make_blank_img(w, h, bg_fill, alpha=bg_alpha)
     draw = ImageDraw.Draw(img)
@@ -278,24 +285,34 @@ def text(message, lang="English", size=12, colour="black", bg_fill=(255,255,255)
     return img
 
 
-def arrow(width, height, fill='black', angle=0, label=None, font_size=0, alpha=0, lang="English"):
+def arrow(width, height, fill='black', angle=0, label=None, align_label=False,
+          alpha=0, lang="English", font=None, font_size=0):
     max_dim = max(width, height)
-    up = max_dim == height
-    w, h = (3 * (width if up else height),) * 2
-    stem = rectangle(abs(width), abs(height), fill)
-    point = triangle(w, h, fill, up, alpha=alpha)
+    vertical = max_dim == height
+    arrow_w, arrow_h = (3 * (width if vertical else height),) * 2  # width & height of arrowhead are 3 * stem width
+    arrowhead = triangle(arrow_w, arrow_h, fill, vertical, alpha=alpha)
+    rect_w = abs(width - (arrow_w if not vertical else 0))
+    rect_h = abs(height - (arrow_h if vertical else 0))
+    stem = rectangle(rect_w, rect_h, fill)
 
-    if up:
-        top, bottom = (point, stem) if height > 0 else (stem, point)
+    if vertical:
+        # if height >= 0, arrow points up; otherwise, points down
+        top, bottom = (arrowhead, stem) if height >= 0 else (stem, arrowhead)
         img = above(top, bottom)
     else:
-        left, right = (stem, point) if width > 0 else (point, stem)
+        # if width >= 0, arrow points right; otherwise, points left
+        left, right = (stem, arrowhead) if width >= 0 else (arrowhead, stem)
         img = beside(left, right, align='center')
 
     if label is not None:
-        img = overlay(text(label, lang, alpha=0, size=font_size), img)
+        txt = text(label, lang, alpha=0, size=font_size, font=font)
+        if not align_label:
+            img = trim(rotate(img, angle))
+        img = overlay(txt, img)
 
-    img = trim(rotate(img, angle))
+    if align_label:
+        img = trim(rotate(img, angle))
+
     return img
 
 

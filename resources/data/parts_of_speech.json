@@ -8422,7 +8422,686 @@
  "Garifuna": {}, 
  "Garus": {}, 
  "Gaulish": {}, 
- "German": {}, 
+ "German": {
+  "ab": [
+   "Preposition", 
+   "Adjective"
+  ], 
+  "aber": [
+   "Adverb", 
+   "Conjunction"
+  ], 
+  "alle": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "alles": [
+   "Pronoun"
+  ], 
+  "als": [
+   "Conjunction"
+  ], 
+  "also": [
+   "Interjection", 
+   "Adverb"
+  ], 
+  "am": [
+   null
+  ], 
+  "an": [
+   "Preposition", 
+   "Adverb"
+  ], 
+  "auch": [
+   "Adverb"
+  ], 
+  "auf": [
+   "Preposition", 
+   "Adverb", 
+   "Interjection"
+  ], 
+  "aus": [
+   "Adverb", 
+   "Preposition"
+  ], 
+  "bei": [
+   "Preposition"
+  ], 
+  "bin": [
+   "Verb"
+  ], 
+  "bis": [
+   "Conjunction", 
+   "Preposition"
+  ], 
+  "bist": [
+   "Verb"
+  ], 
+  "bitte": [
+   "Adverb", 
+   "Interjection", 
+   "Verb"
+  ], 
+  "da": [
+   "Adverb", 
+   "Conjunction"
+  ], 
+  "damit": [
+   "Adverb", 
+   "Conjunction"
+  ], 
+  "danke": [
+   "Interjection", 
+   "Verb"
+  ], 
+  "dann": [
+   "Adverb"
+  ], 
+  "das": [
+   "Pronoun", 
+   "Conjunction"
+  ], 
+  "dass": [
+   "Conjunction"
+  ], 
+  "dein": [
+   "Pronoun"
+  ], 
+  "deine": [
+   null
+  ], 
+  "dem": [
+   "Pronoun"
+  ], 
+  "den": [
+   "Pronoun"
+  ], 
+  "denn": [
+   "Conjunction", 
+   "Adverb"
+  ], 
+  "der": [
+   "Pronoun", 
+   "Pronoun"
+  ], 
+  "des": [
+   null
+  ], 
+  "dich": [
+   "Pronoun"
+  ], 
+  "die": [
+   "Pronoun"
+  ], 
+  "diese": [
+   "Pronoun"
+  ], 
+  "dieser": [
+   "Pronoun"
+  ], 
+  "dieses": [
+   "Pronoun"
+  ], 
+  "dir": [
+   "Pronoun"
+  ], 
+  "doch": [
+   "Conjunction", 
+   "Adverb"
+  ], 
+  "du": [
+   "Pronoun"
+  ], 
+  "durch": [
+   "Preposition"
+  ], 
+  "ein": [
+   "Numeral"
+  ], 
+  "eine": [
+   "Numeral", 
+   "Pronoun"
+  ], 
+  "einem": [
+   "Numeral", 
+   "Pronoun"
+  ], 
+  "einen": [
+   "Numeral", 
+   "Pronoun"
+  ], 
+  "einer": [
+   "Numeral", 
+   "Pronoun"
+  ], 
+  "einfach": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "er": [
+   "Pronoun"
+  ], 
+  "es": [
+   "Pronoun"
+  ], 
+  "etwas": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "euch": [
+   "Pronoun"
+  ], 
+  "frau": [
+   "Pronoun"
+  ], 
+  "f\u00fcr": [
+   "Preposition"
+  ], 
+  "ganz": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "gehen": [
+   "Verb"
+  ], 
+  "geht": [
+   "Verb"
+  ], 
+  "geld": [
+   null
+  ], 
+  "gemacht": [
+   "Verb"
+  ], 
+  "genau": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "gerade": [
+   "Adjective", 
+   "Adverb", 
+   "Adjective"
+  ], 
+  "gesagt": [
+   "Verb"
+  ], 
+  "gesehen": [
+   "Verb"
+  ], 
+  "gibt": [
+   "Verb"
+  ], 
+  "glaube": [
+   "Verb"
+  ], 
+  "gott": [
+   null
+  ], 
+  "gut": [
+   "Adjective", 
+   "Adverb", 
+   "Interjection"
+  ], 
+  "hab": [
+   "Verb"
+  ], 
+  "habe": [
+   "Verb"
+  ], 
+  "haben": [
+   "Verb"
+  ], 
+  "hallo": [
+   "Interjection"
+  ], 
+  "hast": [
+   "Verb"
+  ], 
+  "hat": [
+   "Verb"
+  ], 
+  "hatte": [
+   "Verb"
+  ], 
+  "heute": [
+   "Adverb"
+  ], 
+  "hey": [
+   null
+  ], 
+  "hier": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "h\u00e4tte": [
+   "Verb"
+  ], 
+  "ich": [
+   "Pronoun"
+  ], 
+  "ihm": [
+   "Pronoun"
+  ], 
+  "ihn": [
+   "Pronoun"
+  ], 
+  "ihnen": [
+   "Pronoun"
+  ], 
+  "ihr": [
+   "Pronoun", 
+   "Pronoun"
+  ], 
+  "ihre": [
+   "Pronoun"
+  ], 
+  "im": [
+   null
+  ], 
+  "immer": [
+   "Adverb"
+  ], 
+  "in": [
+   "Preposition", 
+   "Adjective"
+  ], 
+  "ist": [
+   "Verb"
+  ], 
+  "ja": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "jemand": [
+   "Pronoun"
+  ], 
+  "jetzt": [
+   "Adverb"
+  ], 
+  "kann": [
+   "Verb"
+  ], 
+  "kannst": [
+   "Verb"
+  ], 
+  "kein": [
+   "Pronoun"
+  ], 
+  "keine": [
+   "Pronoun"
+  ], 
+  "keinen": [
+   "Pronoun"
+  ], 
+  "klar": [
+   "Adjective", 
+   "Interjection"
+  ], 
+  "komm": [
+   "Verb"
+  ], 
+  "kommen": [
+   "Verb"
+  ], 
+  "kommt": [
+   "Verb"
+  ], 
+  "k\u00f6nnen": [
+   "Verb"
+  ], 
+  "k\u00f6nnte": [
+   "Verb"
+  ], 
+  "lass": [
+   "Verb"
+  ], 
+  "lassen": [
+   "Verb"
+  ], 
+  "leben": [
+   "Verb"
+  ], 
+  "leid": [
+   "Adjective"
+  ], 
+  "leute": [
+   null
+  ], 
+  "liebe": [
+   "Verb"
+  ], 
+  "los": [
+   "Adjective", 
+   "Adverb", 
+   "Interjection", 
+   "Verb"
+  ], 
+  "mach": [
+   "Verb"
+  ], 
+  "machen": [
+   "Verb"
+  ], 
+  "macht": [
+   "Verb"
+  ], 
+  "mal": [
+   "Adverb", 
+   "Verb"
+  ], 
+  "man": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "mann": [
+   null
+  ], 
+  "mehr": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "mein": [
+   "Adjective"
+  ], 
+  "meine": [
+   "Pronoun", 
+   "Verb"
+  ], 
+  "meinen": [
+   "Verb", 
+   "Pronoun"
+  ], 
+  "mich": [
+   "Pronoun"
+  ], 
+  "mir": [
+   "Pronoun"
+  ], 
+  "mit": [
+   "Preposition", 
+   "Adverb"
+  ], 
+  "morgen": [
+   "Adverb"
+  ], 
+  "muss": [
+   "Verb"
+  ], 
+  "mutter": [
+   null
+  ], 
+  "m\u00fcssen": [
+   "Verb"
+  ], 
+  "na": [
+   "Interjection", 
+   "Interjection"
+  ], 
+  "nach": [
+   "Preposition", 
+   "Adverb"
+  ], 
+  "nein": [
+   "Interjection"
+  ], 
+  "nicht": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "nichts": [
+   "Pronoun"
+  ], 
+  "nie": [
+   "Adverb"
+  ], 
+  "noch": [
+   "Adverb"
+  ], 
+  "nun": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "nur": [
+   "Adverb", 
+   "Conjunction"
+  ], 
+  "ob": [
+   "Conjunction", 
+   "Preposition"
+  ], 
+  "oder": [
+   "Conjunction", 
+   "Particle"
+  ], 
+  "oh": [
+   null
+  ], 
+  "ok": [
+   "Adverb"
+  ], 
+  "okay": [
+   "Adjective", 
+   "Adverb", 
+   "Interjection"
+  ], 
+  "paar": [
+   null
+  ], 
+  "raus": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "reden": [
+   "Verb"
+  ], 
+  "s": [
+   null
+  ], 
+  "sagen": [
+   "Verb"
+  ], 
+  "sagte": [
+   "Verb"
+  ], 
+  "schon": [
+   "Adverb", 
+   "Verb"
+  ], 
+  "sch\u00f6n": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "sehen": [
+   "Verb"
+  ], 
+  "sehr": [
+   "Adverb"
+  ], 
+  "sein": [
+   "Verb"
+  ], 
+  "seine": [
+   "Pronoun"
+  ], 
+  "sich": [
+   "Pronoun"
+  ], 
+  "sicher": [
+   "Adjective", 
+   "Adverb", 
+   "Verb"
+  ], 
+  "sie": [
+   "Pronoun", 
+   "Pronoun"
+  ], 
+  "sind": [
+   "Verb"
+  ], 
+  "so": [
+   "Adverb", 
+   "Conjunction", 
+   "Pronoun"
+  ], 
+  "soll": [
+   "Verb"
+  ], 
+  "sollte": [
+   "Verb"
+  ], 
+  "tag": [
+   "Verb"
+  ], 
+  "tun": [
+   "Verb"
+  ], 
+  "tut": [
+   "Verb"
+  ], 
+  "um": [
+   "Preposition", 
+   "Conjunction", 
+   "Adjective", 
+   "Adverb"
+  ], 
+  "und": [
+   "Conjunction", 
+   "Interjection"
+  ], 
+  "uns": [
+   "Pronoun"
+  ], 
+  "unsere": [
+   "Pronoun"
+  ], 
+  "vater": [
+   null
+  ], 
+  "viel": [
+   "Pronoun", 
+   "Adjective", 
+   "Adverb"
+  ], 
+  "vielleicht": [
+   "Adverb"
+  ], 
+  "von": [
+   "Preposition"
+  ], 
+  "vor": [
+   "Preposition"
+  ], 
+  "war": [
+   "Verb"
+  ], 
+  "waren": [
+   "Verb"
+  ], 
+  "warum": [
+   "Adverb"
+  ], 
+  "was": [
+   "Pronoun", 
+   "Adverb"
+  ], 
+  "weg": [
+   "Adverb"
+  ], 
+  "weil": [
+   "Conjunction"
+  ], 
+  "wei\u00df": [
+   "Adjective", 
+   "Verb"
+  ], 
+  "wei\u00dft": [
+   "Verb"
+  ], 
+  "wenn": [
+   "Conjunction"
+  ], 
+  "wer": [
+   "Pronoun"
+  ], 
+  "werde": [
+   "Verb"
+  ], 
+  "werden": [
+   "Verb"
+  ], 
+  "wie": [
+   "Adverb", 
+   "Conjunction"
+  ], 
+  "wieder": [
+   "Adverb"
+  ], 
+  "will": [
+   "Verb"
+  ], 
+  "willst": [
+   "Verb"
+  ], 
+  "wir": [
+   "Pronoun"
+  ], 
+  "wird": [
+   "Verb"
+  ], 
+  "wirklich": [
+   "Adjective", 
+   "Adverb"
+  ], 
+  "wissen": [
+   "Verb"
+  ], 
+  "wo": [
+   "Adverb", 
+   "Conjunction", 
+   "Pronoun"
+  ], 
+  "wollen": [
+   "Adjective", 
+   "Verb"
+  ], 
+  "wollte": [
+   "Verb"
+  ], 
+  "wurde": [
+   "Verb"
+  ], 
+  "w\u00e4re": [
+   "Verb"
+  ], 
+  "w\u00fcrde": [
+   "Verb"
+  ], 
+  "zeit": [
+   null
+  ], 
+  "zu": [
+   "Preposition", 
+   "Particle", 
+   "Adverb"
+  ], 
+  "zum": [
+   null
+  ], 
+  "zur": [
+   null
+  ], 
+  "zur\u00fcck": [
+   "Adverb", 
+   "Interjection"
+  ], 
+  "zwei": [
+   null
+  ], 
+  "\u00fcber": [
+   "Preposition", 
+   "Adverb"
+  ]
+ }, 
  "German Low German": {}, 
  "Geser-Gorom": {}, 
  "Ghotuo": {}, 

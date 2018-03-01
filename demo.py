@@ -6,76 +6,30 @@ DEMO:
 """
 from language_dfas import *
 
+# construct a MorphemeDFA to create a DFA for words in your desired language
+dfa = MorphemeDFA("English")
+dfa.add_words("hello there my friend how are you today")
+img = dfa.chart_dfa()
+img.save("out/en_word_chart.png")    # save chart to file
 
-dfa = MorphemeDFA("Polish")
-dfa.add_states(lim=1000)
-dfa.chart_dfa()
+dfa = MorphemeDFA("Finnish")
+dfa.word_declension("nuo")  # adds nuo's declension to this dfa
+dfa.refresh_json()          # stores all changes from this DFA's data back to JSONs (in data)
+dfa.clear()                 # resets this DFA's states
+# fetch nearest homophones between languages
+dfa.nearest_homophone("naapuri", "English")
+dfa.nearest_homophone("kuulu", "English")
 
-
+# supports Chinese, Japanese, and Korean chart visualization
 dfa = MorphemeDFA("Chinese")
-dfa.add_states(lim=1000)
-dfa.add_words()
+dfa.add_states(lim=500)
 dfa.chart_dfa()
-
 
 dfa = MorphemeDFA("Japanese")
-dfa.add_states(lim=1000)
+dfa.add_states(lim=500)
 dfa.chart_dfa()
-
 
 dfa = MorphemeDFA("Korean")
 dfa.add_states(lim=500)
 dfa.chart_dfa()
-
-'''
-#dfa.words_declensions(dfa.common_words(1000))
-#dfa.refresh_json()
-dfa = PhonemeDFA("Finnish")
-dfa.word_declension("nuo")
-dfa.words_declensions(dfa.common_words(1000))
-dfa.refresh_json()
-#ipas = dfa.word_to_ipa("druga", "Polish")
-#print dfa.nearest_homophone("naapuri", "English")
-#dfa.refresh_json()
-dfa = PhonemeDFA(language="Finnish")
-#print dfa.nearest_homophone("kuulu", "English")
-word_pairs = dfa.common_word_pairs(lim=1000)
-dfa.add_word_pairs(word_pairs)
-img = dfa.chart_dfa()
-#img.save("out/dfa_nl_rainbow_chart.png")
-#dfa.clear()
-#ipa_pairs = dfa.common_ipa_pairs(lim=1000)
-#dfa.add_word_pairs(ipa_pairs)
-#dfa.chart_dfa()
-#img.save("out/pol_ipa_chart.png")
-
-dfa = PhonemeDFA("Chinese")
-word_pairs = dfa.common_word_pairs(lim=100)
-dfa.add_word_pairs(word_pairs)
-img = dfa.chart_dfa()
-dfa.clear()
-
-dfa = MorphemeDFA("Chinese")
-dfa.add_states(1000)
-img = dfa.chart_dfa()
-
-dfa = MorphemeDFA("Japanese")
-dfa.add_states(1000)
-img = dfa.chart_dfa()
-'''
-
-
-'''
-dfa.set_language("English")
-#dfa = PhonemeDFA(language="English")
-word_pairs = dfa.common_word_pairs(lim=200)
-dfa.add_word_pairs(word_pairs)
-img = dfa.chart_dfa()
-img.save("dfa_eng_rainbow_chart.png")
-dfa.clear()
-ipa_pairs = dfa.common_ipa_pairs(lim=200)
-dfa.add_word_pairs(ipa_pairs)
-img = dfa.chart_dfa()
-img.save("dfa_eng_rainbow_ipa_chart.png")
-'''
 
