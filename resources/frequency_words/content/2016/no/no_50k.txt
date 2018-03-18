@@ -14861,7 +14861,7 @@ unnsetning 81
 sistemann 81
 dirk 81
 kontorer 81
-clean 81
+tag_text 81
 verge 81
 alkoholen 81
 panne 81
@@ -25027,7 +25027,7 @@ mcnamara 37
 blåveis 37
 fôre 37
 mcnally 37
-order 37
+rank 37
 strikket 37
 blåmerke 37
 cougar 37

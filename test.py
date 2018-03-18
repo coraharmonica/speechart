@@ -23,17 +23,17 @@ class TestIPAWord(unittest.TestCase):
             cls.ipa = u"ɔbalat͡ɕ"
             cls.words[cls.word] = cls.ipa
             cls.words[u"jestem"] = u"jɛs̪t̪ɛm"
-            cls.ipa_word = IPAWord(cls.word, cls.ipa, cls.parser)
+            cls.ipa_word = IPAWord(cls.word, cls.language, cls.parser)
         elif cls.language == "Dutch":
             cls.word = u"kleintje"
             cls.ipa = u"klɛi̯ntjə"
             cls.words[cls.word] = cls.ipa
-            cls.ipa_word = IPAWord(cls.word, cls.ipa, cls.parser)
+            cls.ipa_word = IPAWord(cls.word, cls.language, cls.parser)
         elif cls.language == "Finnish":
             cls.word = u"naapuri"
             cls.ipa = u"ˈnɑːpuri"
             cls.words[cls.word] = cls.ipa
-            cls.ipa_word = IPAWord(cls.word, cls.ipa, cls.parser)
+            cls.ipa_word = IPAWord(cls.word, cls.language, cls.parser)
 
     def test_table(self):
         self.assertEqual(self.parser.word_declension(self.word),

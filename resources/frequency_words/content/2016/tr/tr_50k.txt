@@ -47920,7 +47920,7 @@ gösterilecek 224
 dao 224
 ormanların 224
 vampirim 224
-order 224
+rank 224
 hırsızlığından 224
 hissedarlar 224
 şerifle 224

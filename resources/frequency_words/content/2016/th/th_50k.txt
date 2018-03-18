@@ -1603,7 +1603,7 @@ shake 62
 rings 62
 ทำไมเธอ 62
 มาตลอด 62
-order 62
+rank 62
 truth 62
 hate 62
 james 62
@@ -1733,7 +1733,7 @@ step 58
 จดหมาย 58
 โจแอนนา 58
 ผมจะพยายาม 58
-clean 57
+tag_text 57
 แถว 57
 วะ 57
 wall 57

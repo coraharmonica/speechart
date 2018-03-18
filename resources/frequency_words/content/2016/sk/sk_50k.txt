@@ -44141,7 +44141,7 @@ závažnosť 41
 rozviažte 41
 vyvediem 41
 belgicka 41
-clean 41
+tag_text 41
 koleduješ 41
 princov 41
 kingo 41

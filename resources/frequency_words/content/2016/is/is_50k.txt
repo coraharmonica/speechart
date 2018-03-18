@@ -46564,7 +46564,7 @@ köfuđum 5
 háski 5
 kapúletta 5
 ūyrnum 5
-order 5
+rank 5
 geimskutluna 5
 sönnunina 5
 valdameiri 5

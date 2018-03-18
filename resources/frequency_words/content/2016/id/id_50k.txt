@@ -11025,7 +11025,7 @@ columbia 118
 dirk 118
 ripley 118
 menghukummu 118
-order 118
+rank 118
 melambaikan 118
 iet 118
 seal 118
@@ -17670,7 +17670,7 @@ mempersenjatai 54
 tahuku 54
 syarikat 54
 mag 54
-clean 54
+tag_text 54
 cintailah 54
 secukupnya 54
 nando 54

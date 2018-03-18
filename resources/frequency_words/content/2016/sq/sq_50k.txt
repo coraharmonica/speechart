@@ -48694,7 +48694,7 @@ blythe 7
 gudulisë 7
 rezidencial 7
 nnuk 7
-clean 7
+tag_text 7
 tereni 7
 kamin 7
 terapistja 7

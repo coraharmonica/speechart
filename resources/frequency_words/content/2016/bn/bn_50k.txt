@@ -2192,7 +2192,7 @@ entered 1
 funnily 1
 pleasure 1
 centre 1
-clean 1
+tag_text 1
 stone 1
 plait 1
 sari 1

@@ -9,17 +9,16 @@ class OrderedSet(set):
     def __init__(self, items=list()):
         self.items_set = set(items)
         set.__init__(self.items_set)
-        self.frequency_counts = {i: items.count(i) for i in self.items_set}
         self.all_items = items
-        self.items = self.order_items(items)
+        self.frequency_counts = {i: items.count(i) for i in self.all_items}
 
-    def get_items(self):
+    def items(self):
         """
         Returns a list of items ordered by frequency with no duplicates.
 
         :return: List[X], list ordered by frequency
         """
-        return self.items
+        return self.rank(self.all_items)
 
     def get_items_set(self):
         """
@@ -40,7 +39,7 @@ class OrderedSet(set):
 
     def remove_duplicates(self, items):
         """
-        Removes duplicates from given items while preserving order.
+        Removes duplicates from given items while preserving rank.
         ~
         Returns the result.
         ~
@@ -86,9 +85,9 @@ class OrderedSet(set):
 
         :return: OrderedSet(X), ordered set with item removed
         """
-        if len(self.items) > 0:
+        if len(self.items()) > 0:
             if item is None:
-                self.remove(self.items[0])
+                self.remove(self.items()[0])
             else:
                 self.remove(item)
 
@@ -107,14 +106,14 @@ class OrderedSet(set):
         :param idx: X, item to remove from items
         """
         try:
-            idx = self.items.index(item)
+            idx = self.items().index(item)
         except ValueError:
             return
         else:
             self.all_items = [i for i in self.all_items if i != item]
             self.items_set.difference_update(set(item))
             self.frequency_counts.pop(item, "")
-            del self.items[idx]
+            del self.items()[idx]
 
     def update(self, other):
         """
@@ -128,38 +127,56 @@ class OrderedSet(set):
         else:
             self.add_items(other)
 
-    def order(self):
+    def rank(self, items=None):
         """
-        Orders this OrderedSet's all_items by frequency, removing duplicates.
+        Ranks this OrderedSet's all_items by frequency, removing duplicates.
         ~
-        e.g. s = OrderedSet(['a', 'b', 'b', 'e', 's', 's'])
-             s.order() -> self.items = ['b', 's', 'a', 'e']
+        e.g. s.rank(['a', 'b', 'b', 'e', 's', 's']) -> ['b', 's', 'a', 'e']
 
         :return: None
         """
-        items = self.remove_duplicates(self.items)
-        self.items = sorted(items, key=lambda i: self.frequency_counts[i], reverse=True)
+        if items is None:
+            items = self.all_items
+        items_set = self.remove_duplicates(items)
+        return sorted(items_set, key=lambda i: self.frequency_counts[i], reverse=True)
 
-    def order_items(self, items):
+    def rank_items(self, items=None):
         """
         Orders the given items by frequency, removing duplicates.
         ~
         Returns the result.
         ~
-        e.g. order_items(['a', 'b', 'b', 'e', 's', 's']) -> ['b', 's', 'a', 'e']
+        e.g. rank_items(['a', 'b', 'b', 'e', 's', 's']) -> ['b', 's', 'a', 'e']
 
         :param items: List[X], list of items
         :return: List[X], list ordered by frequency
         """
+        if items is None:
+            items = self.all_items
         seen = dict()
 
         for item in items:
-            seen.setdefault(item, int())
+            seen.setdefault(item, 0)
             seen[item] += 1
             self.inc_frequency(item)
 
         items_set = self.remove_duplicates(items)
         return sorted(items_set, key=lambda i: seen[i], reverse=True)
+
+    def order_items(self, items=None):
+        """
+        Orders the given items by frequency, removing duplicates.
+        ~
+        Returns the result.
+        ~
+        e.g. rank_items(['a', 'b', 'b', 'e', 's', 's']) -> ['b', 's', 'a', 'e']
+
+        :param items: List[X], list of items
+        :return: List[X], list ordered by frequency
+        """
+        if items is None:
+            items = self.all_items
+        return self.remove_duplicates(items)
 
     def inc_frequency(self, item):
         """
@@ -187,14 +204,9 @@ class OrderedSet(set):
         :return: None
         """
         if len(item) > 0:
-            #print self
-            #print "ADDING ", item
             self.all_items.append(item)
             self.items_set.add(item)
-            self.items.append(item)
             self.inc_frequency(item)
-            self.order()
-            #print self
 
     def add_items(self, items):
         """
@@ -211,21 +223,9 @@ class OrderedSet(set):
             self.add(item)
 
     def __iter__(self):
-        """
-        Returns an iterator over this OrderedSet's items.
-
-        :return: listiterator, iterator over items
-        """
-        return iter(self.items)
-
-    def __str__(self):
-        return "\n\nOrderedSet items:\n" \
-               " ".join(self.items).encode("utf-8") + "\n"
+        return iter(self.items())
 
     def __len__(self):
-        return len(self.items)
-
-    #def __repr__(self):
-    #    return str(self)
+        return len(self.items())
 
 

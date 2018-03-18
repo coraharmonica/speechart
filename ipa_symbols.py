@@ -150,7 +150,7 @@ class IPAVowel(IPALetter):
                  "rounded": 2,
                  "neither": 3}
 
-    def __init__(self, symbol, openness, backness, roundness, lax=False, rhotacized=False):
+    def __init__(self, symbol, openness, backness, roundness, lax=False, rhotacized=False, nasalized=False):
         """
         Initializes this IPAVowel as a vowel with the
         given symbol, with the given openness, backness, and roundness.
@@ -167,6 +167,7 @@ class IPAVowel(IPALetter):
         :param roundness: str, roundness of vowel
         :param lax: bool, whether this vowel is lax
         :param rhotacized: bool, whether this vowel is rhotacized
+        :param nasalized: bool, whether this vowel is nasalized
         """
         IPALetter.__init__(self, symbol, True)
         self.openness = openness
@@ -174,6 +175,7 @@ class IPAVowel(IPALetter):
         self.roundness = roundness
         self.lax = lax
         self.rhotacized = rhotacized
+        self.nasalized = nasalized
 
     def get_openness(self):
         return self.OPENNESS[self.openness]
@@ -306,13 +308,22 @@ VOWEL_KEYS = VOWELS.keys()
 IPAVOWELS = {
     # FRONT VOWELS
     u"i": IPAVowel(u"i", "close", "front", "unrounded"),
+    u"í": IPAVowel(u"í", "close", "front", "unrounded"),
+    u"ì": IPAVowel(u"ì", "close", "front", "unrounded"),
+    u"î": IPAVowel(u"î", "close", "front", "unrounded"),
     u"y": IPAVowel(u"y", "close", "front", "rounded"),
+    u"ý": IPAVowel(u"ý", "close", "front", "rounded"),
 
     u"ɪ": IPAVowel(u"ɪ", "near close", "near front", "unrounded", lax=True),
     u"ʏ": IPAVowel(u"ʏ", "near close", "near front", "rounded", lax=True),
 
     u"e": IPAVowel(u"e", "close mid", "front", "unrounded"),
+    u"ë": IPAVowel(u"ë", "close mid", "front", "unrounded"),
+    u"é": IPAVowel(u"é", "close mid", "front", "unrounded"),
+    u"ê": IPAVowel(u"ê", "close mid", "front", "unrounded"),
+    u"ẽ": IPAVowel(u"ẽ", "close mid", "front", "unrounded"),
     u"ø": IPAVowel(u"ø", "close mid", "front", "rounded"),
+    u"ǿ": IPAVowel(u"ǿ", "close mid", "front", "rounded"),
 
     u"ɛ": IPAVowel(u"ɛ", "open mid", "front", "unrounded"),
     u"œ": IPAVowel(u"œ", "open mid", "front", "rounded"),
@@ -320,6 +331,11 @@ IPAVOWELS = {
     u"æ": IPAVowel(u"æ", "near open", "front", "unrounded"),
 
     u"a": IPAVowel(u"a", "open", "front", "unrounded"),
+    u"ä": IPAVowel(u"a", "open", "front", "unrounded"),
+    u"ã": IPAVowel(u"ã", "open", "front", "unrounded", nasalized=True),
+    u"å": IPAVowel(u"ã", "open", "front", "unrounded"),
+    u"â": IPAVowel(u"â", "open", "front", "unrounded"),
+    u"à": IPAVowel(u"â", "open", "front", "unrounded"),
     u"ɶ": IPAVowel(u"ɶ", "open", "front", "rounded"),
 
     # CENTRAL VOWELS
@@ -341,11 +357,19 @@ IPAVOWELS = {
     # BACK VOWELS
     u"ɯ": IPAVowel(u"ɯ", "close", "back", "unrounded"),
     u"u": IPAVowel(u"u", "close", "back", "rounded"),
+    u"ǔ": IPAVowel(u"ǔ", "close", "back", "rounded"),
+    u"ú": IPAVowel(u"ú", "close", "back", "rounded"),
+    u"ù": IPAVowel(u"ù", "close", "back", "rounded"),
 
     u"ʊ": IPAVowel(u"ʊ", "near close", "near back", "rounded"),
 
     u"ɤ": IPAVowel(u"ɤ", "close mid", "back", "unrounded"),
     u"o": IPAVowel(u"o", "close mid", "back", "rounded"),
+    u"õ": IPAVowel(u"õ", "close mid", "back", "rounded", nasalized=True),
+    u"ó": IPAVowel(u"õ", "close mid", "back", "rounded"),
+    u"ò": IPAVowel(u"ò", "close mid", "back", "rounded"),
+    u"ǒ": IPAVowel(u"ǒ", "close mid", "back", "rounded"),
+    u"ô": IPAVowel(u"ô", "close mid", "back", "rounded"),
 
     u"ʌ": IPAVowel(u"ʌ", "open mid", "back", "unrounded"),
     u"ɔ": IPAVowel(u"ɔ", "open mid", "back", "rounded"),
@@ -375,6 +399,7 @@ IPACONSONANTS = {
 
     u"k": IPAConsonant(u"k", "velar", "plosive", voiced=False),     # vl velar plosive
     u"ɡ": IPAConsonant(u"ɡ", "velar", "plosive", voiced=True),      # vd velar plosive
+    u"g": IPAConsonant(u"g", "velar", "plosive", voiced=True),      # vd velar plosive
 
     u"q": IPAConsonant(u"q", "uvular", "plosive", voiced=False),    # vl uvular plosive
     u"ɢ": IPAConsonant(u"ɢ", "uvular", "plosive", voiced=True),     # vd uvular plosive
@@ -421,6 +446,7 @@ IPACONSONANTS = {
     u"ð": IPAConsonant(u"ð", "dental", "fricative", voiced=True),    # vd dental fricative
 
     u"s": IPAConsonant(u"s", "alveolar", "fricative", voiced=False),   # vl alveolar fricative
+    u"š": IPAConsonant(u"š", "alveolar", "fricative", voiced=False),   # vl alveolar fricative
     u"z": IPAConsonant(u"z", "alveolar", "fricative", voiced=True),    # vd alveolar fricative
 
     u"ʃ": IPAConsonant(u"ʃ", "post alveolar", "fricative", voiced=False),   # vl postalveolar fricative
@@ -503,6 +529,7 @@ IPADIACRITICS = {
     u"ˌ": IPADiacritic(u"ˌ", is_affricate=False),    # secondary stress
     u"ː": IPADiacritic(u"ː", is_affricate=False),    # length mark (alt: colon)
     u"ˑ": IPADiacritic(u"ˑ", is_affricate=False),    # half-length
+    u"̞": IPADiacritic(u"̞", is_affricate=False),      # lowered articulation
     u"ʼ": IPADiacritic(u"ʼ", is_affricate=False),    # ejective
     u"ʴ": IPADiacritic(u"ʴ", is_affricate=False),    # rhotacized
     u"ʰ": IPADiacritic(u"ʰ", is_affricate=False),    # aspirated
@@ -512,6 +539,7 @@ IPADIACRITICS = {
     u"ˠ": IPADiacritic(u"ˠ", is_affricate=False),    # velarized
     u"ˤ": IPADiacritic(u"ˤ", is_affricate=False),    # pharyngealized
     u"˞": IPADiacritic(u"˞", is_affricate=False),    # rhotacized
+    u"¨": IPADiacritic(u"¨", is_affricate=False),    # diaresis
     u"̥": IPADiacritic(u"̥", is_affricate=False),     # voiceless
     u"̊": IPADiacritic(u"̊", is_affricate=False),     # voiceless (use if character has descender)
     u"̤": IPADiacritic(u"̤", is_affricate=False),     # breathy voiced
@@ -540,11 +568,20 @@ IPADIACRITICS = {
     u"̋": IPADiacritic(u"̋", is_affricate=False),     # extra high tone
     u"́": IPADiacritic(u"́", is_affricate=False),     # high tone
     u"̄": IPADiacritic(u"̄", is_affricate=False),     # mid tone
+    u"¯": IPADiacritic(u"̄", is_affricate=False),    # mid tone
     u"̀": IPADiacritic(u"̀", is_affricate=False),     # low tone
-    u"̏": IPADiacritic(u"̏", is_affricate=False)      # extra low tone
+    u"̏": IPADiacritic(u"̏", is_affricate=False),     # extra low tone
+    u"˥": IPADiacritic(u"˥", is_affricate=False),   # extra high tone
+    u"˦": IPADiacritic(u"˦", is_affricate=False),   # high tone
+    u"˧": IPADiacritic(u"˧", is_affricate=False),   # mid tone
+    u"˨": IPADiacritic(u"˨", is_affricate=False),   # low tone
+    u"˩": IPADiacritic(u"˩", is_affricate=False),   # extra low tone
+    u"ˣ": IPADiacritic(u"ˣ", is_affricate=False),   # geminate following consonant
+    u"ˢ": IPADiacritic(u"ˢ", is_affricate=False),   # geminate following consonant
 }
 
 IPALETTERS = dict(IPACONSONANTS.items() + IPAVOWELS.items() + SEMIVOWELS.items())
 
 IPASYMBOLS = dict(IPALETTERS.items() + IPADIACRITICS.items())
 
+ALLSYMBOLS = dict(IPASYMBOLS.items() + ALL_SYMBOLS.items())

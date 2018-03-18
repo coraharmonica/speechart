@@ -6267,7 +6267,7 @@ aja 41
 karnival 41
 mengugut 41
 luahkan 41
-order 41
+rank 41
 khuatir 41
 peneroka 41
 alabama 41
@@ -12958,7 +12958,7 @@ keuntungannya 13
 seamus 13
 pikiranku 13
 jariku 13
-clean 13
+tag_text 13
 berbaliklah 13
 gotcha 13
 lockett 13

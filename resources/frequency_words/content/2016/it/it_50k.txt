@@ -19357,7 +19357,7 @@ bevevo 385
 visiontext 384
 santificato 384
 lamentela 384
-order 384
+rank 384
 reclamare 384
 avvistamento 384
 trasmettendo 384
@@ -40576,7 +40576,7 @@ trifoglio 114
 salienti 114
 completate 114
 deste 114
-clean 114
+tag_text 114
 designata 114
 proseguono 114
 haiku 114

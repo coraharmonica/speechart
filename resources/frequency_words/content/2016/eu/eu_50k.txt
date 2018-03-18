@@ -19909,7 +19909,7 @@ hoditik 2
 isuritako 2
 ezpaten 2
 goratuz 2
-clean 2
+tag_text 2
 gorriz 2
 del 2
 bizarrarekin 2

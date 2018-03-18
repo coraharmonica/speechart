@@ -5093,7 +5093,7 @@ ecofield 1
 gl 1
 tps 1
 අසරණයව 1
-order 1
+rank 1
 favor 1
 වනබව 1
 යමක 1

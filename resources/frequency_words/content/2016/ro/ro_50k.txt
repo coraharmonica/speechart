@@ -38634,7 +38634,7 @@ zonelor 197
 millioane 197
 ţipau 197
 hales 197
-clean 197
+tag_text 197
 digera 197
 funcţionarii 197
 variabilă 197

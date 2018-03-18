@@ -343,7 +343,7 @@ mujeeb 6
 കർ 6
 ഈഫൽ 6
 യ 6
-order 6
+rank 6
 why 6
 new 6
 really 6

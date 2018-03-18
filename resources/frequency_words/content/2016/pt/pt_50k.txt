@@ -29486,7 +29486,7 @@ ambientalista 145
 oceanic 145
 contrate 145
 oahu 145
-clean 145
+tag_text 145
 recolheram 145
 havaiano 145
 kandahar 145
@@ -41883,7 +41883,7 @@ vassar 77
 trabalhão 77
 trabalhassem 77
 insensatez 77
-order 77
+rank 77
 adia 77
 bhabhi 77
 higgs 77

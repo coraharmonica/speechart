@@ -8,58 +8,6 @@ MORPHEME_PARSER:
 from language_parser import *
 
 
-class Morpheme:
-    """
-    A class for distinguishing morphemes.
-
-    1) free (roots)
-        PARTS OF SPEECH:
-        1) noun - "NN"
-        2) verb - "VB"
-        3) adj  - "JJ"
-        4) adv  - "RB"
-
-    2) bound (affixes)
-        AFFIXES:
-        1) prefix    (*XXX)
-        2) suffix    (XXX*)
-        3) infix     (X**X)
-        4) circumfix (*XX*)
-        5) interfix  (XX*X)
-    """
-    PARTS_OF_SPEECH = {"NN", "VB", "JJ", "RB"}
-    AFFIXES = {"prefix",
-               "suffix",
-               "infix",
-               "circumfix",
-               "interfix"}
-
-    def __init__(self, word, language, is_free, type):
-        self.word = word
-        self.language = language.title()
-        self._is_free = is_free
-        self._type = type      # root part-of-speech or affix type
-
-    @property
-    def is_free(self):
-        return self._is_free
-
-    @is_free.setter
-    def is_free(self, value):
-        self._is_free = value
-
-    @property
-    def type(self):
-        return self._type
-
-    @type.setter
-    def type(self, value):
-        self._type = value
-
-    def __hash__(self):
-        return hash(self.word + self.language[:3] + str(self.type))
-
-
 class MorphemeParser(LanguageParser):
     """
     A class for extracting and analyzing morphemes in a
@@ -70,21 +18,50 @@ class MorphemeParser(LanguageParser):
         self.affixes = set()
         self.morphemes = set()
 
-    def init_morphemes(self):
-        words = self.words
-        self.morphemes.update(words)
+    # MORPHEMES
+    # ---------
+    def add_word_morphemes(self, word):
+        """
+        Adds all morphemes in this word to this MorphemeParser's
+        morphemes.
 
-        for word in words: #sorted(words, key=lambda w: len(w)):
-            word_morphemes = self.strip_affixes(word)
-            print word, "has morphemes", word_morphemes
-            print
-            self.morphemes.update(word_morphemes)
-            continue
+        :param word: str, word to add morphemes of to morphemes
+        :return: None
+        """
+        self.morphemes.add(word)
+        word_morphemes = self.strip_affixes(word)
+        self.morphemes.update(word_morphemes)
 
-        print "MorphemeParser's morphemes", len(self.morphemes), self.morphemes
-        return self.morphemes
+    def add_words_morphemes(self, words):
+        """
+        Adds all morphemes in this list of words to this MorphemeParser's
+        morphemes.
 
-    def all_morphemes(self):
+        :param words: List[str], list of words to add morphemes of
+        :return: None
+        """
+        for word in words:
+            self.add_word_morphemes(word)
+
+    def morpheme_freqs(self, morphemes=None, language=None):
+        """
+        Returns a frequency dictionary of morphemes in this
+        MorphemeParser's language.
+
+        :param morphemes: List[str], list of morphemes
+        :param language: str, language of morphemes
+        :return: dict, where...
+            key (str) - morpheme in this MP's language
+            val (int) - given morpheme's frequency
+        """
+        language = self.verify_language(language)
+        if morphemes is None:
+            morphemes = self.all_morphemes(language)
+        morphemes = [morpheme.lower() for morpheme in morphemes]
+        keys = set(morphemes)
+        return {key.lower(): morphemes.count(key.lower()) for key in keys}
+
+    def weighted_morpheme_freqs(self, morphemes=None, language=None, lim=10000):
         """
         Returns a frequency dictionary of morphemes in this
         MorphemeParser's language.
@@ -93,45 +70,35 @@ class MorphemeParser(LanguageParser):
             key (str) - morpheme in this MP's language
             val (int) - given morpheme's frequency
         """
-        etymologies = self.all_etymologies()
-        etymologies = self.compress_etymologies(etymologies)
-        etymologies = etymologies.values()
-        etymologies = self.flatten(etymologies)
-        keys = set(etymologies)
-        return {key: etymologies.count(key) for key in keys}
+        common_morphemes = self.common_morphemes(language, lim=lim)
+        freqs = self.morpheme_freqs(morphemes, language)
+        weighted_freqs = {}
 
-    def get_word_morphemes(self, word):
-        subwords = [word]
+        for morpheme in freqs:
+            try:
+                weighting = common_morphemes.index(morpheme) * 100
+                weight_ratio = weighting / float(lim)
+            except ValueError:
+                weight_ratio = 1
 
-        for morpheme in sorted(self.morphemes, key=lambda m: len(m), reverse=True):
-            if morpheme in word and morpheme != word:
-                new_subwords = subwords
-                for subword in subwords:
-                    if morpheme in subword:
-                        new_subword = filter(lambda s: s != "", re.split("("+morpheme+")", subword))
-                        idx = new_subwords.index(subword)
-                        new_subwords = new_subwords[:idx] + new_subword + new_subwords[idx+1:]
-                subwords = new_subwords
+            freq = freqs[morpheme]
+            weighted_freq = int(freq * weight_ratio)
+            weighted_freqs[morpheme] = weighted_freq
 
-        print subwords
-        self.morphemes.update(subwords)
-        return subwords
-
-    def get_morphemes(self, words):
-        morphemes = set()
-
-        for word in words:
-            word_morphemes = self.strip_affixes(word)
-            print word, "has morphemes", word_morphemes
-            print
-            morphemes.update(word_morphemes)
-            continue
-
-        print "MorphemeParser's morphemes", len(morphemes), morphemes
-        return morphemes
+        return weighted_freqs
 
     def strip_affixes(self, word):
-        words = self.morphemes.union(self.words)
+        """
+        Removes all morphemes from this word until none are left,
+        then returns a list of all morphemes in this word.
+        ~
+        A different method to obtain a word's morphemes than
+        finding its Wiktionary etymologies.
+
+        :param word: str, word to find morphemes of
+        :return: List[str], all morphemes in this word
+        """
+        words = self.morphemes.union(self.common_words(self.language, lim=10000))
         morphemes = []
         new_word = word
         last_morpheme = str()
@@ -153,51 +120,8 @@ class MorphemeParser(LanguageParser):
 
         return filter(lambda m: m != "", morphemes)
 
-    def compress_etymologies(self, etymologies):
-        """
-        Returns the given dictionary of etymologies with each
-        non-atomic etymology replaced with atomic etymologies.
-
-        :param etymologies: dict, where...
-            key (str) - word with etymology
-            val (List[str]) - given word's etymology (as a combination of words)
-        :return: dict, where...
-            key (str) - word with etymology
-            val (List[str]) - given word's etymology (as a combination of words)
-        """
-        compressed = dict()
-
-        for word in etymologies:
-            etymology = etymologies[word]
-            morphemes = etymology[:]
-            while any(m in etymologies for m in morphemes):
-                for i in range(len(morphemes)):
-                    morpheme = morphemes[i]
-                    if morpheme in etymologies:
-                        derivs = etymologies[morpheme]
-                        if not all(d in morphemes for d in derivs):
-                            morphemes = morphemes[:i] + derivs + morphemes[i+1:]
-                            break
-                else:
-                    break
-            compressed[word] = morphemes
-            print "compressed", etymology, "to", morphemes
-
-        return compressed
-
-    def flatten(self, lst):
-        """
-        Flattens the given list of lists to a list.
-        ~
-        e.g. flatten([[1, 2], [3, 4]]) -> [1, 2, 3, 4]
-
-        :param derivations: List[List[X]], list of lists to flatten
-        :return: List[X], input list flattened
-        """
-        return [item for sublst in lst for item in sublst]
-
-    # SYLLABLES
-    # ---------
+    # SYLLABIFICATION
+    # ---------------
     def break_word_syllable(self, syllable):
         """
         Breaks the given word syllable into its constituent
@@ -470,4 +394,55 @@ class MorphemeParser(LanguageParser):
         syllable = "".join(syllable)
         syllable = (syllable, ipa) if remove else syllable
         return syllable
+
+
+class Morpheme:
+    """
+    A class for distinguishing morphemes.
+
+    1) free (roots)
+        PARTS OF SPEECH:
+        1) noun - "NN"
+        2) verb - "VB"
+        3) adj  - "JJ"
+        4) adv  - "RB"
+
+    2) bound (affixes)
+        AFFIXES:
+        1) prefix    (*XXX)
+        2) suffix    (XXX*)
+        3) infix     (X**X)
+        4) circumfix (*XX*)
+        5) interfix  (XX*X)
+    """
+    AFFIXES = {"prefix",
+               "suffix",
+               "infix",
+               "circumfix",
+               "interfix"}
+
+    def __init__(self, word, language, is_free, type):
+        self.word = word
+        self.language = language.title()
+        self._is_free = is_free
+        self._type = type      # root part-of-speech or affix type
+
+    @property
+    def is_free(self):
+        return self._is_free
+
+    @is_free.setter
+    def is_free(self, value):
+        self._is_free = value
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        self._type = value
+
+    def __hash__(self):
+        return hash(self.word + self.language[:3] + str(self.type))
 

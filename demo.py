@@ -2,17 +2,17 @@
 """
 DEMO:
 
-    Used for demoing MorphemeParser, MorphemeDFA, and more.
+    Used for demoing MorphemeParser, MorphemeChart, and more.
 """
-from language_dfas import *
+from speecharts import *
 
-# construct a MorphemeDFA to create a DFA for words in your desired language
-dfa = MorphemeDFA("English")
+# construct a MorphemeChart to create a DFA for words in your desired language
+dfa = MorphemeChart("English")
 dfa.add_words("hello there my friend how are you today")
-img = dfa.chart_dfa()
+img = dfa.chart()
 img.save("out/en_word_chart.png")    # save chart to file
 
-dfa = MorphemeDFA("Finnish")
+dfa = MorphemeChart("Finnish")
 dfa.word_declension("nuo")  # adds nuo's declension to this dfa
 dfa.refresh_json()          # stores all changes from this DFA's data back to JSONs (in data)
 dfa.clear()                 # resets this DFA's states
@@ -21,15 +21,15 @@ dfa.nearest_homophone("naapuri", "English")
 dfa.nearest_homophone("kuulu", "English")
 
 # supports Chinese, Japanese, and Korean chart visualization
-dfa = MorphemeDFA("Chinese")
+dfa = MorphemeChart("Chinese")
 dfa.add_states(lim=500)
-dfa.chart_dfa()
+dfa.chart()
 
-dfa = MorphemeDFA("Japanese")
+dfa = MorphemeChart("Japanese")
 dfa.add_states(lim=500)
-dfa.chart_dfa()
+dfa.chart()
 
-dfa = MorphemeDFA("Korean")
+dfa = MorphemeChart("Korean")
 dfa.add_states(lim=500)
-dfa.chart_dfa()
+dfa.chart()
 

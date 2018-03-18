@@ -10236,7 +10236,7 @@ tõusevad 321
 naeratab 321
 selgust 321
 valelik 320
-order 320
+rank 320
 haaval 320
 kallista 320
 küllaga 320

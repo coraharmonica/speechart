@@ -5,8 +5,6 @@ LANGUAGE_PARSER:
     Contains LanguageParser class for parsing data in
     a particular language from Wiktionary.
 """
-import json
-from ordered_set import OrderedSet
 from wiktionary_parser import *
 
 
@@ -18,50 +16,18 @@ class LanguageParser(WiktionaryParser):
         WiktionaryParser.__init__(self)
         self.language = language
         self.url = self.url % self.language
-        # ALPHABETS
-        self.alphabet = self.init_alphabet(self.language)  # all characters in language
-        self.add_alphabet(self.language, self.alphabet)
-        # LEXICA
+
+        # --> lexica
         self.lexicon = self.init_lexicon(self.language)
         self.add_lexicon(self.language, self.lexicon)
-
-        # LANGUAGE DICTIONARIES
-        # --> IPA pronunciations
-        self.langs_ipas = self.fetch_langs_ipas()
-        self.lang_ipas = self.fetch_lang_ipas()
-        # --> parts of speech
-        self.langs_pos = self.fetch_langs_pos()
-        self.lang_pos = self.fetch_lang_pos()
-        # --> inflections
-        self.langs_inflections = self.fetch_langs_inflections()
-        self.lang_inflections = self.fetch_lang_inflections()
-        # --> etymologies
-        self.langs_etymologies = self.fetch_langs_etymologies()
-        self.lang_etymologies = self.fetch_lang_etymologies()
-        # --> declensions
-        self.langs_declensions = self.fetch_langs_declensions()
-        self.lang_declensions = self.fetch_lang_declensions()
+        # --> alphabets
+        self.alphabets = self.fetch_alphabets()
+        self.alphabet = self.find_alphabet(self.language)
 
         self.wordnet_words = self.get_wordnet_words()
         self.words = self.wordnet_words.intersection(self.lexicon)
 
-    def verify_word(self, word, language=None):
-        """
-        Returns True if given word contains only characters from
-        this LanguageParser's alphabet, False otherwise.
-
-        :param word: str, word to verify whether in language
-        :param language: str, language to verify word with
-        :return: bool, whether word contains only characters from language
-        """
-        language = self.verify_language(language)
-        word_chars = set(word)
-        alphabet = self.fetch_alphabet(language)
-        return len(word_chars.difference(alphabet)) == 0
-
-    # LANGUAGES
-    # ---------
-    def set_language(self, language):
+    def reset_language(self, language):
         """
         Sets this LanguageParser's language to the given language.
 
@@ -71,41 +37,6 @@ class LanguageParser(WiktionaryParser):
         if self.language != language:
             self.refresh_json()
             self.__init__(language)
-
-    def add_language(self, language):
-        """
-        Adds the given language to all language dictionaries in
-        this LanguageParser.
-
-        :param language: str, language to add to language dictionaries
-        :return: None
-        """
-        self.langs_pos.setdefault(language, dict())
-        self.langs_ipas.setdefault(language, dict())
-        self.langs_inflections.setdefault(language, dict())
-        self.langs_etymologies.setdefault(language, dict())
-
-    def add_languages(self, languages):
-        """
-        Adds the given languages to all language dictionaries in
-        this LanguageParser.
-
-        :param languages: List[str], languages to add to language dictionaries
-        :return: None
-        """
-        for language in languages:
-            self.add_language(language)
-
-    def find_page_languages(self, page):
-        """
-        Returns a list of the given page's languages.
-
-        :param page: Tag, page to return languages from
-        :return: List[str], all languages on this page
-        """
-        languages = WiktionaryParser.find_page_languages(self, page)
-        self.add_languages(languages)
-        return self.langs_ipas.keys()
 
     # LEXICA
     # ------
@@ -120,22 +51,20 @@ class LanguageParser(WiktionaryParser):
         :return: List[str], words in LanguageParser's language
         """
         lang_code = self.get_lang_code(language)
-
-        if lang_code is None:
-            return
-
         words = list()
-        path = self.PATH + "/resources/frequency_words/content/2016/%s/%s_full.txt" % (lang_code, lang_code)
 
-        with open(path, 'r') as lexicon:
-            line_no = 0
-            for line in lexicon:
-                word = line.split(" ", 1)[0]
-                words.append(self.unicodize(word))
-                if lim:
-                    if line_no > lim:
-                        break
-                    line_no += 1
+        if lang_code is not None:
+            path = self.PATH + "/resources/frequency_words/content/2016/%s/%s_full.txt" % (lang_code, lang_code)
+
+            with open(path, 'r') as lexicon:
+                line_no = 0
+                for line in lexicon:
+                    word = line.split(" ", 1)[0]
+                    words.append(self.unicodize(word))
+                    if lim:
+                        if line_no > lim:
+                            break
+                        line_no += 1
 
         return words
 
@@ -149,7 +78,7 @@ class LanguageParser(WiktionaryParser):
         """
         self.LEXICA[language] = lexicon
 
-    def fetch_lexicon(self, language, lim=100000):
+    def find_lexicon(self, language, lim=100000):
         """
         Returns the lexicon for the given language.
         ~
@@ -167,7 +96,17 @@ class LanguageParser(WiktionaryParser):
             return lexicon
 
     def in_lexicon(self, word, language=None):
-        return word in self.fetch_lexicon(language)
+        """
+        Returns True if this word is in this language's lexicon
+        or if this language's lexicon is empty (undetermined),
+        False otherwise.
+
+        :param word: str, word to check if in lexicon
+        :param language: str, language of lexicon
+        :return: bool, True if word in lexicon or empty lexicon
+        """
+        lexicon = self.find_lexicon(language)
+        return word in lexicon or len(lexicon) == 0
 
     def parse_lexicon(self, language):
         """
@@ -190,20 +129,30 @@ class LanguageParser(WiktionaryParser):
             key (str) - inflected form of a word
             val (str) - lemma form of inflected word
         """
-        lexicon = self.fetch_lang_inflections(language)
+        return self.all_inflections(language)
 
-        if len(lexicon) == 0:
-            if language == "Polish":
-                fn = self.parse_polish_lexicon
-            elif language == "French":
-                fn = self.parse_french_lexicon
-            else:
-                return lexicon
+    def parse_custom_lexicon(self, language):
+        """
+        Parses a custom lexicon for this language, if one exists.
+        ~
+        Currently only supports French and Polish.
 
-            filename = "/resources/lexica/" + language + ".txt"
+        :param language: str, language to parse lexicon for
+        :return: dict, where...
+            key (str) - word lemma
+            val (List[str]) - all lexical forms of word lemma
+        """
+        if language == "Polish":
+            fn = self.parse_polish_lexicon
+        elif language == "French":
+            fn = self.parse_french_lexicon
+        else:
+            return
 
-            with open(self.PATH + filename, "rb") as lex:
-                lexicon = fn(lex)
+        filename = "/resources/lexica/" + language + ".txt"
+
+        with open(self.PATH + filename, "rb") as lex:
+            lexicon = fn(lex)
 
         return lexicon
 
@@ -239,16 +188,13 @@ class LanguageParser(WiktionaryParser):
                 lemma = line[:-2]
                 lexicon.setdefault(lemma, list())
                 lexicon[lemma].append(lemma)
-                self.add_inflection(lemma, lemma, "French")
             else:
                 entry = line.split("\t")
                 lemma = entry[1]
                 lexeme = entry[0]
                 lexicon.setdefault(lexeme, list())
                 lexicon[lexeme].append(lemma)
-                self.add_inflection(lexeme, lemma, "French")
 
-        self.refresh_inflections()
         return lexicon
 
     def parse_polish_lexicon(self, lex):
@@ -284,39 +230,45 @@ class LanguageParser(WiktionaryParser):
             lexemes = [l.strip() for l in lexemes]
             lemma = lexemes[0]
             lexicon[lemma] = lexemes
-            self.add_inflections(lexemes, lemma, "Polish")
 
-        self.refresh_inflections()
         return lexicon
 
     # ALPHABET
     # --------
     def init_alphabet(self, language=None):
         """
-        Returns a set of all characters in the given language.
+        Returns a set of all alphabet letters in this language.
 
-        :param language: str, language of alphabet
-        :return: Set(str), all characters in this language
+        :param language: str, language of alphabet to retrieve
+        :return: List[str], alphabet letters in this language
         """
-        words = self.fetch_lexicon(language, lim=1000)
+        page = self.url_page(self.lemma_url(language))
+        table = page.find("table", attrs={"id": "toc"})
         alphabet = set()
+        rows = table.findAll("tr")
 
-        for word in words:
-            alphabet.update(word)
+        if len(rows) > 1:
+            rows = rows[1:]
 
-        return alphabet
+        for row in rows:
+            line = row.findAll("td")[-1]
+            cells = line.findAll("a")
 
-    def add_alphabet(self, language, alphabet):
-        """
-        Adds the given alphabet to ALPHABETS under the given language.
+            for cell in cells:
+                text = cell.getText()
+                if text != "Top":
+                    line = self.unicodize(text)
+                    letters = line.split(" ")
 
-        :param language: str, language of alphabet
-        :param alphabet: List[str], all letters in given language's alphabet
-        :return: None
-        """
-        self.ALPHABETS[language] = alphabet
+                    for letter in letters:
+                        if len(letter) != 0 and "(" not in letter:
+                            alphabet.add(letter)
+                            alphabet.add(letter.lower())
+                            alphabet.add(letter.upper())
 
-    def fetch_alphabet(self, language):
+        return sorted(alphabet)
+
+    def find_alphabet(self, language=None):
         """
         Returns the alphabet for the given language.
         ~
@@ -326,530 +278,484 @@ class LanguageParser(WiktionaryParser):
         :param language: str, language of alphabet
         :return: List[str], all letters in given language's alphabet
         """
-        try:
-            return self.ALPHABETS[language]
-        except KeyError:
+        language = self.verify_language(language)
+        alphabet = self.fetch_alphabet(language)
+        if len(alphabet) == 0:
             alphabet = self.init_alphabet(language)
-            self.add_alphabet(language, alphabet)
-            return alphabet
+            self.alphabets[language] = alphabet
+        return sorted(alphabet)
+
+    def verify_word(self, word, language=None):
+        """
+        Returns True if given word contains only characters from
+        this LanguageParser's alphabet, False otherwise.
+
+        :param word: str, word to verify whether in language
+        :param language: str, language to verify word with
+        :return: bool, whether word contains only characters from language
+        """
+        language = self.verify_language(language)
+        word_chars = set(word)
+        alphabet = self.find_alphabet(language)
+        return len(word_chars.difference(alphabet)) == 0 and self.in_lexicon(word, language)
 
     # JSON
     # ----
-    def dump_json(self, data, filename):
+    def fetch_alphabets(self):
         """
-        Dumps data (prettily) to filename.json.
+        Returns a memoized dictionary of alphabets in every language.
 
-        :param data: X, data to dump to JSON
-        :param filename: str, name of .json file to dump to
-        :return: None
+        :return: dict(str, list), where str is language and list is alphabet
         """
-        path = self.PATH + "/resources/data/" + filename + ".json"
-        json.dump(data, open(path, 'w'), indent=1, sort_keys=True, encoding='utf-8')
+        return self.fetch_json("alphabets")
 
-    def fetch_json(self, filename):
+    def fetch_alphabet(self, language=None):
         """
-        Returns a dictionary corresponding to the given JSON file.
+        Returns the memoized alphabet for this language.
 
-        :param filename: str, name of .json file to fetch
-        :return: X, content of given .json file
-        """
-        path = self.PATH + "/resources/data/" + filename + ".json"
-        return json.load(open(path))
-
-    def fetch_langs_ipas(self):
-        """
-        Returns a dictionary of words and their IPA transcriptions.
-
-        :return: X, content of ipas.json file
-        """
-        return self.fetch_json("ipas")
-
-    def fetch_lang_ipas(self, language=None):
-        """
-        Returns the IPA dictionary in this language.
-
-        :param language: str, language of IPA dictionary
-        :return: dict, where...
-            key (str) - word in language
-            val (str) - word's IPA transcription
+        :return: dict(str, list), where str is language and list is alphabet
         """
         language = self.verify_language(language)
-        return self.langs_ipas.setdefault(language, dict())
-
-    def fetch_langs_pos(self):
-        """
-        Returns a dictionary of words and their parts of speech.
-
-        :return: X, content of parts_of_speech.json file
-        """
-        return self.fetch_json("parts_of_speech")
-
-    def fetch_lang_pos(self, language=None):
-        """
-        Returns the part-of-speech dictionary in this language.
-
-        :param language: str, language of inflectional dictionary
-        :return: dict, where...
-            key (str) - word in native language
-            val (str) - word's part of speech
-        """
-        language = self.verify_language(language)
-        return self.langs_pos.setdefault(language, dict())
-
-    def fetch_langs_inflections(self):
-        """
-        Returns all inflectional dictionaries in every language.
-
-        :return: dict(str, dict), where str is language and dict is...
-            key (str) - lemma in native language
-            val (List[str]) - lexemes of given lemma
-        """
-        return self.fetch_json("inflections")
-
-    def fetch_lang_inflections(self, language=None):
-        """
-        Returns the inflectional dictionary in this LanguageParser's
-        native language.
-
-        :param language: str, language of inflectional dictionary
-        :return: dict, where...
-            key (str) - lemma in native language
-            val (List[str]) - lexemes of given lemma
-        """
-        language = self.verify_language(language)
-        return self.langs_inflections.setdefault(language, dict())
-
-    def fetch_langs_etymologies(self):
-        """
-        Returns all etymological dictionaries in every language.
-
-        :return: dict(str, dict), where str is language and dict is...
-            key (str) - lexeme in language
-            val (List[str]) - morphemic decomposition of lexeme
-        """
-        return self.fetch_json("etymologies")
-
-    def fetch_lang_etymologies(self, language=None):
-        """
-        Returns the etymological dictionary for this language.
-
-        :return: dict, where...
-            key (str) - lexeme in language
-            val (List[str]) - morphemic decomposition of lexeme
-        """
-        language = self.verify_language(language)
-        return self.langs_etymologies.setdefault(language, dict())
-
-    def fetch_langs_declensions(self):
-        """
-        Returns all declension dictionaries in every language.
-
-        :return: dict(str, dict), where str is language and dict is...
-            key (str) - declension column name
-            val (dict(str, List[str])) - row names & values
-        """
-        return self.fetch_json("declensions")
-
-    def fetch_lang_declensions(self, language=None):
-        """
-        Returns the declension dictionary for this language.
-
-        :return: dict(str, dict), where str is declension column and dict is...
-            key (str) - declension row name
-            val (List[str]) - inflection of lexeme
-        """
-        language = self.verify_language(language)
-        return self.langs_declensions.setdefault(language, dict())
+        return self.alphabets.setdefault(language, list())
 
     def refresh_json(self):
         """
         Dumps this LanguageParser's data from...
-            langs_ipas to ipas.json,
-            langs_pos to parts_of_speech.json,
-            langs_inflections to inflections.json,
-            langs_etymologies to etymologies.json, and
-            langs_declensions to declensions.json.
+            alphabets to alphabets.json, and
+            wiktionary_entries to wiktionary_entries.json.
 
         :return: None
         """
-        self.refresh_pos()
-        self.refresh_ipas()
-        self.refresh_inflections()
-        self.refresh_etymologies()
-        self.refresh_declensions()
+        self.refresh_alphabets()
+        self.refresh_wiktionary_entries()
 
-    def refresh_ipas(self):
+    def refresh_dict(self, dict_name):
         """
-        Dumps this LanguageParser's langs_ipas data to ipas.json.
+        Refreshes the LanguageParser's language dictionary with dict_name.
+        ~
+        Dict_name should be one of:
+            alphabets, or
+            wiktionary_entries.
+
+        :param dict_name: str, name of language dictionary to refresh
+        :return: None
+        """
+        dict_obj = getattr(self, dict_name, None)
+
+        if dict_obj is not None:
+            entry = getattr(self, dict_name[:-1], None)
+            if entry is not None:
+                dict_obj[self.language] = sorted(entry)
+            self.dump_json(dict_obj, dict_name)
+
+    def refresh_alphabets(self):
+        """
+        Dumps this LanguageParser's alphabets data to alphabets.json.
 
         :return: None
         """
-        self.langs_ipas[self.language] = self.lang_ipas
-        self.dump_json(self.langs_ipas, "ipas")
+        self.refresh_dict("alphabets")
 
-    def refresh_pos(self):
+    # LEMMAS
+    # ------
+    def lemmatize(self, word, language=None, pos=None):
         """
-        Dumps this LanguageParser's langs_pos to parts_of_speech.json.
-
-        :return: None
-        """
-        self.langs_pos[self.language] = self.lang_pos
-        self.dump_json(self.langs_pos, "parts_of_speech")
-
-    def refresh_inflections(self):
-        """
-        Dumps this LanguageParser's langs_inflections data to inflections.json.
-
-        :return: None
-        """
-        self.langs_inflections[self.language] = self.lang_inflections
-        self.dump_json(self.langs_inflections, "inflections")
-
-    def refresh_etymologies(self):
-        """
-        Dumps this LanguageParser's langs_etymologies data to etymologies.json.
-
-        :return: None
-        """
-        self.langs_etymologies[self.language] = self.lang_etymologies
-        self.dump_json(self.langs_etymologies, "etymologies")
-
-    def refresh_declensions(self):
-        """
-        Dumps this LanguageParser's langs_declensions data to declensions.json.
-
-        :return: None
-        """
-        self.langs_declensions[self.language] = self.lang_declensions
-        self.dump_json(self.langs_declensions, "declensions")
-
-    # LOOKUPS
-    # -------
-    def lookup_word_ipa(self, word, language=None):
-        """
-        Returns the given word's IPA pronunciation from this language's
-        IPA dictionary.
+        Returns the lemma for this word in this language.
         ~
-        If no pronunciation exists, returns None.
-
-        :param word: str, word to lookup IPA pronunciation for
-        :return: (unicode) str, word's IPA pronunciation
-        """
-        try:
-            return self.lookup_word_ipas(word, language)[0]
-        except IndexError:
-            return
-
-    def lookup_word_ipas(self, word, language=None):
-        """
-        Returns the given word's IPA pronunciations from this language's
-        IPA dictionary.
+        If word has no lemma, this method returns the given word.
         ~
-        Returns empty list if word has no existing IPA pronunciation.
+        e.g. lemmatize("drove", "English", "Verb") -> "drive"
+             lemmatize("yeux", "French", "Noun") -> "œil"
 
-        :param word: str, word to lookup IPA pronunciations for
-        :return: List[(unicode) str], word's IPA pronunciations
+        :param word: str, word to find lemma for
+        :param language: str, language of given word
+        :param poses: Set[str], parts-of-speech for output lemma
+        :return: str, lemma for given word
         """
-        lang_ipas = self.fetch_lang_ipas(language)
-        try:
-            word_ipas = lang_ipas[word]
-        except KeyError:
-            try:
-                word_ipas = lang_ipas[word.lower()]
-            except KeyError:
-                word_ipas = list()
-        return word_ipas
+        lemmas = self.word_lemmas(word, language, pos)
+        if len(lemmas) != 0:
+            return lemmas[0]
+        else:
+            return word
 
-    def lookup_word_pos(self, word, language=None):
+    def word_lemmas(self, word, language=None, poses=None):
         """
-        Returns this word's part of speech from this language's
-        parts-of-speech dictionary.
+        Returns the lemmas for this word in this language.
         ~
-        If no part of speech exists, returns None.
+        e.g. word_lemmas("driven", "English") -> ["drive", "driven"]
 
-        :param word: str, word to lookup part of speech for
-        :return: (unicode) str, word's part of speech
+        :param word: str, word to find lemmas for
+        :param language: str, language of given word
+        :param poses: Set[str], parts-of-speech for output lemmas
+        :return: List[str], lemmas for given word
         """
-        try:
-            return self.lookup_word_poses(word, language)[0]
-        except IndexError:
-            return
+        lemmas = OrderedSet([])
 
-    def lookup_word_poses(self, word, language=None):
-        """
-        Returns all this word's parts of speech from this language's
-        parts-of-speech dictionary.
+        if len(word) == 0:
+            return lemmas.items()
+        if poses is None:
+            poses = self.PARTS_OF_SPEECH
 
-        :param word: str, word to lookup parts of speech for
-        :return: List[(unicode) str], word's parts of speech
-        """
-        poses = self.fetch_lang_pos(language)
-        try:
-            return poses[word]
-        except KeyError:
-            try:
-                return poses[word.lower()]
-            except KeyError:
-                return list()
-
-    def lookup_inflection(self, inflection, language=None):
-        """
-        Returns all this inflection's lemmas from this language's
-        IPA dictionary.
-
-        :param inflection: str, word to lookup lemmas for
-        :return: List[(unicode) str], inflection's lemmas
-        """
-        inflections = self.fetch_lang_inflections(language)
-        try:
-            return inflections[inflection]
-        except KeyError:
-            try:
-                return inflections[inflection.lower()]
-            except KeyError:
-                return list()
-
-    def lookup_etymology(self, word, language=None):
-        """
-        Returns this word's etymology from this language's
-        IPA dictionary.
-        ~
-        If no etymology exists, returns None.
-
-        :param word: str, word to lookup etymology for
-        :return: List[(unicode) str], word's etymology
-        """
-        etymologies = self.fetch_lang_etymologies(language)
-        try:
-            return etymologies[word]
-        except KeyError:
-            return
-
-    def lookup_declension(self, word, language=None):
-        """
-        Returns this word's declension from this language's
-        IPA dictionary.
-        ~
-        If no declension exists, returns None.
-
-        :param word: str, word to lookup declension for
-        :return: dict[str, list], word's declension
-        """
-        declension = self.fetch_lang_declensions(language)
-        try:
-            return declension[word]
-        except KeyError:
-            return
-
-    def uninflect(self, inflection, language=None):
-        """
-        Returns this inflection's lemma from this language's
-        IPA dictionary.
-        ~
-        If no lemma exists, returns None.
-
-        :param inflection: str, word to lookup lemma for
-        :return: (unicode) str, inflection's lemma
-        """
         language = self.verify_language(language)
-        try:
-            return self.lookup_inflection(inflection, language)[0]
-        except IndexError:
-            return inflection
+        word = self.unicodize(self.entry_word(word, language))
 
-    # BULK LOOKUPS
-    # ------------
-    def all_etymologies(self):
-        """
-        Returns a dictionary of each word in this MorphemeParser's words
-        and its corresponding etymology (according to Wiktionary).
-
-        :return: dict, where...
-            key (str) - word with etymology
-            val (List[str]) - given word's etymology (as a combination of words)
-        """
-        return self.words_etymologies(self.words, self.language)
-
-    def all_page_defns(self):
-        """
-        Returns all Wiktionary definitions in this LanguageParser's language.
-
-        :return: Set((unicode) str), set of all word definitions
-        """
-        defns = set()
-        next_pgs = self.all_ipa_pages()
-
-        for next_pg in next_pgs:
-            defns.update(self.page_defns(next_pg))
-
-        return defns
-
-    def all_lemma_pages(self):
-        """
-        Returns list of webpages for all Wiktionary entries for
-        lemmas in this LanguageParser's language.
-
-        :return: List[Tag], given page's next pages
-        """
-        url = self.url + self.LEMMA_URL + sorted(self.alphabet)[0].upper()
-        next_pg = self.parse_url(url)
-        pgs = []
-
-        while next_pg is not None:
-            pgs.append(next_pg)
-            next_pg = self.next_page(next_pg)
-
-        return pgs
-
-    def all_ipa_pages(self):
-        """
-        Returns list of webpages for all Wiktionary entries with
-        IPA pronunciations in this LanguageParser's language.
-
-        :return: List[Tag], given page's next pages
-        """
-        url = self.url + self.IPA_URL + sorted(self.alphabet)[0].upper()
-        next_pg = self.parse_url(url)
-        pgs = []
-
-        while next_pg is not None:
-            pgs.append(next_pg)
-            next_pg = self.next_page(next_pg)
-
-        return pgs
-
-    # ADDITIONS
-    # ---------
-    def add_ipas(self, word, ipas, language=None):
-        """
-        Adds the given word as a key to this language's IPA
-        dictionary, with IPA pronunciations as values.
-
-        :param word: str, word to add as key
-        :param ipas: List[str], IPAs to add as values
-        :param language: str, language of IPAs/word
-        :return: None
-        """
-        for ipa in ipas:
-            self.add_ipa(word, ipa, language)
-
-    def add_ipa(self, word, ipa, language=None):
-        """
-        Adds the given word as a key to this language's IPA
-        dictionary, appending IPA pronunciation to its values.
-
-        :param word: str, word to add as key
-        :param ipa: str, IPA pronunciation to add to values
-        :param language: str, language of IPAs/word
-        :return: None
-        """
-        language = self.verify_language(language)
-        ipa_dict = self.fetch_lang_ipas(language)
-        ipas = ipa_dict.setdefault(word, list())
-
-        if ipa is not None:
-            ipas.append(ipa)
-            ipa_dict[word] = OrderedSet(ipas).items
-            self.langs_ipas[language] = ipa_dict
-
-    def add_etymologies(self, word, etymologies, language=None):
-        """
-        Adds the given word as a key to this language's etymological
-        dictionary, with etymologies as values.
-
-        :param word: str, word to add as key
-        :param etymologies: List[str], etymologies to add as values
-        :param language: str, language of etymologies/word
-        :return: None
-        """
-        for etymology in etymologies:
-            self.add_etymology(word, etymology, language)
-
-    def add_etymology(self, word, etymology, language=None):
-        """
-        Adds the given word as a key to this language's etymological
-        dictionary, adding etymology to its values.
-
-        :param word: str, word to add as key
-        :param etymology: str, etymology to add to values
-        :param language: str, language of etymology/word
-        :return: None
-        """
-        language = self.verify_language(language)
-        etym_dict = self.fetch_lang_etymologies(language)
-        etyms = etym_dict.setdefault(word, list())
-
-        if etymology is not None:
-            etyms.append(etymology)
-            etym_dict[word] = OrderedSet(etyms).items
-            self.langs_etymologies[language] = etym_dict
-
-    def add_inflections(self, inflections, lemma, language=None):
-        """
-        Adds the given inflections as keys to this language's
-        inflectional dictionary, with lemma as their values.
-
-        :param inflections: List[str], inflections to add as keys
-        :param lemma: str, lemmatized form of inflections to add as value
-        :param language: str, language of inflections/lemma
-        :return: None
-        """
-        for inflection in inflections:
-            self.add_inflection(inflection, lemma, language)
-
-    def add_inflection(self, inflection, lemma, language=None):
-        """
-        Adds the given inflection as a key to this language's
-        inflectional dictionary, with lemma as its value.
-
-        :param inflections: str, inflection to add as key
-        :param lemma: str, lemmatized form of inflection to add as value
-        :param language: str, language of inflection/lemma
-        :return: None
-        """
-        inflection, lemma = inflection.strip(), lemma.strip()
-        language = self.verify_language(language)
-        inflections = self.fetch_lang_inflections(language)
-
-        if lemma is not None:
-            for subinflection in inflection.split("/"):
-                subinflection = subinflection.strip()
-                lemmas = inflections.setdefault(subinflection, list())
-                lemmas.append(lemma)
-                inflections[subinflection] = list(set(lemmas))
-            self.langs_inflections[language] = inflections
-
-    def add_declensions(self, word, declensions, language=None):
-        """
-        Adds the given word as a key to this language's declension
-        dictionary, with declensions as values.
-
-        :param word: str, word to add as key
-        :param declensions: List[str], declensions to add as values
-        :param language: str, language of declensions/word
-        :return: None
-        """
-        for declension in declensions:
-            self.add_declension(word, declension, language)
-
-    def add_declension(self, word, declension, language=None):
-        """
-        Adds the given word as a key to this language's declension
-        dictionary, adding declension to its values.
-
-        :param word: str, word to add as key
-        :param declension: dict(str, List[str]), declension to add to values
-        :param language: str, language of declension/word
-        :return: None
-        """
-        language = self.verify_language(language)
-        declensions = self.fetch_lang_declensions(language)
-        dec = declensions.setdefault(word, dict())
-
+        declension = self.lookup_word_inflections(word, language)
         if declension is not None:
-            dec.update(declension)
-            declensions[word] = dec
-            self.langs_declensions[language] = declensions
+            lemmas.add(word)
+        else:
+            etym = self.find_word_inflections(word, language)
+            if etym is not None:
+                lemmas.add(word)
+            else:
+                stemwords = self.find_stemwords(word, language, poses)
+                lemmas.update(stemwords)
+
+                if len(lemmas) == 0:
+                    headwords = self.find_headwords(word, language, poses)
+                    lemmas.update(headwords)
+
+        return [lemma for lemma in lemmas.items() if self.verify_word(lemma, language)]
+
+    def uninflect(self, word, language=None):
+        """
+        Returns the uninflected form of this word in this language.
+
+        :param word: str, word to uninflect
+        :param language: str, language of word
+        :return: str, word uninflected
+        """
+        language = self.verify_language(language)
+        for word_entry in self.wiktionary_entries:
+            inflections = self.lookup_word_inflections(word_entry, language)
+            if inflections is not None:
+                for inflection in inflections:
+                    if inflection == word:
+                        return word_entry
+        else:
+            return self.lemmatize(word)
+
+    # IPAS
+    # ----
+    def word_ipa(self, word, language=None):
+        """
+        Transcribes the given word to IPA.  Returns this word's
+        IPA pronunciation and adds its transcription to the given
+        language's IPA dictionary.
+
+        :param word: str, word to transcribe to IPA
+        :param language: str, word's language
+        :return: unicode, IPA transcription of word
+        """
+        ipas = self.word_ipas(word, language)
+        if len(ipas) != 0:
+            return ipas[0]
+        else:
+            return
+
+    def word_ipas(self, word, language=None):
+        """
+        Transcribes the given word to IPAs.
+
+        :param word: str, word to transcribe to IPA
+        :param language: str, word's language
+        :return: List[unicode], IPA transcriptions of word
+        """
+        language = self.verify_language(language)
+        entry = self.find_wiktionary_subentry(word, language, u"Pronunciation")
+        if len(entry) == 0:
+            ipa = self.etymology_ipa(word, language)
+            if ipa is not None:
+                entry.insert(0, ipa)
+                self.edit_wiktionary_entry(word, language, u"Pronunciation", entry)
+        return entry
+
+    def words_ipa(self, words):
+        """
+        Transcribes the given words to IPA.
+
+        :param word: List[str], words to transcribe to IPA
+        :return: List[unicode], IPA transcriptions of words
+        """
+        ipas = list()
+
+        for word in words:
+            ipa = self.word_ipa(word)
+            if ipa is not None:
+                ipas.append(ipa)
+
+        return ipas
+
+    def find_word_ipas(self, word, language=None):
+        """
+        Transcribes the given word to IPAs.
+
+        :param word: str, word to transcribe to IPA
+        :param language: str, word's language
+        :return: List[unicode], IPA transcriptions of word
+        """
+        language = self.verify_language(language)
+        try:
+            return self.wiktionary_entries[word][language][u"Pronunciation"]
+        except KeyError:
+            return list()
+
+    def etymology_ipa(self, word, language=None):
+        """
+        Returns this word's IPA constructed from its etymology.
+
+        :param word: str, word to return etymology's IPA of
+        :param language: str, language of word
+        :return: (unicode) str, this word's etymology's IPA
+        """
+        language = self.verify_language(language)
+        etyms = self.find_word_etymology(word, language)
+        ipas = []
+        if etyms is not None and len(etyms) != 0:
+            for etym in etyms:
+                etym_ipa = self.word_ipa(etym)
+                if etym_ipa is None:
+                    return
+                else:
+                    ipas += etym_ipa
+        return "".join(ipas)
+
+    # PARTS-OF-SPEECH
+    # ---------------
+    def word_pos(self, word, language=None):
+        """
+        Returns the given word's part of speech.
+
+        :param word: str, word to get part of speech of
+        :param language: str, word's language
+        :return: str, word's part of speech
+        """
+        poses = self.word_poses(word, language)
+        if len(poses) != 0:
+            return poses[0]
+
+    def word_poses(self, word, language=None):
+        """
+        Returns the given word's parts of speech.
+
+        :param word: str, word to get parts of speech of
+        :param language: str, word's language
+        :return: List[str], word's parts of speech
+        """
+        language = self.verify_language(language)
+        word_entry = self.find_wiktionary_entry(word, language)
+        if word_entry is not None:
+            poses = [sect for sect in word_entry
+                     if sect in self.PARTS_OF_SPEECH]
+            pos_set = OrderedSet(poses)
+            return pos_set.items()
+        else:
+            return list()
+
+    def words_pos(self, words, language=None):
+        """
+        Returns a list of the given words' parts of speech.
+
+        :param word: List[str], words to get parts of speech of
+        :param language: str, words' language
+        :return: List[str], words' parts of speech
+        """
+        pos = list()
+        for word in words:
+            pos.append(self.word_pos(word, language))
+        return pos
+
+    def words_poses(self, words, language=None):
+        """
+        Returns a list of the given words' parts of speech.
+
+        :param word: List[str], words to get parts of speech of
+        :param language: str, words' language
+        :return: List[Set(str)], words' parts of speech
+        """
+        poses = list()
+        for word in words:
+            poses.append(self.word_poses(word, language))
+        return poses
+
+    # MORPHEMES
+    # ---------
+    def word_morphemes(self, word, language=None):
+        """
+        Returns a set of morphemes in this word.
+
+        :param word: str, word to find morphemes of
+        :param language: str, language of morpehemes
+        :return: List[str], word's morphemes
+        """
+        word = self.entry_word(word, language)
+        return self.lookup_word_etymology(word, language)
+
+    def recursive_all_word_morphemes(self, word, language=None):
+        """
+        Returns a set of morphemes in this word, including the
+        morphemes for all its sub-morphemes.
+        ~
+        e.g. all_word_morphemes("undeniable", "English") -> ["un-", "deny", "-able"]
+
+        :param word: str, word to find morphemes of
+        :param language: str, language of morpehemes
+        :return: List[str], word's morphemes
+        """
+        language = self.verify_language(language)
+        word_morphemes = self.word_morphemes(word, language)
+        if word_morphemes is not None:
+            submorphemes = OrderedSet(word_morphemes)
+            for morpheme in word_morphemes:
+                print morpheme
+                submorphemes.update(self.recursive_all_word_morphemes(morpheme))
+        else:
+            submorphemes = OrderedSet([])
+        return submorphemes
+
+    def all_word_morphemes(self, word, language=None):
+        """
+        Returns a set of morphemes in this word, including the
+        morphemes for all its sub-morphemes.
+        ~
+        e.g. all_word_morphemes("undeniable", "English") -> ["un-", "deny", "-able"]
+
+        :param word: str, word to find morphemes of
+        :param language: str, language of morpehemes
+        :return: List[str], word's morphemes
+        """
+        language = self.verify_language(language)
+        morphemes = OrderedSet([])
+        todo = {word}
+
+        while len(todo) != 0:
+            curr_word = todo.pop()
+            if len(curr_word) != 0 and curr_word not in morphemes.items_set and not self.contains_punct(curr_word):
+                morphemes.add(curr_word)
+                word_morphemes = self.word_morphemes(curr_word, language)
+                if word_morphemes is not None:
+                    morphemes.update(word_morphemes)
+                    todo.update(word_morphemes)
+
+        return morphemes.order_items()
+
+    def words_morphemes(self, words, language=None):
+        """
+        Returns a list of morphemes in these words.
+
+        :param word: str, word to find morphemes of
+        :param language: str, language of morpehemes
+        :return: List[str], words' morphemes
+        """
+        language = self.verify_language(language)
+        morphemes = list()
+        for word in words:
+            word_morphemes = self.all_word_morphemes(word, language)
+            morphemes += word_morphemes
+        return morphemes
+
+    # LOOKUPS & FINDS
+    # ---------------
+    # Use lookup to "look up" existing entries,
+    # use find to "find" new entries if none exist.
+    # ---------------
+    def lookup_word_inflections(self, word, language):
+        """
+        Returns all inflected forms of this word in wiktionary_entries.
+
+        :param word: str, word for declension to get inflections of
+        :return: List[str], all inflected forms of word
+        """
+        try:
+            return self.wiktionary_entries[word][language][u"Declension"]
+        except KeyError:
+            return
+
+    def find_word_inflections(self, word, language):
+        """
+        Returns all inflected forms of this word from Wiktionary.
+
+        :param word: str, word for declension to get inflections of
+        :return: List[str], all inflected forms of word
+        """
+        return self.find_wiktionary_subentry(word, language, u"Declension")
+
+    def lookup_word_etymology(self, word, language=None):
+        """
+        Returns the etymology of the given word in this
+        language (according to Wiktionary).
+
+        :param word: str, word to find etymology of
+        :param language: str, language of etymology
+        :return: List[str], etymological roots of this word
+        """
+        language = self.verify_language(language)
+        return self.lookup_wiktionary_subentry(word, language, u"Etymology")
+
+    def find_word_etymology(self, word, language):
+        """
+        Returns the etymology of this word from Wiktionary.
+
+        :param word: str, word to lookup etymology of
+        :return: List[str], etymological roots of this word
+        """
+        language = self.verify_language(language)
+        return self.find_wiktionary_subentry(word, language, u"Etymology")
+
+    # ALL ENTRIES
+    # -----------
+    def all_inflections(self, language=None):
+        """
+        Returns a dictionary of all words in this language's declensions.
+
+        :param language: str, language of declension dicts
+        :return: dict(str, str), inflection-lemma pairs in this language
+        """
+        language = self.verify_language(language)
+        declensions = dict()
+
+        for word in self.wiktionary_entries:
+            inflections = self.lookup_word_inflections(word, language)
+            if inflections is not None:
+                for inflection in inflections:
+                    declensions.setdefault(inflection, list())
+                    declensions[inflection] += word
+
+        return declensions
+
+    def all_morphemes(self, language=None):
+        """
+        Returns all words in this language's declension.
+
+        :param language: str, language of inflection dict
+        :return: List[str], all morphemes in this language
+        """
+        language = self.verify_language(language)
+        morphemes = list()
+
+        for word in self.wiktionary_entries:
+            etyms = self.word_morphemes(word, language)
+            if etyms is not None:
+                morphemes += etyms
+
+        return morphemes
+
+    def all_ipas(self, language=None):
+        """
+        Returns all IPAs in this language's pronunciations.
+
+        :param language: str, language of pronunciations
+        :return: dict(str, str), inflection-lemma pairs in this language
+        """
+        language = self.verify_language(language)
+        ipas = dict()
+
+        for word in self.wiktionary_entries:
+            word_ipas = self.find_word_ipas(word, language)
+            if word_ipas is not None:
+                ipas.setdefault(word, list())
+                ipas[word] = OrderedSet(ipas[word] + word_ipas).items()
+
+        return ipas
 
     # WORDNET
     # -------
@@ -859,25 +765,23 @@ class LanguageParser(WiktionaryParser):
 
         :return: Set(str), Wordnet word
         """
-        lexicon = self.parse_lexicon(self.language)
-
-        if len(lexicon) != 0:
-            return set(lexicon.keys())
-        else:
+        if self.language == "English":
             entries = set()
-            if self.language == "English":
-                path = self.PATH + "/resources/wordnet/wn_s.txt"
+            path = self.PATH + "/resources/wordnet/wn_s.txt"
 
-                with open(path, "r") as synsets:
-                    for synset in synsets:
-                        synset = synset[2:-3]
-                        info = synset.split(",")
-                        name = info[2]
-                        name = name[1:-1]
-                        if " " not in name:
-                            entries.add(name)
+            with open(path, "r") as synsets:
+                for synset in synsets:
+                    synset = synset[2:-3]
+                    info = synset.split(",")
+                    name = info[2]
+                    name = name[1:-1]
+                    if " " not in name:
+                        entries.add(name)
 
             return entries
+        else:
+            lexicon = self.parse_lexicon(self.language)
+            return set(lexicon.keys())
 
     def get_wordnet_word_pairs(self):
         """
@@ -904,15 +808,15 @@ class LanguageParser(WiktionaryParser):
 
     # COMMON WORDS
     # ------------
-    def common_words(self, lim=50000):
+    def common_words(self, language=None, lim=50000):
         """
-        Returns a list of the 50,000 most common words
-        in this LanguageParser's language.
+        Returns the most common words in this language up to lim.
 
-        :param lim: int, lim <= 50000, number of words to retreive
-        :return: List[str], 50k most common words in LanguageParser's language
+        :param lim: int, lim <= 50000, number of words to retrieve
+        :param language: Optional[str], language of common words
+        :return: List[str], 50k most common words in language
         """
-        lang_code = self.get_lang_code()
+        lang_code = self.get_lang_code(language)
 
         if lang_code is None:
             return
@@ -932,26 +836,23 @@ class LanguageParser(WiktionaryParser):
 
         return words
 
-    def common_word_pairs(self, lim=50000):
+    def common_word_pairs(self, language=None, lim=50000):
         """
-        Returns a set of common word-pos pairs, up to lim.
+        Returns the most common word-pos pairs in this language
+        up to lim.
 
         :param lim: int, number of common words to return
+        :param language: Optional[str], language of common words
         :return: List[tuple(str, str)], Wordnet word and pos
         """
-        common_words = self.common_morphemes(lim)
+        language = self.verify_language(language)
+        common_words = self.common_words(language, lim)
 
-        if self.language == "English":
+        if language == "English":
             word_pairs = self.get_wordnet_word_pairs()
             return [word_pair for word_pair in word_pairs if word_pair[0] in common_words]
         else:
-            inflections = self.parse_lexicon(self.language)
-            if len(inflections) == 0:
-                lemmas = common_words
-            else:
-                lemmas = [self.uninflect(cw, self.language) for cw in common_words]
-
-            poses = self.words_poses(lemmas)
+            poses = self.words_poses(common_words)
             word_pairs = list()
 
             for i in range(len(common_words)):
@@ -965,86 +866,53 @@ class LanguageParser(WiktionaryParser):
 
             return word_pairs
 
-    def common_morphemes(self, lim=50000):
+    def common_morphemes(self, language=None, lim=50000):
         """
-        Returns a set of the 50,000 most common words
-        in this LanguageParser's language, including their
-        constituent words.
+        Returns the most common words in this language up to lim,
+        including their constituent words.
 
         :param lim: int, lim <= 50000, number of words to retrieve
-        :return: Set(str), up to 50k most common words in LanguageParser's language
+        :param language: Optional[str], language of common morpemes
+        :return: List[str], up to 50k most common words in LanguageParser's language
         """
-        lexicon = self.lexicon
+        language = self.verify_language(language)
+        lexicon = self.find_lexicon(language, lim)
         common_words = lexicon[:lim]
-        morphemes = common_words[:]
-        common_words = set(common_words)
-        all_words = self.wordnet_words.intersection(lexicon).difference(common_words)
-
-        for word in all_words:
-            # catch all derivative words
-            if len(word) > 3: # or cw == word[:len(cw)]
-                if any(word == cw[:len(word)]
-                       for cw in common_words if (len(word)/4) < len(cw)):
-                    word = self.unicodize(word)
-                    print word, "is a derivative of a common word"
-                    morphemes.append(word)
-
+        morphemes = self.words_morphemes(common_words, language)
         return morphemes
 
-    # WORD MANIPULATION
-    # -----------------
-    def word_pos(self, word):
+    def add_common_wiktionary_entries(self, language=None, lim=50000):
         """
-        Returns the given word's part of speech.
+        Adds Wiktionary entries for the most common words in
+        this language to this WiktionaryParser's wiktionary_entries.
 
-        :param word: str, word to get parts of speech of
-        :return: str, word's part of speech
+        :param words: List[str], words of Wiktionary entries to add
+        :param language: Optional[str], language of entries to add
+        :return: dict(str, dict), where str is language and dict is...
+            key (str) - title of subentry heading (e.g. Etymology)
+            val (list) - value(s) associated with subentry
         """
-        if word in self.lang_pos:
-            return self.lang_pos[word]
-        else:
-            parsed_url = self.word_page(word)
-            pos = self.page_pos(parsed_url)
-            self.lang_pos[word] = pos
-            return pos
+        language = self.verify_language(language)
+        return self.add_wiktionary_entries(self.common_words(language, lim), language)
 
-    def word_poses(self, word):
+    # URLS
+    # ----
+    def lemma_url(self, language=None):
         """
-        Returns the given word's parts of speech.
+        Returns the Wiktionary URL for lemmas in this language.
 
-        :param word: str, word to get parts of speech of
-        :return: Set(str), word's part of speech
+        :param language: str, language of URL
+        :return: str, Wiktionary URL for this parser's lemmas
         """
-        if word in self.lang_pos:
-            return self.lang_pos[word]
-        else:
-            parsed_url = self.word_page(word)
-            poses = self.page_poses(parsed_url)
-            self.lang_pos[word] = poses
-            return poses
+        language = self.verify_language(language)
+        return (self.WIKI_URL + self.END_URL + self.LEMMA_PATH) % language
 
-    def words_pos(self, words):
+    def ipa_url(self, language=None):
         """
-        Returns a list of the given words' parts of speech.
+        Returns the Wiktionary URL for IPAs in this language.
 
-        :param word: List[str], words to get parts of speech of
-        :return: List[str], words' parts of speech
+        :param language: str, language of IPA URL
+        :return: str, Wiktionary URL for this parser's IPAs
         """
-        pos = list()
-        for word in words:
-            pos.append(self.word_pos(word))
-        return pos
-
-    def words_poses(self, words):
-        """
-        Returns a list of the given words' parts of speech.
-
-        :param word: List[str], words to get parts of speech of
-        :return: List[Set(str)], words' parts of speech
-        """
-        poses = list()
-        for word in words:
-            print word
-            poses.append(self.word_poses(word))
-        return poses
-
+        language = self.verify_language(language)
+        return (self.WIKI_URL + self.END_URL + self.IPA_PATH) % (language, language)
